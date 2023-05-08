@@ -1,0 +1,124 @@
+@CHARSET "UTF-8";
+
+html {
+	width: 500px;
+	margin: 10px auto;
+}
+
+h1 {
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+}
+
+a:link {
+	color: blue;
+	font-weight: bold;
+}
+
+/* visited link */
+a:visited {
+	color: blue;
+	font-weight: bold;
+}
+
+/* mouse over link */
+a:hover {
+	color: red;
+	font-weight: bold;
+}
+
+a:active {
+	color: blue;
+	font-weight: bold;
+}
+ /*
+ In questo esempio, il colore di sfondo del body è impostato su #EAF9D9, mentre il colore di sfondo della tabella è impostato su #FFFFFF. I bordi della tabella sono rimossi con border-collapse: collapse, e viene aggiunto un effetto di ombreggiatura con box-shadow.
+
+I colori di sfondo delle righe pari e dispari sono impostati rispettivamente su #E2C2C6 e #FFFFFF, mentre il colore di sfondo delle righe quando vengono selezionate con il mouse è impostato su #FFDC5E.
+
+L'header della tabella ha il colore di sfondo impostato su #21A179, con il testo in bianco (color: #FFFFFF).
+
+Infine, la caption della tabella ha un font più grande (font-size: 24px), in grassetto (font-weight: bold), centrata (text-align: center) e con un margine inferiore (margin-bottom: 20px).
+*/
+
+body {
+  background-color: #EAF9D9;
+}
+
+table {
+  width: 80%;
+  margin: 50px auto;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #21A179;
+  color: #FFFFFF;
+}
+
+tr:nth-child(even) {
+  background-color: #E2C2C6;
+}
+
+tr:hover {
+  background-color: #FFDC5E;
+}
+
+caption {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+label {
+	font-weight: bold;
+}
+
+form input[type=text], form input[type=password],
+	form input[type=date], form input[type=range], form input[type=email],
+	form input[type=url], form input[type=time], form input[list] {
+	width: 500px;
+	font-size: 1em;
+}
+
+textarea {
+	width: 500px;
+	height: 60px;
+	font-size: 1em;
+}
+
+/* Imposta l'immagine al centro della pagina */
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Imposta la dimensione massima dell'immagine */
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Imposta la cornice dell'immagine */
+img {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+form input[type=number]{
+	width: 50px;
+}
