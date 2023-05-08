@@ -104,16 +104,10 @@ textarea {
 img {
   display: block;
   margin: 0 auto;
-}
-
 /* Imposta la dimensione massima dell'immagine */
-img {
   max-width: 100%;
   max-height: 100%;
-}
-
 /* Imposta la cornice dell'immagine */
-img {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
