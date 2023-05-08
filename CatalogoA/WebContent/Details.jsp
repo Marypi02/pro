@@ -34,6 +34,7 @@
 		</tr>
 	</table>
 	<table>
+	    <tr><th>Image:</th></tr>
 	    <tr>
 	        <td><img src="${pageContext.request.contextPath}/images/${product.getNomeImg()}" alt="Cannot load..."></td>
 	    </tr>
