@@ -6,7 +6,7 @@
 	%>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link href="ProductStyle.css" rel="stylesheet" type="text/css">
@@ -34,8 +34,9 @@
 		</tr>
 	</table>
 	<table>
+	    <tr><th>Image:</th></tr>
 	    <tr>
-	        <td><img src="${pageContext.request.contextPath}/images/${product.getNomeImg()}"></td>
+	        <td><img src="${pageContext.request.contextPath}/images/${product.getNomeImg()}" alt="Cannot load..."></td>
 	    </tr>
 	</table>
 	
