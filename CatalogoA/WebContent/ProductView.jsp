@@ -42,8 +42,8 @@
 			<td><%=bean.getName()%></td>
 			<td><%=bean.getDescription()%></td>
 			<td><a href="product?action=delete&id=<%=bean.getCode()%>">Delete</a><br>
-				<a href="product?action=read&id=<%= bean.getCode() %>" target="_blank">Details</a><br>
-				<!-- <a href="product?action=addC&id=<%=bean.getCode()%>">Add to cart</a>  -->
+				<a href="product?action=read&id=<%= bean.getCode() %>" target="_blank" rel="noopener">Details</a><br>
+				<!-- noopener per evitare che, quando viene caricata la nuova pagina, venga caricata in realtà una pagina malevola che es. può chiedere dei dati sensibili -->
 				<form action="./cart" method="post">
                 <input type="hidden" name="action" value="addC">
                 <input type="hidden" name="productCode" value="<%= bean.getCode() %>">
