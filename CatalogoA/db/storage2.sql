@@ -15,17 +15,16 @@ CREATE TABLE product (
 
 CREATE TABLE utente (	
 code int primary key AUTO_INCREMENT,
-name char(60) not null,
-cognome char(60) not null,
-password char(8) not null,
 email char(60) not null,
-valuta int default 0,
+password char(8) not null,
+nome char(60) not null,
+cognome char(60) not null,
 indirizzo char(60) not null,
 admin boolean not null
 );
 
 INSERT INTO product values (1,"Ciotolola Doppia","Ciotola doppia per cani dal design unico, per contenere alimenti e/o acqua.",10.99,5,"1.jpg");
-INSERT INTO product values (2,"Ciotolola in Ceramica","Perfetta per cani e gatti, questa ciotola ï¿½ la soluzione migliore per i pasti di tutti i giorni del tuo pet.",15.99,5,"2.jpg");
+INSERT INTO product values (2,"Ciotolola in Ceramica","Perfetta per cani e gatti, questa ciotola è la soluzione migliore per i pasti di tutti i giorni del tuo pet.",15.99,5,"2.jpg");
 INSERT INTO product values (3,"Virtus Dog Protein Selection","Alimento secco completo e bilanciato per cani adulti di qualsiasi razza e taglia ",25.99,13,"3.jpg");
 INSERT INTO product values (4,"Voliera in legno","Una raffinata e spaziosa voliera per canarini, cocorite e uccelli esotici.",270.30,5,"4.jpg");
 INSERT INTO product values (5,"Collare Outdoor Blu","Adatto ad un cane di piccola taglia",8.99,20,"5.jpg");

@@ -32,7 +32,7 @@
 </servlet>
 <servlet-mapping>
   <servlet-name>Registrazione</servlet-name>
-  <url-pattern>/Registrazione</url-pattern>
+  <url-pattern>/utente</url-pattern>
 </servlet-mapping>
 
 

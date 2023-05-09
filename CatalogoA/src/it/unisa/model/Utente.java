@@ -6,6 +6,18 @@ public class Utente {
 		super();
 	}
 	
+	
+	private int code;
+	private String nome;
+	private String cognome;
+	private String username;
+	private String password;
+	private String email;
+	//private int valuta;
+	private String indirizzo;
+	static final boolean admin = false;
+
+	
 	/**
 	 * @param idutente
 	 * @param nome
@@ -17,18 +29,15 @@ public class Utente {
 	 * @param indirizzo
 	 * @param admin
 	 */
-	public Utente(int idutente, String nome, String cognome, String password, String email,
-			int valuta, String indirizzo, boolean admin) {
+	public Utente(int code, String nome, String cognome, String password, String email, String indirizzo) {
 		super();
-		this.idutente = idutente;
+		this.code = code;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.username = email;
 		this.password = password;
 		this.email = email;
-		this.valuta = valuta;
 		this.indirizzo = indirizzo;
-		this.admin = admin;
 	}
 	
 	/**
@@ -41,17 +50,14 @@ public class Utente {
 	 * @param indirizzo
 	 * @param admin
 	 */
-	public Utente(String nome, String cognome, String password, String email,
-			int valuta, String indirizzo, boolean admin) {
+	public Utente(String nome, String cognome, String password, String email, String indirizzo) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
-		this.username = email;
+		//this.username = email;
 		this.password = password;
 		this.email = email;
-		this.valuta = valuta;
 		this.indirizzo = indirizzo;
-		this.admin = admin;
 	}
 	
 	
@@ -59,14 +65,14 @@ public class Utente {
 	 * @return the idutente
 	 */
 	public int getIdutente() {
-		return idutente;
+		return code;
 	}
 	
 	/**
 	 * @param idutente the idutente to set
 	 */
-	public void setIdutente(int idutente) {
-		this.idutente = idutente;
+	public void setIdutente(int code) {
+		this.code = code;
 	}
 	
 	/**
@@ -140,20 +146,6 @@ public class Utente {
 	}
 	
 	/**
-	 * @return the valuta
-	 */
-	public int getValuta() {
-		return valuta;
-	}
-	
-	/**
-	 * @param valuta the valuta to set
-	 */
-	public void setValuta(int valuta) {
-		this.valuta = valuta;
-	}
-	
-	/**
 	 * @return the indirizzo
 	 */
 	public String getIndirizzo() {
@@ -174,21 +166,4 @@ public class Utente {
 		return admin;
 	}
 	
-	/**
-	 * @param admin the admin to set
-	 */
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
-	}
-	
-	private int idutente;
-	private String nome;
-	private String cognome;
-	private String username;
-	private String password;
-	private String email;
-	private int valuta;
-	private String indirizzo;
-	private boolean admin;
-
 }
