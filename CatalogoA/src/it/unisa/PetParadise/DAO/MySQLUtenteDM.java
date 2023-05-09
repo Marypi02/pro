@@ -185,7 +185,7 @@ public class MySQLUtenteDM implements UtenteDAO {
         try {
             con = DriverManagerConnectionPool.getConnection();
             statement = con.prepareStatement(DELETE_QUERY);
-            statement.setInt(0, code); //prima era 1
+            statement.setInt(1, code); //prima era 1
             result = statement.executeUpdate();
             
             

@@ -107,6 +107,7 @@ public class cart {
 	/*IN PRATICA, SE SI INSERISCE 0 COME QUANTIA' DEL PRODOTTO NEL CARRELLO,
 	 * IL PRODOTTO VIENE CANCELLATO DAL CARRELLO*/
 	//@SuppressWarnings({ "null", "unlikely-arg-type" })
+	@SuppressWarnings("unlikely-arg-type")
 	public synchronized void setNumOrdered(ProductBean product, int numOrdered) {
 		 /*ProductOrder order = null;
 		    for(int i=0; i<products.size(); i++) {
