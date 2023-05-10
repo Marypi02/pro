@@ -20,6 +20,7 @@ password char(8) not null,
 nome char(60) not null,
 cognome char(60) not null,
 indirizzo char(60) not null,
+citta char(50) not null,
 admin boolean not null
 );
 

@@ -22,5 +22,8 @@ public interface UtenteDAO {
 	
 	/** Cancella un oggetto Utente esistente. */
 	public  boolean deleteUtente(int idutente) throws SQLException;
+	
+	// Vede se una mail è già presente
+	public boolean isEmailPresent(String email) throws SQLException;
 
 }

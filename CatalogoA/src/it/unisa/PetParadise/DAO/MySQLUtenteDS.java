@@ -31,7 +31,7 @@ public class MySQLUtenteDS implements UtenteDAO {
 	}
 	
 	/** La query per l'inserimento di un nuovo cliente */
-    private static final String CREATE_QUERY = "INSERT INTO utente (email, password, nome, cognome, indirizzo, admin) VALUES (?,?,?,?,?,?)";
+    private static final String CREATE_QUERY = "INSERT INTO utente (email, password, nome, cognome, indirizzo, citta, admin) VALUES (?,?,?,?,?,?,?)";
     
     /** La query per la lettura di un singolo cliente. */
     private static final String READ_QUERY = "SELECT * FROM utente WHERE code = ?";
@@ -40,7 +40,7 @@ public class MySQLUtenteDS implements UtenteDAO {
     private static final String READ_ALL_QUERY = "SELECT * FROM utente";
     
     /** La query per l'aggiornamento di un singolo cliente. */
-    private static final String UPDATE_QUERY = "UPDATE utente SET email=?,password=?, nome=?, cognome=?, username=?,  valuta=?, indirizzo=?, admin=? WHERE code = ?";
+    private static final String UPDATE_QUERY = "UPDATE utente SET email=?,password=?, nome=?, cognome=?, username=?,  valuta=?, indirizzo=?, citta=?, admin=? WHERE code = ?";
     
     /** La query per la cancellazione di un singolo cliente. */
     private static final String DELETE_QUERY = "DELETE FROM utente WHERE code = ?";
@@ -60,7 +60,8 @@ public class MySQLUtenteDS implements UtenteDAO {
             preparedStatement.setString(3, utente.getNome());
             preparedStatement.setString(4, utente.getCognome()); 
             preparedStatement.setString(5, utente.getIndirizzo());
-            preparedStatement.setBoolean(6, utente.isAdmin());
+            preparedStatement.setString(6, utente.getCitta());
+            preparedStatement.setBoolean(7, utente.isAdmin());
             
             preparedStatement.executeUpdate();
             
@@ -104,6 +105,7 @@ public class MySQLUtenteDS implements UtenteDAO {
         		utente.setNome(result.getString("nome"));
         		utente.setCognome(result.getString("cognome"));
         		utente.setIndirizzo(result.getString("indirizzo"));
+        		utente.setCitta(result.getString("citta"));
         		
         		utenti.add(utente);
         	}
@@ -145,6 +147,7 @@ public class MySQLUtenteDS implements UtenteDAO {
 	        		utente.setNome(result.getString("nome"));
 	        		utente.setCognome(result.getString("cognome"));
 	        		utente.setIndirizzo(result.getString("indirizzo"));
+	        		utente.setCitta(result.getString("citta"));
 	        		
 	            } 
 	        } catch (SQLException e) {
@@ -177,7 +180,8 @@ public class MySQLUtenteDS implements UtenteDAO {
         	statement.setString(3, utente.getNome());
             statement.setString(4, utente.getCognome());
             statement.setString(5, utente.getIndirizzo());
-            statement.setBoolean(6, utente.isAdmin());
+            statement.setString(6, utente.getCitta());
+            statement.setBoolean(7, utente.isAdmin());
             
             
         	statement.execute();
@@ -211,7 +215,7 @@ public class MySQLUtenteDS implements UtenteDAO {
         try {
             con = ds.getConnection();
             statement = con.prepareStatement(DELETE_QUERY);
-            statement.setInt(1, code);  //prima era 1
+            statement.setInt(1, code);  
              
             result = statement.executeUpdate();
             
@@ -230,4 +234,35 @@ public class MySQLUtenteDS implements UtenteDAO {
 	
 
 }
+	
+	public boolean isEmailPresent(String email) throws SQLException{
+		    Connection connection = null;
+	        PreparedStatement preparedStatement = null;
+	        ResultSet resultSet = null;
+
+	        try {
+	            connection = ds.getConnection();
+	            preparedStatement = connection.prepareStatement("SELECT COUNT(*) AS count FROM utente WHERE email = ?");
+	            preparedStatement.setString(1, email);
+	            resultSet = preparedStatement.executeQuery();
+
+	            if (resultSet.next()) {
+	                int count = resultSet.getInt("count");
+	                return count > 0;
+	            }
+
+	        } finally {
+	            try {
+	                if (resultSet != null)
+	                    resultSet.close();
+	                if (preparedStatement != null)
+	                    preparedStatement.close();
+	            } finally {
+	                if (connection != null)
+	                    connection.close();
+	            }
+	        }
+
+	        return false;
+	    }
 }

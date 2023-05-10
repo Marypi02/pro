@@ -15,6 +15,7 @@ public class Utente {
 	private String email;
 	//private int valuta;
 	private String indirizzo;
+	private String citta;
 	static final boolean admin = false;
 
 	
@@ -29,7 +30,7 @@ public class Utente {
 	 * @param indirizzo
 	 * @param admin
 	 */
-	public Utente(int code, String nome, String cognome, String password, String email, String indirizzo) {
+	public Utente(int code, String nome, String cognome, String password, String email, String indirizzo, String citta) {
 		super();
 		this.code = code;
 		this.nome = nome;
@@ -38,6 +39,7 @@ public class Utente {
 		this.password = password;
 		this.email = email;
 		this.indirizzo = indirizzo;
+		this.citta = citta;
 	}
 	
 	/**
@@ -50,17 +52,25 @@ public class Utente {
 	 * @param indirizzo
 	 * @param admin
 	 */
-	public Utente(String nome, String cognome, String password, String email, String indirizzo) {
+	public Utente(String nome, String cognome, String password, String email, String indirizzo, String citta) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
-		//this.username = email;
+		this.username = email;
 		this.password = password;
 		this.email = email;
 		this.indirizzo = indirizzo;
+		this.citta = citta;
 	}
 	
-	
+	public String getCitta() {
+		return citta;
+	}
+
+	public void setCitta(String citta) {
+		this.citta = citta;
+	}
+
 	/**
 	 * @return the idutente
 	 */
