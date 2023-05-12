@@ -79,13 +79,13 @@ public class Registrazione extends HttpServlet {
 				
 				utenteDAO.createUtente(utente);
 				
-				request.getRequestDispatcher("login.html").forward(request, response);
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
+		request.getRequestDispatcher("login.html").forward(request, response);
 		/*
 		try {
 			
