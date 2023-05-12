@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
     	<meta charset="ISO-8859-1">
     	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -99,7 +98,7 @@
     		<a href="home.html"><img src="loginImage/logo.png" alt="Logo" width="100"></a>
         	<h1>Creazione account</h1>
       
-	        <form action="utente" method="post">
+	        <form name="regForm" action="utente" onsubmit="return validateForm()" method="post">
 	            <input type="email" name="email" class="testo" placeholder="Email" autofocus><br>
 	            <div class="error" id="emailErr"></div>
 	            
@@ -116,6 +115,7 @@
 	            <div class="error" id="indirizzoErr"></div>
 	            
 	            <input type="text" name="citta'" class="testo" placeholder="Citta', Provincia, Cap"><br><br>
+	            
 	        	<input type="submit" value="Iscriviti" id="pulsante">
 	        </form>
 	        <p>Oppure <a href="login.html">accedi</a></p>
