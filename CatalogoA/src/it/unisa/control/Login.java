@@ -44,12 +44,14 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("deprecation")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
+		/*
 		try {
 			if (utenteDAO.isEmailPresent(username)) {
 			    // L'utente è registrato, quindi accede ai prodotti offerti
@@ -63,6 +65,33 @@ public class Login extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		*/
+		
+		String redirectedPage = null;
+		try {
+			//caso in cui è l'admin
+			checkLogin(username, password);
+			request.getSession().setAttribute("adminRoles", true);
+			redirectedPage = "protected.jsp";
+		}catch(Exception e) {
+			//CASO UTENTE NORMALE
+			//controllo prima se è registrato
+			try {
+				//verifico che sia presente nel db e che la password corrisponda a quella usata in fase di registrazione
+				if (utenteDAO.isEmailPresent(username) /*&& password.equals(utenteDAO.getUtente(username).getPassword())*/) {
+				    // Utente registrato; setto la variabile adminRoles a false e definisco a chi passare il controllo
+					request.getSession().setAttribute("adminRoles", false);
+					redirectedPage = "ProductView.jsp";
+				}else {
+					redirectedPage = "LoginError.html";
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+		response.sendRedirect(request.getContextPath() + "/" + redirectedPage);
 	}
 
 	/**
@@ -71,6 +100,13 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	private void checkLogin(String username, String password) throws Exception{
+		if("root@root.root".equals(username) && "admin".equals(password)) {
+			//
+		}else
+			throw new Exception("Invalid login and password");
 	}
 
 }

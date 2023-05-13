@@ -41,10 +41,15 @@
 	</table>
 	
 	<form action="./cart" method="post">
-                <input type="hidden" name="action" value="addC">
-                <input type="hidden" name="productCode" value="<%= bean.getCode() %>">
-                <input type="submit" value="Add to cart">
-                </form>
+	<input type="hidden" name="action" value="addC">
+	<input type="hidden" name="productCode" value="<%= bean.getCode() %>">
+	<input type="submit" value="Add to cart">
+	</form>
+	
+	<form action="./product" method="post">
+    <input type="hidden" name="action" value="comeBack">        
+    <input type="submit" value="Come Back to Catalog">
+    </form>
                 
 </body>
 </html>

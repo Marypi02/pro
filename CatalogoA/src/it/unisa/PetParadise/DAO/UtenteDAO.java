@@ -10,8 +10,8 @@ public interface UtenteDAO {
 	/** Recupera tutti gli utenti dal DB. */
 	public List<Utente> getAllUtenti() throws SQLException;
 	
-	/** Recupera un oggetto Utente esistente a partire dall'id. */
-	public Utente getUtente(int idutente) throws SQLException;
+	/** Recupera un oggetto Utente esistente a partire dalla email. */
+	public Utente getUtente(String email) throws SQLException;
 	
 	/** Crea un oggetto Utente 
 	 * @throws SQLException */

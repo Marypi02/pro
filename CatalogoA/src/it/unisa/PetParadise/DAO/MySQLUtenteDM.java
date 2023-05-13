@@ -105,7 +105,7 @@ public class MySQLUtenteDM implements UtenteDAO {
 	
 
 	@Override
-	public synchronized Utente getUtente(int code) throws SQLException {
+	public synchronized Utente getUtente(String email) throws SQLException {
 		
 		Connection con = null;
 		PreparedStatement statement = null;
@@ -114,7 +114,7 @@ public class MySQLUtenteDM implements UtenteDAO {
 		 try {
 	            con = DriverManagerConnectionPool.getConnection();
 	            statement = con.prepareStatement(READ_QUERY);
-	            statement.setInt(1, code);
+	            statement.setString(1, email);
 	            
 	            ResultSet result = statement.executeQuery();
 	 

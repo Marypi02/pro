@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.unisa.model.ProductModel;
 import it.unisa.model.ProductModelDM;
@@ -104,10 +105,25 @@ public class ProductControl extends HttpServlet {
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
-
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
-		dispatcher.forward(request, response);
 		
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+		    Boolean adminRoles = (Boolean) session.getAttribute("adminRoles");
+		    if (adminRoles != null && adminRoles) {
+		        // Reindirizza all'area protetta per gli amministratori
+		        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/protected.jsp");
+		        dispatcher.forward(request, response);
+		    } else {
+		        // Reindirizza all'area pubblica
+		        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
+		        dispatcher.forward(request, response);
+		    }
+		} else {
+		    // La sessione non è valida, reindirizza all'area pubblica
+		    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
+		    dispatcher.forward(request, response);
+		}
+
 
 	}
 

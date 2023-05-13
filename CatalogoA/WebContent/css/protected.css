@@ -1,0 +1,50 @@
+form input[type=text], 
+form input[type=password],
+form input[type=date], 
+form input[type=range], 
+form input[type=email],
+form input[type=url], 
+form input[type=time], 
+form input[list] {
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
+
+form textarea {
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
+
+form label {
+	font-weight: bold;
+}
+
+form input[type=submit], 
+form input[type=reset] {
+	background-color: #4CAF50;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+form input[type=submit]:hover, 
+form input[type=reset]:hover {
+	background-color: #45a049;
+}
+
+form {
+	width: 500px;
+	margin: 0 auto;
+}
