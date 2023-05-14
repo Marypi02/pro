@@ -121,7 +121,7 @@ public class ProductModelDM implements ProductModel {
 			
 			preparedStatement.setString(1, product.getName());
 	        preparedStatement.setString(2, product.getDescription());
-	        preparedStatement.setBigDecimal(3, new BigDecimal(product.getPrice()));
+	        preparedStatement.setDouble(3, product.getPrice());
 	        preparedStatement.setInt(4, product.getQuantity());
 	        preparedStatement.setString(5, product.getNomeImg());
 	        preparedStatement.setInt(6, product.getCode());  //individua il prodotto
