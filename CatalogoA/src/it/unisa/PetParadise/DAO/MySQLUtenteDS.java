@@ -174,7 +174,7 @@ public class MySQLUtenteDS implements UtenteDAO {
         try {
         	con = ds.getConnection();
         	statement = con.prepareStatement(UPDATE_QUERY);
-        	//statement.setInt(0, utente.getIdutente());
+        	
         	statement.setString(1, utente.getEmail());
         	statement.setString(2, utente.getPassword());
         	statement.setString(3, utente.getNome());
@@ -182,6 +182,7 @@ public class MySQLUtenteDS implements UtenteDAO {
             statement.setString(5, utente.getIndirizzo());
             statement.setString(6, utente.getCitta());
             statement.setBoolean(7, utente.isAdmin());
+            statement.setInt(8, utente.getIdutente()); //individua l'utente
             
             
         	statement.execute();

@@ -38,6 +38,7 @@
 			<th>Code <a href="product?sort=code">Sort</a></th>
 			<th>Name <a href="product?sort=name">Sort</a></th>
 			<th>Description <a href="product?sort=description">Sort</a></th>
+			<th>Cost <a href="product?sort=cost"></a></th>
 			<th>Action</th>
 		</tr>
 		<%
@@ -50,7 +51,9 @@
 			<td><%=bean.getCode()%></td>
 			<td><%=bean.getName()%></td>
 			<td><%=bean.getDescription()%></td>
-			<td><a href="product?action=delete&id=<%=bean.getCode()%>&isAdmin=true">Delete</a><br></td>
+			<td><%=bean.getPrice()%></td>
+			<td><a href="product?action=delete&id=<%=bean.getCode()%>&isAdmin=true">Delete</a><br>
+			    <a href="product?action=edit&id=<%=bean.getCode()%>&isAdmin=true">Edit</a><br></td>
 		</tr>
 		<%
 				}
@@ -75,7 +78,7 @@
 		<textarea name="description" maxlength="100" rows="3" required placeholder="enter description"></textarea><br>
 		
 		<label for="price">Price:</label><br> 
-		<input name="price" type="number" min="0" value="0" required><br>
+        <input name="price" type="text" required pattern="[0-9]+(\.[0-9]{1,2})?" placeholder="enter price"><br>
 		
 		<label for="nameImg">NameImg:</label><br> 
 		<input name="nameImg" type="text" maxlength="20" required placeholder="enter nameImg"><br> 

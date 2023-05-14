@@ -1,5 +1,6 @@
 package it.unisa.model;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -125,6 +126,40 @@ public class ProductModelDS implements ProductModel {
 			}
 		}
 		return (result != 0);
+	}
+	
+	@Override
+	public boolean updateProduct(ProductBean product) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String updateSQL = "UPDATE product SET name=?, description=?, price=?, quantity=?, nome_immagine=? WHERE code=?";
+		
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			
+			preparedStatement.setString(1, product.getName());
+	        preparedStatement.setString(2, product.getDescription());
+	        preparedStatement.setBigDecimal(3, new BigDecimal(product.getPrice()));
+	        preparedStatement.setInt(4, product.getQuantity());
+	        preparedStatement.setString(5, product.getNomeImg());
+	        preparedStatement.setInt(6, product.getCode()); //individua il prodotto
+	        preparedStatement.executeUpdate();
+			
+			int result = preparedStatement.executeUpdate();
+			
+			return result > 0; //return true if at least one row has been update
+		}finally {
+			try {
+				if(preparedStatement != null)
+					preparedStatement.close();
+			}finally {
+				if(connection != null)
+					connection.close();
+			}
+		}
+	    
 	}
 
 	@Override

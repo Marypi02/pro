@@ -3,6 +3,7 @@ package it.unisa.control;
 import it.unisa.model.*;
 import java.io.IOException; 
 import java.sql.SQLException;
+import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -73,10 +74,39 @@ public class ProductControl extends HttpServlet {
 				} else if (action.equalsIgnoreCase("delete")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					model.doDelete(id);
-				} else if (action.equalsIgnoreCase("insert")) {
+				} else if(action.equalsIgnoreCase("edit")) {
+					int id = Integer.parseInt(request.getParameter("id"));
+					ProductBean product = model.doRetrieveByKey(id);
+					request.setAttribute("product", product);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("EditProduct.jsp");
+					dispatcher.forward(request, response);
+				}else if(action.equalsIgnoreCase("updateProduct")) {
+					int id = Integer.parseInt(request.getParameter("id"));
 					String name = request.getParameter("name");
 					String description = request.getParameter("description");
-					int price = Integer.parseInt(request.getParameter("price"));
+					double price = Double.parseDouble(request.getParameter("price"));
+					int quantity = Integer.parseInt(request.getParameter("quantity"));
+					String nameImg = request.getParameter("nameImg");
+					
+					ProductBean bean = new ProductBean();
+					bean.setCode(id);
+					bean.setName(name);
+					bean.setDescription(description);
+					bean.setPrice(price);
+					bean.setQuantity(quantity);
+					bean.setNomeImg(nameImg);
+					model.updateProduct(bean);
+					
+					// Ottieni la lista aggiornata dei prodotti
+				    Collection<ProductBean> products = model.doRetrieveAll(null);
+
+				    // Imposta l'attributo "products" nella richiesta
+				    request.setAttribute("products", products);
+					
+				}else if (action.equalsIgnoreCase("insert")) {
+					String name = request.getParameter("name");
+					String description = request.getParameter("description");
+					double price = Double.parseDouble(request.getParameter("price"));
 					int quantity = Integer.parseInt(request.getParameter("quantity"));
 					String nameImg = request.getParameter("nameImg");
 

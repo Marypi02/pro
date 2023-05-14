@@ -8,6 +8,8 @@ public interface ProductModel {
 	public void doSave(ProductBean product) throws SQLException;
 
 	public boolean doDelete(int code) throws SQLException;
+	
+	public boolean updateProduct(ProductBean product) throws SQLException;
 
 	public ProductBean doRetrieveByKey(int code) throws SQLException;
 	
