@@ -8,7 +8,7 @@
 	%>
     
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/protected.css" type="text/css">
