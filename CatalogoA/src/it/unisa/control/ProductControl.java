@@ -139,7 +139,7 @@ public class ProductControl extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 		    Boolean adminRoles = (Boolean) session.getAttribute("adminRoles");
-		    if (adminRoles != null && adminRoles) {
+		    if (adminRoles) {
 		        // Reindirizza all'area protetta per gli amministratori
 		        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/protected.jsp");
 		        dispatcher.forward(request, response);
