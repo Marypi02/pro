@@ -89,6 +89,20 @@
 		<input type="submit" value="Add"> <input type="reset" value="Reset">
 	</form>
 	<br><br>
+
+<h2>Users</h2>
+<form action="userList" method="get">
+    <input type="hidden" name="action" value="elencoUtenti">
+    <input type="submit" value="Elenco Utenti">
+</form>
+
+<h2>Ordini</h2>
+<form action="orderList" method="get">
+    <input type="submit" value="Elenco Ordini">
+</form>
+
+<br>
+
 <form action="logout" method="get">
 <input type="submit" value="Logout">
 </form>

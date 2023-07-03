@@ -37,3 +37,10 @@ INSERT INTO product values (10,"Croccantini per gatti", "Alimento completo per g
 INSERT INTO product values (11,"Cibo per pesci rossi", "Alimento in fiocchi per pesci rossi", 5.49, 200,"11.jpg");
 INSERT INTO product values (12,"Letto per cani", "Letto imbottito per cani di piccola taglia", 35.99, 20,"12.jpg");
 INSERT INTO product values (13,"Letto per gatti", "Letto in tessuto morbido per gatti", 25.99, 30,"13.jpg");
+
+INSERT INTO utente (email, password, nome, cognome, indirizzo, citta, admin) 
+VALUES ("m.sorrentino2811@gmail.com", "ffff", "Mariapia", "Sorrentino","Via Pasquale Santoriello, 7", "Cava de tirreni, SA, 84013", 1);
+INSERT INTO utente (email, password, nome, cognome, indirizzo, citta, admin) 
+VALUES ("andreeacrintea3@gmail.com", "gggg", "Andreae", "Crintea","Via degli orti", "Santa Maria Capua Vetere, CA, 81055", 1);
+INSERT INTO utente (email, password, nome, cognome, indirizzo, citta, admin) 
+VALUES ("roksid09@gmail.com", "kkkk", "Roksana", "Duda","Via Pasquale Santoriello, 7", "Ottaviano, NA, 12345", 1);

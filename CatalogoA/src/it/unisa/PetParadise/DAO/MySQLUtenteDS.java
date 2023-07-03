@@ -34,7 +34,7 @@ public class MySQLUtenteDS implements UtenteDAO {
     private static final String CREATE_QUERY = "INSERT INTO utente (email, password, nome, cognome, indirizzo, citta, admin) VALUES (?,?,?,?,?,?,?)";
     
     /** La query per la lettura di un singolo cliente. */
-    private static final String READ_QUERY = "SELECT * FROM utente WHERE code = ?";
+    private static final String READ_QUERY = "SELECT * FROM utente WHERE email = ?";
     
     /** La query per la lettura di tutti i clienti. */
     private static final String READ_ALL_QUERY = "SELECT * FROM utente";

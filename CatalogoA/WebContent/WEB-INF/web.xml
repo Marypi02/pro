@@ -50,6 +50,20 @@
   <servlet-name>Logout</servlet-name>
   <url-pattern>/logout</url-pattern>
 </servlet-mapping>
-
-  
+<servlet>
+  <servlet-name>UserList</servlet-name>
+  <servlet-class>it.unisa.control.UserList</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>UserList</servlet-name>
+  <url-pattern>/userList</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>OrderList</servlet-name>
+  <servlet-class>it.unisa.control.OrderList</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>OrderList</servlet-name>
+  <url-pattern>/orderList</url-pattern>
+</servlet-mapping>
 </web-app>
