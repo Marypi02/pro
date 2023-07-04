@@ -97,10 +97,16 @@ VALUES ("roksid09@gmail.com", "kkkk", "Roksana", "Duda","Via Pasquale Santoriell
 
 INSERT INTO consegna (id_consegna, via, cap, numero, citta, utente)
 VALUES (1, 'Via Roma 123', 00100, 5, 'Roma', 1);
+INSERT INTO consegna (id_consegna, via, cap, numero, citta, utente)
+VALUES (2, 'Via Roma 123', 00100, 5, 'Roma', 4);
 
 INSERT INTO metodo_pagamento (id_pagamento, nominativo, CVV, meseScadenza, codice_carta, annoScadenza, e_utente)
 VALUES (1, 'Mario Rossi', 123, 12, '1234567890123456', 2025, 1);
+INSERT INTO metodo_pagamento (id_pagamento, nominativo, CVV, meseScadenza, codice_carta, annoScadenza, e_utente)
+VALUES (2, 'Mario Rossi', 123, 12, '1234567890122456', 2026, 4);
 
 INSERT INTO ordine (id_ordine, data_ordine, stato_ordine, cod_consegna, cod_pagamento, cod_utente, prezzo_totale)
 VALUES (1, '2023-07-04', 'In attesa', 1, 1, 1, 50.00);
+INSERT INTO ordine (id_ordine, data_ordine, stato_ordine, cod_consegna, cod_pagamento, cod_utente, prezzo_totale)
+VALUES (2, '2023-07-03', 'Spedito', 1, 1, 4, 50.00);
 
