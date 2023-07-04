@@ -98,6 +98,7 @@
 
 <h2>Ordini</h2>
 <form action="orderList" method="get">
+    <input type="hidden" name="action" value="elencoOrdini">
     <input type="submit" value="Elenco Ordini">
 </form>
 

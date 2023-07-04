@@ -1,11 +1,23 @@
 package it.unisa.control;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import it.unisa.PetParadise.DAO.OrdineDAO;
+import it.unisa.model.ProductOrder;
 
 /**
  * Servlet implementation class OrderList
@@ -26,6 +38,74 @@ public class OrderList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		OrdineDAO odao = new OrdineDAO();
+		List<ProductOrder> var = null;  
+		String action = request.getParameter("action");
+		
+		if(action != null) {
+			if(action.equalsIgnoreCase("elencoOrdini")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("ElencoOrdini.jsp");
+		        dispatcher.forward(request, response);
+			}
+		}else if(action.equalsIgnoreCase("allOrders")) {  //mostra
+			//Recupero tutti gli ordini
+			try {
+				var = (List<ProductOrder>) odao.doRetrieveAll();
+				if(var != null) {
+					request.setAttribute("OrderList", var);
+					RequestDispatcher rs = request.getRequestDispatcher("ElencoOrdini.jsp");
+					rs.include(request, response);
+				}else {
+					request.setAttribute("OrderList", null);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}else if(action.equalsIgnoreCase("customerOrders")) { //mostra per cliente
+			try {
+				String email = request.getParameter("customerEmail");
+				var = (List<ProductOrder>) odao.doRetrieveAllByUtente(email);
+				if(var != null) {
+					request.setAttribute("OrderList", var);
+					RequestDispatcher rs = request.getRequestDispatcher("ElencoOrdini.jsp");
+					rs.include(request, response);
+				}else {
+					request.setAttribute("OrderList", null);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}else if(action.equalsIgnoreCase("filteredOrders")) { //mostra per cliente
+			try {
+				String fromDateStr = request.getParameter("fromDate");
+			    String toDateStr = request.getParameter("toDate");
+			    
+			    Date fromDate = null;
+			    Date toDate = null;
+
+			    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+			    try {
+			        fromDate = dateFormat.parse(fromDateStr);
+			        toDate = dateFormat.parse(toDateStr);
+			    } catch (ParseException e) {
+			        // Gestisci l'eventuale errore di parsing delle date
+			        e.printStackTrace();
+			    }
+			    
+				var = (List<ProductOrder>) odao.getOrdersByDateRange(fromDate, toDate);
+				if(var != null) {
+					request.setAttribute("OrderList", var);
+					RequestDispatcher rs = request.getRequestDispatcher("ElencoOrdini.jsp");
+					rs.include(request, response);
+				}else {
+					request.setAttribute("OrderList", null);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

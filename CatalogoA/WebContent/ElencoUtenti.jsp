@@ -69,7 +69,7 @@ Utente searchResult = (Utente) request.getAttribute("searchResult");
         </tr>
     </table>
     <% } %>
-
+    <br>
     <form action="UserList" method="get">
         <input type="hidden" name="action" value="comeBack">
         <input type="submit" value="Torna alla pagina protetta">
