@@ -97,12 +97,29 @@
 </form>
 
 <h2>Ordini</h2>
-<form action="orderList" method="get">
+<!-- <form action="orderList" method="get">
     <input type="hidden" name="action" value="elencoOrdini">
     <input type="submit" value="Elenco Ordini">
-</form>
+</form> -->
 
-<br>
+    <form method="get" action="orderList">
+        <input type="hidden" name="action" value="allOrders">
+        <input type="submit" value="All Orders">
+    </form><br>
+
+    <form method="get" action="orderList">
+        <input type="hidden" name="action" value="customerOrders">
+        <input type="text" name="customerEmail" placeholder="Customer Email">
+        <input type="submit" value="Filter by Customer">
+    </form><br>
+    
+    <form method="get" action="orderList">
+        <input type="hidden" name="action" value="filteredOrders">
+        <input type="text" name="fromDate" placeholder="From Date (yyyy-MM-dd)">
+        <input type="text" name="toDate" placeholder="To Date (yyyy-MM-dd)">
+        <input type="submit" value="Filter by Date">
+    </form><br>
+
 
 <form action="logout" method="get">
 <input type="submit" value="Logout">

@@ -268,8 +268,8 @@ public synchronized Collection<ProductOrder> doRetrieveAllByUtente(String email)
 
 		Collection<ProductOrder> order = new ArrayList<ProductOrder>();
 		
-		String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME + "o" + " JOIN " + OrdineDAO.TABLE_NAME2 + "u" +
-				           "ON o.cod_utente = u.code WHERE email = ? ORDER BY email";
+		String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME + " JOIN " + OrdineDAO.TABLE_NAME2 +
+				           " ON ordine.cod_utente = utente.code WHERE utente.email = ?";
 		
 		
 		try 
@@ -278,6 +278,7 @@ public synchronized Collection<ProductOrder> doRetrieveAllByUtente(String email)
 			preparedStatement = connection.prepareStatement(selectSQL);
 			preparedStatement.setString(1, email);
 			
+			System.out.println("Query: " + preparedStatement.toString()); // Stampa la query SQL per debug
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) 
@@ -333,7 +334,7 @@ public synchronized Collection<ProductOrder> doRetrieveAllByUtente(String email)
 
 	    Collection<ProductOrder> orderList = new ArrayList<>();
 
-	    String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME + " WHERE data_ordine >= ? AND data_ordine <= ?";
+	    String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME + " WHERE data_ordine BETWEEN ? AND ?";
 
 	    try {
 	        connection = DriverManagerConnectionPool.getConnection();
@@ -341,11 +342,10 @@ public synchronized Collection<ProductOrder> doRetrieveAllByUtente(String email)
 	        preparedStatement.setDate(1, new java.sql.Date(fromDate.getTime()));
 	        preparedStatement.setDate(2, new java.sql.Date(toDate.getTime()));
 
+	        System.out.println("Query: " + preparedStatement.toString()); // Stampa la query SQL per debug
 	        ResultSet rs = preparedStatement.executeQuery();
 
 	        while (rs.next()) {
-	            ProductOrder order = new ProductOrder();
-
 	            ProductOrder bean = new ProductOrder();
 
 				bean.setIdOrdine(rs.getInt("id_ordine"));
@@ -369,7 +369,7 @@ public synchronized Collection<ProductOrder> doRetrieveAllByUtente(String email)
 				bean.setComposizione(codao.doRetrieveByOrdine(rs.getInt("id_ordine")));
 				*/
 
-	            orderList.add(order);
+	            orderList.add(bean);
 	        }
 	    } finally {
 	        // Chiusura delle risorse (ResultSet, PreparedStatement, connessione) e rilascio della connessione al pool

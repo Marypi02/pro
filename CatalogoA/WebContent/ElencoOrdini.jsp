@@ -8,33 +8,14 @@ Collection<?> orderList = (Collection<?>) request.getAttribute("OrderList");
 <!DOCTYPE html>
 <html>
 <head>
-<<meta charset="ISO-8859-1" http-equiv="Content-Type" content="text/html">
+<meta charset="ISO-8859-1" http-equiv="Content-Type" content="text/html">
 <link href="ProductStyle.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="css/protected.css" type="text/css">
 <title>Order List</title>
 </head>
 <body>
 <h1>Order List</h1>
-
-    <form method="get" action="orderList">
-        <input type="hidden" name="action" value="allOrders">
-        <input type="submit" value="All Orders">
-    </form>
-
-    <form method="get" action="orderList">
-        <input type="hidden" name="action" value="customerOrders">
-        <input type="text" name="customerEmail" placeholder="Customer Email">
-        <input type="submit" value="Filter by Customer">
-    </form>
-    
-    <form method="get" action="orderList">
-        <input type="hidden" name="action" value="filteredOrders">
-        <input type="date" name="fromDate" placeholder="From Date (yyyy-mm-dd)">
-        <input type="date" name="toDate" placeholder="From Date (yyyy-mm-dd)">
-        <input type="submit" value="Filter by Date">
-   </form>
-    
-
+  
     <table>
         <tr>
             <th>ID Order</th>
@@ -61,7 +42,11 @@ Collection<?> orderList = (Collection<?>) request.getAttribute("OrderList");
         </tr>
         <% } %>
     </table>
-
+    <br>
+    <form action="OrderList" method="get">
+        <input type="hidden" name="action" value="comeBack">
+        <input type="submit" value="Torna alla pagina protetta">
+    </form>
     <!-- Aggiungi qui il resto del tuo contenuto -->
 </body>
 </html>

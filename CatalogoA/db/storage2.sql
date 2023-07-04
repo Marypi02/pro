@@ -94,3 +94,13 @@ INSERT INTO utente (email, password, nome, cognome, indirizzo, citta, admin)
 VALUES ("andreeacrintea3@gmail.com", "gggg", "Andreea", "Crintea","Via degli orti", "Santa Maria Capua Vetere, CA, 81055", 1);
 INSERT INTO utente (email, password, nome, cognome, indirizzo, citta, admin) 
 VALUES ("roksid09@gmail.com", "kkkk", "Roksana", "Duda","Via Pasquale Santoriello, 7", "Ottaviano, NA, 12345", 1);
+
+INSERT INTO consegna (id_consegna, via, cap, numero, citta, utente)
+VALUES (1, 'Via Roma 123', 00100, 5, 'Roma', 1);
+
+INSERT INTO metodo_pagamento (id_pagamento, nominativo, CVV, meseScadenza, codice_carta, annoScadenza, e_utente)
+VALUES (1, 'Mario Rossi', 123, 12, '1234567890123456', 2025, 1);
+
+INSERT INTO ordine (id_ordine, data_ordine, stato_ordine, cod_consegna, cod_pagamento, cod_utente, prezzo_totale)
+VALUES (1, '2023-07-04', 'In attesa', 1, 1, 1, 50.00);
+

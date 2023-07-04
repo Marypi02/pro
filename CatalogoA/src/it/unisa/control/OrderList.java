@@ -44,18 +44,16 @@ public class OrderList extends HttpServlet {
 		String action = request.getParameter("action");
 		
 		if(action != null) {
-			if(action.equalsIgnoreCase("elencoOrdini")) {
+			/*if(action.equalsIgnoreCase("elencoOrdini")) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("ElencoOrdini.jsp");
 		        dispatcher.forward(request, response);
-			}
-		}else if(action.equalsIgnoreCase("allOrders")) {  //mostra
+			}*/
+		}/*else*/ if(action.equalsIgnoreCase("allOrders")) {  //mostra
 			//Recupero tutti gli ordini
 			try {
 				var = (List<ProductOrder>) odao.doRetrieveAll();
 				if(var != null) {
 					request.setAttribute("OrderList", var);
-					RequestDispatcher rs = request.getRequestDispatcher("ElencoOrdini.jsp");
-					rs.include(request, response);
 				}else {
 					request.setAttribute("OrderList", null);
 				}
@@ -68,46 +66,45 @@ public class OrderList extends HttpServlet {
 				var = (List<ProductOrder>) odao.doRetrieveAllByUtente(email);
 				if(var != null) {
 					request.setAttribute("OrderList", var);
-					RequestDispatcher rs = request.getRequestDispatcher("ElencoOrdini.jsp");
-					rs.include(request, response);
 				}else {
 					request.setAttribute("OrderList", null);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}else if(action.equalsIgnoreCase("filteredOrders")) { //mostra per cliente
+		} else if (action.equalsIgnoreCase("filteredOrders")) {
 			try {
-				String fromDateStr = request.getParameter("fromDate");
-			    String toDateStr = request.getParameter("toDate");
-			    
-			    Date fromDate = null;
-			    Date toDate = null;
+                String fromDateStr = request.getParameter("fromDate");
+                String toDateStr = request.getParameter("toDate");
 
-			    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date fromDate = null;
+                Date toDate = null;
 
-			    try {
-			        fromDate = dateFormat.parse(fromDateStr);
-			        toDate = dateFormat.parse(toDateStr);
-			    } catch (ParseException e) {
-			        // Gestisci l'eventuale errore di parsing delle date
-			        e.printStackTrace();
-			    }
-			    
-				var = (List<ProductOrder>) odao.getOrdersByDateRange(fromDate, toDate);
-				if(var != null) {
-					request.setAttribute("OrderList", var);
-					RequestDispatcher rs = request.getRequestDispatcher("ElencoOrdini.jsp");
-					rs.include(request, response);
-				}else {
-					request.setAttribute("OrderList", null);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+                try {
+                    fromDate = dateFormat.parse(fromDateStr);
+                    toDate = dateFormat.parse(toDateStr);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                var = (List<ProductOrder>) odao.getOrdersByDateRange(fromDate, toDate);
+                if (var != null) {
+                    request.setAttribute("OrderList", var);
+                } else {
+                    request.setAttribute("OrderList", null);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+		}else if (action.equalsIgnoreCase("comeBack")) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("protected.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+		
+		RequestDispatcher rs = request.getRequestDispatcher("ElencoOrdini.jsp");
+		rs.include(request, response);
 	}
 
 	/**
