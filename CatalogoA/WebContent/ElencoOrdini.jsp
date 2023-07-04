@@ -37,7 +37,7 @@ Collection<?> orderList = (Collection<?>) request.getAttribute("OrderList");
 
     <table>
         <tr>
-            <th>Order ID</th>
+            <th>ID Order</th>
             <th>Customer ID</th>
             <th>Order Date</th>
             <th>Order Total</th>
