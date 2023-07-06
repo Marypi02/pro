@@ -93,7 +93,7 @@ public class cart {
 	        // gestione dell'eccezione
 	    	System.out.println("Errore!");
 	    }
-	//Controlla se il carrello è vuoto
+	//Controlla se il carrello ï¿½ vuoto
 	    if (products.isEmpty()) {
 	        // Reindirizza l'utente alla pagina dei prodotti
 	        response.sendRedirect("ProductView.jsp");

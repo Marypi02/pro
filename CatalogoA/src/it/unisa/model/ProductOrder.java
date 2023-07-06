@@ -111,13 +111,14 @@ public class ProductOrder {
 	    setNumItems(0);
 	}
 
-	/*public double getTotalCost() {
+	public double getTotalCost() {
 	    return(getNumItems() * getUnitCost());
+	}
+	
+	/*public Double getTotalCost() {
+		return Prezzo_totale;
 	}*/
 	
-	public Double getTotalCost() {
-		return Prezzo_totale;
-	}
 	public void setTotalCost(Double prezzo_totale) {
 		Prezzo_totale = prezzo_totale;
 	}
