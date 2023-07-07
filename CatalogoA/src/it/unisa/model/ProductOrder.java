@@ -115,9 +115,9 @@ public class ProductOrder {
 	    return(getNumItems() * getUnitCost());
 	}
 	
-	/*public Double getTotalCost() {
+	public Double getTotalCost2() {
 		return Prezzo_totale;
-	}*/
+	}
 	
 	public void setTotalCost(Double prezzo_totale) {
 		Prezzo_totale = prezzo_totale;
