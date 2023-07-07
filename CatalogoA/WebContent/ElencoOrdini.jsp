@@ -32,7 +32,7 @@ Collection<?> orderList = (Collection<?>) request.getAttribute("OrderList");
             <td><%= user.getIdOrdine() %></td>
             <td><%= user.getCodUtente() %></td>
             <td><%= user.getData_ordine() %></td>
-            <td><%= user.getTotalCost() %></td>
+            <td><%= user.getTotalCost2() %></td>
         </tr>
         <% }
         } else {
