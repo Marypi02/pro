@@ -18,12 +18,12 @@ public interface UtenteDAO {
 	public void createUtente(Utente utente) throws SQLException;
 	
 	/** Aggiorna un oggetto Utente esistente. */
-	public boolean updateUtente(Utente utente);
+	public void updateUtente(Utente utente);
 	
 	/** Cancella un oggetto Utente esistente. */
 	public  boolean deleteUtente(int idutente) throws SQLException;
 	
-	// Vede se una mail è già presente
+	// Vede se una mail ï¿½ giï¿½ presente
 	public boolean isEmailPresent(String email) throws SQLException;
 
 }

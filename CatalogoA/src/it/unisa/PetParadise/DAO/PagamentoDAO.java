@@ -7,62 +7,54 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class PagamentoDAO {
 	
 	private static final String TABLE_NAME = "metodo_pagamento";
+	private static final String TABLE_NAME2 = "utente";
 	
 	public synchronized  void doSave(PagamentoBean user, Utente ut) throws SQLException
-	{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		
-		String ID = "SELECT id_pagamento FROM metodo_pagamento ORDER BY id_pagamento DESC LIMIT 1";
-		
+	 {
+	  Connection connection = null;
+	  PreparedStatement preparedStatement = null;
+	  
 
-		String insertSQL = "INSERT INTO " + PagamentoDAO.TABLE_NAME
-					+ " (id_pagamento, nominativo, CVV, meseScadenza, codice_carta, annoScadenza, e_utente)"
-					+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
+	  String insertSQL = "INSERT INTO " + PagamentoDAO.TABLE_NAME
+	     + " (nominativo, CVV, meseScadenza, codice_carta, annoScadenza, e_utente)"
+	     + " VALUES (?, ?, ?, ?, ?, ?)";
 
-		try
-		{
-			connection = DriverManagerConnectionPool.getConnection();
-			
-			PreparedStatement query = connection.prepareStatement(ID);
-			
-			ResultSet id = query.executeQuery();
-			
-			id.next();
-			int CID = id.getInt("id_pagamento") + 1;
-			
-			
-			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setInt(1, CID);
-			preparedStatement.setString(2, user.getNominativo());
-			preparedStatement.setInt(3, user.getCVV());
-			preparedStatement.setInt(4, user.getMeseScadenza());
-			preparedStatement.setString(5, user.getCodice_carta());
-			preparedStatement.setInt(6, user.getAnnoScadenza());
-			preparedStatement.setString(7, ut.getEmail());
-	
-			preparedStatement.executeUpdate();
+	  try
+	  {
+	   connection = DriverManagerConnectionPool.getConnection();
+	   
+	   preparedStatement = connection.prepareStatement(insertSQL);
+	   
+	   preparedStatement.setString(1, user.getNominativo());
+	   preparedStatement.setInt(2, user.getCVV());
+	   preparedStatement.setInt(3, user.getMeseScadenza());
+	   preparedStatement.setString(4, user.getCodice_carta());
+	   preparedStatement.setInt(5, user.getAnnoScadenza());
+	   preparedStatement.setInt(6, ut.getIdutente());
+	 
+	   preparedStatement.executeUpdate();
 
-				//connection.commit(); //Salva le modifiche sul database
-		} 
-		finally 
-		{
-			try 
-			{
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} 
-			finally 
-			{
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-		
-	}
+	      connection.commit(); //Salva le modifiche sul database
+	  } 
+	  finally 
+	  {
+	   try 
+	   {
+	    if (preparedStatement != null)
+	     preparedStatement.close();
+	   } 
+	   finally 
+	   {
+	    DriverManagerConnectionPool.releaseConnection(connection);
+	   }
+	  }
+	  
+	 }
 	
 	public synchronized PagamentoBean doRetrieveByKey(int idpagamento) throws SQLException 
 	{
@@ -83,7 +75,7 @@ public class PagamentoDAO {
 
 			while (rs.next()) 
 			{
-				bean.setIdpagamento(rs.getInt("id_pagamento"));
+				
 				bean.setNominativo(rs.getString("nominativo"));
 				bean.setCVV(rs.getInt("CVV"));
 				bean.setMeseScadenza(rs.getInt("meseScadenza"));
@@ -91,7 +83,7 @@ public class PagamentoDAO {
 				bean.setAnnoScadenza(rs.getInt("annoScadenza"));
 			
 				MySQLUtenteDM udao = new MySQLUtenteDM();
-				bean.setUtente(udao.getUtente(rs.getString("e_utente")));
+				bean.setUtente(udao.getUtente(rs.getInt("e_utente")));
 				
 			}
 
@@ -144,20 +136,23 @@ public class PagamentoDAO {
 		return (result != 0);
 	}
 	
-	public synchronized ArrayList<PagamentoBean> doRetrieveByUtente(String user) throws SQLException{
+public synchronized ArrayList<PagamentoBean> doRetrieveByUtente(String user) throws SQLException{
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		ArrayList<PagamentoBean> arr = new ArrayList<PagamentoBean>();
 
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE e_utente = ?";
+		String selectSQL = "SELECT * FROM " + PagamentoDAO.TABLE_NAME + " JOIN " + PagamentoDAO.TABLE_NAME2 +
+		           " ON metodo_pagamento.e_utente = utente.code WHERE utente.email = ?";
 
 		try 
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
+			//preparedStatement.execute();
 			preparedStatement.setString(1, user);
+			System.out.println("Query: " + preparedStatement.toString()); 
 
 			ResultSet rs = preparedStatement.executeQuery();
 
@@ -165,13 +160,16 @@ public class PagamentoDAO {
 			{
 				PagamentoBean bean = new PagamentoBean();
 				
-				bean.setIdpagamento(rs.getInt("id_pagamento"));
+				
 				bean.setNominativo(rs.getString("nominativo"));
 				bean.setCVV(rs.getInt("CVV"));
 				bean.setMeseScadenza(rs.getInt("meseScadenza"));
 				bean.setCodice_carta(rs.getString("codice_carta"));
 				bean.setAnnoScadenza(rs.getInt("annoScadenza"));
 				
+				MySQLUtenteDM udao = new MySQLUtenteDM();
+				Utente ubean = udao.getUtente(rs.getInt("e_utente"));
+				bean.setUtente(ubean);
 				arr.add(bean);
 			}
 
@@ -191,6 +189,121 @@ public class PagamentoDAO {
 		return arr;
 		
 	}
+
+public synchronized ArrayList<PagamentoBean> doRetrieveByUtente(int code) throws SQLException{
+	
+	Connection connection = null;
+	PreparedStatement preparedStatement = null;
+
+	ArrayList<PagamentoBean> arr = new ArrayList<PagamentoBean>();
+
+	String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE e_utente = ?";
+
+	try 
+	{
+		connection = DriverManagerConnectionPool.getConnection();
+		preparedStatement = connection.prepareStatement(selectSQL);
+		preparedStatement.execute();
+		//preparedStatement.setInt(1, code);
+
+		ResultSet rs = preparedStatement.executeQuery();
+
+		while (rs.next()) 
+		{
+			PagamentoBean bean = new PagamentoBean();
+			
+			
+			bean.setNominativo(rs.getString("nominativo"));
+			bean.setCVV(rs.getInt("CVV"));
+			bean.setMeseScadenza(rs.getInt("meseScadenza"));
+			bean.setCodice_carta(rs.getString("codice_carta"));
+			bean.setAnnoScadenza(rs.getInt("annoScadenza"));
+			
+			MySQLUtenteDM udao = new MySQLUtenteDM();
+			Utente ubean = udao.getUtente(rs.getInt("e_utente"));
+			bean.setUtente(ubean);
+			
+			arr.add(bean);
+		}
+
+	} 
+	finally 
+	{
+		try 
+		{
+			if (preparedStatement != null)
+				preparedStatement.close();
+		} 
+		finally 
+		{
+			DriverManagerConnectionPool.releaseConnection(connection);
+		}
+	}
+	return arr;
+	
+}
+	
+public synchronized Collection<PagamentoBean> doRetrieveAll() throws SQLException {
+	
+	Connection connection = null;
+	PreparedStatement preparedStatement = null;
+
+	Collection<PagamentoBean> pagamento = new ArrayList<PagamentoBean>();
+	
+	String selectSQL = "SELECT * FROM " + PagamentoDAO.TABLE_NAME;
+	
+	try 
+	{
+		connection = DriverManagerConnectionPool.getConnection();
+		preparedStatement = connection.prepareStatement(selectSQL);
+
+		ResultSet rs = preparedStatement.executeQuery();
+
+		while (rs.next()) 
+		{
+			PagamentoBean bean = new PagamentoBean();
+			
+			
+			
+			bean.setNominativo(rs.getString("nominativo"));
+			bean.setCVV(rs.getInt("CVV"));
+			bean.setMeseScadenza(rs.getInt("meseScadenza"));
+			bean.setCodice_carta(rs.getString("codice_carta"));
+			bean.setAnnoScadenza(rs.getInt("annoScadenza"));
+			
+			MySQLUtenteDM utentedao = new MySQLUtenteDM();
+			Utente utente = utentedao.getUtente(rs.getInt("e_utente"));
+		
+			bean.setUtente(utente);
+			
+			
+			pagamento.add(bean);
+		}
+
+	} 
+	finally 
+	{
+		try 
+		{
+			if (preparedStatement != null)
+				preparedStatement.close();
+		} 
+		finally 
+		{
+			DriverManagerConnectionPool.releaseConnection(connection);
+		}
+	}
+	return pagamento;
+	
+	
 	
 	
 }
+
+
+	
+
+}
+
+
+

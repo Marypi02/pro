@@ -1,5 +1,7 @@
 package it.unisa.model;
 
+import java.util.ArrayList;
+
 public class Utente {
 	
 	public Utente() {
@@ -13,12 +15,16 @@ public class Utente {
 	private String username;
 	private String password;
 	private String email;
-	//private int valuta;
+	
 	private String indirizzo;
 	private String citta;
 	static final boolean admin = false;
 
+	ArrayList<PagamentoBean> Pagamento = new ArrayList<>();
+	ArrayList<ConsegnaBean> Consegna = new ArrayList<>();
 	
+	
+
 	/**
 	 * @param idutente
 	 * @param nome
@@ -174,6 +180,22 @@ public class Utente {
 	 */
 	public boolean isAdmin() {
 		return admin;
+	}
+	
+	public ArrayList<PagamentoBean> getPagamento() {
+		return Pagamento;
+	}
+
+	public void setPagamento(ArrayList<PagamentoBean> pagamento) {
+		Pagamento = pagamento;
+	}
+
+	public ArrayList<ConsegnaBean> getConsegna() {
+		return Consegna;
+	}
+
+	public void setConsegna(ArrayList<ConsegnaBean> consegna) {
+		Consegna = consegna;
 	}
 	
 }

@@ -168,7 +168,7 @@ public class MySQLUtenteDS implements UtenteDAO {
 	}
 
 	@Override
-	public boolean updateUtente(Utente utente) {
+	public void updateUtente(Utente utente) {
 		Connection con = null;
         PreparedStatement statement = null;
         try {
@@ -186,7 +186,7 @@ public class MySQLUtenteDS implements UtenteDAO {
             
             
         	statement.execute();
-            return true;
+            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -201,7 +201,7 @@ public class MySQLUtenteDS implements UtenteDAO {
                 cse.printStackTrace();
             }
         }
-        return false;
+      
 	}
 
 	

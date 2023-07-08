@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.unisa.PetParadise.DAO.MySQLUtenteDM;
 import it.unisa.PetParadise.DAO.MySQLUtenteDS;
 import it.unisa.PetParadise.DAO.UtenteDAO;
+import it.unisa.model.Utente;
 
 /**
  * Servlet implementation class Login
@@ -51,37 +52,28 @@ public class Login extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		/*
-		try {
-			if (utenteDAO.isEmailPresent(username)) {
-			    // L'utente è registrato, quindi accede ai prodotti offerti
-				RequestDispatcher dispatcher = request.getRequestDispatcher("ProductView.jsp");
-			    dispatcher.forward(request, response);
-			}else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("LoginError.html");
-			    dispatcher.forward(request, response);
-			}
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		*/
+		
 		
 		String redirectedPage = null;
 		try {
-			//caso in cui è l'admin
+			//caso in cui Ã¨ l'admin
 			checkLogin(username, password);
 			request.getSession().setAttribute("adminRoles", true);
 			redirectedPage = "protected.jsp";
 		}catch(Exception e) {
 			//CASO UTENTE NORMALE
-			//controllo prima se è registrato
+			//controllo prima se Ã¨ registrato
 			try {
 				//verifico che sia presente nel db e che la password corrisponda a quella usata in fase di registrazione
 				if (utenteDAO.isEmailPresent(username) /*&& password.equals(utenteDAO.getUtente(username).getPassword())*/) {
 				    // Utente registrato; setto la variabile adminRoles a false e definisco a chi passare il controllo
+					
+					// Dopo aver verificato che l'utente sia registrato nel database
+					Utente utente = utenteDAO.getUtente(username);
 					request.getSession().setAttribute("adminRoles", false);
-					redirectedPage = "ProductView.jsp";
+					request.getSession().setAttribute("utente", utente);
+					
+					redirectedPage = "utente.jsp";
 				}else {
 					redirectedPage = "LoginError.html";
 				}

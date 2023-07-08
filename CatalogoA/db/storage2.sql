@@ -4,7 +4,6 @@ USE storage2;
 
 DROP TABLE IF EXISTS storage2;
 
-DROP TABLE IF EXISTS `product`;
 CREATE TABLE product (	
   code int primary key AUTO_INCREMENT,
   name char(60) not null,
@@ -14,7 +13,6 @@ CREATE TABLE product (
   nome_immagine varchar(45) NOT NULL
 );
 
-DROP TABLE IF EXISTS `utente`;
 CREATE TABLE utente (	
 code int primary key AUTO_INCREMENT,
 email char(60) not null,
@@ -26,33 +24,45 @@ citta char(50) not null,
 admin boolean not null
 );
 
+DROP TABLE IF EXISTS `recensione`;
+CREATE TABLE `recensione` (
+  `idRecensione` int NOT NULL AUTO_INCREMENT,
+  `prodotto` int NOT NULL,
+  `utente` int NOT NULL,
+  `voto` int NOT NULL,
+  `testo` varchar(50) ,
+  PRIMARY KEY (`idRecensione`),
+  FOREIGN KEY (`prodotto`) REFERENCES `product` (`code`),
+  FOREIGN KEY (`utente`) REFERENCES `utente` (`code`)
+) ;
+
 
 DROP TABLE IF EXISTS `consegna`;
 CREATE TABLE `consegna` (
-  `id_consegna` int NOT NULL,
+  `id_consegna` int PRIMARY KEY AUTO_INCREMENT,
   `via` varchar(45) NOT NULL,
   `cap` int NOT NULL,
   `numero` int NOT NULL,
   `citta` varchar(45) NOT NULL,
-  `utente` int NOT NULL,
-  PRIMARY KEY (`id_consegna`),
-   FOREIGN KEY (`utente`) REFERENCES `utente` (`code`)
+  `e_utente` int NOT NULL,
+   FOREIGN KEY (`e_utente`) REFERENCES `utente` (`code`)
 );
 
   
 
 DROP TABLE IF EXISTS `metodo_pagamento`;
 CREATE TABLE `metodo_pagamento` (
-  `id_pagamento` int NOT NULL,
+  `id_pagamento` int PRIMARY KEY AUTO_INCREMENT,
   `nominativo` varchar(80) NOT NULL,
   `CVV` int NOT NULL,
-  `meseScadenza` int NOT NULL,
+  `meseScadenza` varchar(10) NOT NULL,
   `codice_carta` varchar(16) NOT NULL,
   `annoScadenza` int NOT NULL,
   `e_utente` int NOT NULL,
-  PRIMARY KEY (`id_pagamento`),
   FOREIGN KEY (`e_utente`) REFERENCES `utente` (`code`)
 );
+
+
 
 
 
@@ -70,6 +80,18 @@ CREATE TABLE `ordine` (
   FOREIGN KEY (`cod_pagamento`) REFERENCES `metodo_pagamento` (`id_pagamento`),
   FOREIGN KEY (`cod_utente`) REFERENCES `utente` (`code`)
 );
+
+DROP TABLE IF EXISTS `composizione`;
+CREATE TABLE `composizione` (
+  `codi_prodotto` int NOT NULL,
+  `num_ordine` int NOT NULL,
+  `quantita` double NOT NULL,
+  `iva` double NOT NULL DEFAULT '0',
+  `prezzo` double(6,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (`codi_prodotto`,`num_ordine`),
+  FOREIGN KEY (`codi_prodotto`) REFERENCES `product` (`code`),
+  FOREIGN KEY (`num_ordine`) REFERENCES `ordine` (`id_ordine`)
+) ;
 
 
 INSERT INTO product values (1,"Ciotolola Doppia","Ciotola doppia per cani dal design unico, per contenere alimenti e/o acqua.",10.99,5,"1.jpg");
@@ -95,18 +117,19 @@ VALUES ("andreeacrintea3@gmail.com", "gggg", "Andreea", "Crintea","Via degli ort
 INSERT INTO utente (email, password, nome, cognome, indirizzo, citta, admin) 
 VALUES ("roksid09@gmail.com", "kkkk", "Roksana", "Duda","Via Pasquale Santoriello, 7", "Ottaviano, NA, 12345", 1);
 
-INSERT INTO consegna (id_consegna, via, cap, numero, citta, utente)
-VALUES (1, 'Via Roma 123', 00100, 5, 'Roma', 1);
-INSERT INTO consegna (id_consegna, via, cap, numero, citta, utente)
-VALUES (2, 'Via Roma 123', 00100, 5, 'Roma', 4);
 
-INSERT INTO metodo_pagamento (id_pagamento, nominativo, CVV, meseScadenza, codice_carta, annoScadenza, e_utente)
-VALUES (1, 'Mario Rossi', 123, 12, '1234567890123456', 2025, 1);
-INSERT INTO metodo_pagamento (id_pagamento, nominativo, CVV, meseScadenza, codice_carta, annoScadenza, e_utente)
-VALUES (2, 'Mario Rossi', 123, 12, '1234567890122456', 2026, 4);
+use storage2;
+INSERT INTO consegna (via, cap, numero, citta, e_utente)
+VALUES ('Via Roma 123', 00100, 5, 'Roma', 1);
+INSERT INTO consegna (via, cap, numero, citta, e_utente)
+VALUES ('Via Roma 123', 00100, 5, 'Roma', 4);
+
+INSERT INTO metodo_pagamento (nominativo, CVV, meseScadenza, codice_carta, annoScadenza, e_utente)
+VALUES ('Mario Rossi', 123, 12, '1234567890123456', 2025, 1);
+INSERT INTO metodo_pagamento (nominativo, CVV, meseScadenza, codice_carta, annoScadenza, e_utente)
+VALUES ('Mario Rossi', 123, 12, '1234567890122456', 2026, 4);
 
 INSERT INTO ordine (id_ordine, data_ordine, stato_ordine, cod_consegna, cod_pagamento, cod_utente, prezzo_totale)
 VALUES (1, '2023-07-04', 'In attesa', 1, 1, 1, 50.00);
 INSERT INTO ordine (id_ordine, data_ordine, stato_ordine, cod_consegna, cod_pagamento, cod_utente, prezzo_totale)
 VALUES (2, '2023-07-03', 'Spedito', 1, 1, 4, 50.00);
-

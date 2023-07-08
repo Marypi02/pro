@@ -66,4 +66,45 @@
   <servlet-name>OrderList</servlet-name>
   <url-pattern>/orderList</url-pattern>
 </servlet-mapping>
+<servlet>
+  <servlet-name>Mostra_ordini_utente</servlet-name>
+  <servlet-class>it.unisa.control.Mostra_ordini_utente</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>Mostra_ordini_utente</servlet-name>
+  <url-pattern>/mostra_ordini_utente</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>Salva_carta_pagamento</servlet-name>
+  <servlet-class>it.unisa.control.Salva_carta_pagamento</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>Salva_carta_pagamento</servlet-name>
+  <url-pattern>/salva</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>Salva_ind_consegna</servlet-name>
+  <servlet-class>it.unisa.control.Salva_ind_consegna</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>Salva_ind_consegna</servlet-name>
+  <url-pattern>/consegna</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>Modifica</servlet-name>
+  <servlet-class>it.unisa.control.Modifica</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>Modifica</servlet-name>
+  <url-pattern>/modifica</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>Modifica_utente</servlet-name>
+  <servlet-class>it.unisa.control.Modifica_utente</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>Modifica_utente</servlet-name>
+  <url-pattern>/modUtente</url-pattern>
+</servlet-mapping>
+
 </web-app>

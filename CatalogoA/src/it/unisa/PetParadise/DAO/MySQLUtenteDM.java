@@ -23,8 +23,10 @@ public class MySQLUtenteDM implements UtenteDAO {
     private static final String READ_ALL_QUERY = "SELECT * FROM utente";
     
     /** La query per l'aggiornamento di un singolo cliente. */
-    private static final String UPDATE_QUERY = "UPDATE utente SET email=?, password=?, nome=?, cognome=?, username=?,  indirizzo=?, citta=?, admin=? WHERE code = ?";
+    private static final String UPDATE_QUERY = "UPDATE utente SET email=?, password=?, nome=?, cognome=?, indirizzo=?, citta=?, admin=? WHERE code = ?";
     
+    
+    private static final String UPDATE_QUERY2 = "INSERT INTO utente (email, password, nome, cognome,  indirizzo, citta, admin) VALUES (?, ?, ?, ?, ?, ?, ?)";
     /** La query per la cancellazione di un singolo cliente. */
     private static final String DELETE_QUERY = "DELETE FROM utente WHERE code = ?";
 
@@ -80,7 +82,7 @@ public class MySQLUtenteDM implements UtenteDAO {
         	while(result.next()) {
         		Utente utente = new Utente();
         		
-        		utente.setIdutente(result.getInt("code"));
+        		//utente.setIdutente(result.getInt("code"));
         		utente.setEmail(result.getString("email"));
         		utente.setPassword(result.getString("password"));
         		utente.setNome(result.getString("nome"));
@@ -119,7 +121,43 @@ public class MySQLUtenteDM implements UtenteDAO {
 	            ResultSet result = statement.executeQuery();
 	 
 	            while (result.next()) {
-	        		utente.setIdutente(result.getInt("code"));
+	        		
+	        		utente.setEmail(result.getString("email"));
+	        		utente.setPassword(result.getString("password"));
+	        		utente.setNome(result.getString("nome"));
+	        		utente.setCognome(result.getString("cognome"));
+	        		utente.setIndirizzo(result.getString("indirizzo"));
+	        		utente.setCitta(result.getString("citta"));
+	        		
+	        		
+	            } 
+	        } finally {
+				try {
+					if (statement != null)
+						statement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(con);
+				}
+			}
+	 
+		return utente;
+	}
+	
+public synchronized Utente getUtente(int code) throws SQLException {
+		
+		Connection con = null;
+		PreparedStatement statement = null;
+		Utente utente = new Utente();
+		
+		 try {
+	            con = DriverManagerConnectionPool.getConnection();
+	            statement = con.prepareStatement(READ_QUERY);
+	            statement.setInt(1, code);
+	            
+	            ResultSet result = statement.executeQuery();
+	 
+	            while (result.next()) {
+	        		
 	        		utente.setEmail(result.getString("email"));
 	        		utente.setPassword(result.getString("password"));
 	        		utente.setNome(result.getString("nome"));
@@ -144,40 +182,43 @@ public class MySQLUtenteDM implements UtenteDAO {
 	
 
 	@Override
-	public boolean updateUtente(Utente utente) {
-		Connection con = null;
-        PreparedStatement statement = null;
-        try {
-        	con = DriverManagerConnectionPool.getConnection();
-        	statement = con.prepareStatement(UPDATE_QUERY);
-        	statement.setString(1, utente.getEmail());
-        	statement.setString(2, utente.getPassword());
-        	statement.setString(3, utente.getNome());
-            statement.setString(4, utente.getCognome());
-            statement.setString(5, utente.getIndirizzo());
-            statement.setString(6, utente.getCitta());
-            statement.setBoolean(7, utente.isAdmin());
-            statement.setInt(8, utente.getIdutente()); //individua l'utente
-            
-            
-        	statement.execute();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-            	statement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                con.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-        return false;
+	public void updateUtente(Utente utente) {
+	    Connection con = null;
+	    PreparedStatement statement = null;
+	    try {
+	        con = DriverManagerConnectionPool.getConnection();
+	        statement = con.prepareStatement(UPDATE_QUERY);
+	        statement.setString(1, utente.getEmail());
+	        statement.setString(2, utente.getPassword());
+	        statement.setString(3, utente.getNome());
+	        statement.setString(4, utente.getCognome());
+	        statement.setString(5, utente.getIndirizzo());
+	        statement.setString(6, utente.getCitta());
+	        statement.setBoolean(7, utente.isAdmin());
+	        statement.setInt(8, utente.getIdutente());
+	        
+	       
+	        statement.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            statement.close();
+	        } catch (Exception sse) {
+	            sse.printStackTrace();
+	        }
+	        try {
+	            con.close();
+	        } catch (Exception cse) {
+	            cse.printStackTrace();
+	        }
+	    }
 	}
+	
+	
+	
+	
+
 
 	@Override
 	public synchronized boolean deleteUtente(int code) throws SQLException{
@@ -234,5 +275,9 @@ public class MySQLUtenteDM implements UtenteDAO {
 
         return false;
     }
-}
 
+	
+	
+
+	
+}
