@@ -116,6 +116,8 @@ INSERT INTO utente (email, password, nome, cognome, indirizzo, citta, admin)
 VALUES ("andreeacrintea3@gmail.com", "gggg", "Andreea", "Crintea","Via degli orti", "Santa Maria Capua Vetere, CA, 81055", 1);
 INSERT INTO utente (email, password, nome, cognome, indirizzo, citta, admin) 
 VALUES ("roksid09@gmail.com", "kkkk", "Roksana", "Duda","Via Pasquale Santoriello, 7", "Ottaviano, NA, 12345", 1);
+INSERT INTO utente (email, password, nome, cognome, indirizzo, citta, admin) 
+VALUES ("pippo.pippo@gmail.com", "pppp", "Pippo", "Pluto","Via Pasquale Senatore, 4", "Ottaviano, NA, 12345", 0);
 
 
 use storage2;

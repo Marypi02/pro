@@ -100,7 +100,9 @@
 		        </div> 
 		       
 				
-				 <form action ="modifica" method="get">
+				 <form action="modUtente" method="get">
+				    <input type="hidden" name="action" value="edit">
+				    <input type="hidden" name="userEmail" value="<%= obj.getEmail() %>">
 					<input type="submit" class="Modifica" value="Modifica dati">
 				</form>	 
 				
