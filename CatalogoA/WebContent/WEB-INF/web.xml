@@ -91,6 +91,14 @@
   <url-pattern>/consegna</url-pattern>
 </servlet-mapping>
 <servlet>
+  <servlet-name>Modifica</servlet-name>
+  <servlet-class>it.unisa.control.Modifica</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>Modifica</servlet-name>
+  <url-pattern>/modifica</url-pattern>
+</servlet-mapping>
+<servlet>
   <servlet-name>Modifica_utente</servlet-name>
   <servlet-class>it.unisa.control.Modifica_utente</servlet-class>
 </servlet>

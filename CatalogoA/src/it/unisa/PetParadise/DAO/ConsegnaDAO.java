@@ -18,35 +18,27 @@ public class ConsegnaDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String ID = "SELECT id_consegna FROM sconsegna ORDER BY id_consegna DESC LIMIT 1";
+		
 		
 		String insertSQL = "INSERT INTO " + ConsegnaDAO.TABLE_NAME
-				+ " (id_consegna, via, cap, numero, citta, utente)"
-				+ " VALUES (?, ?, ?, ?, ?, ?)";
+				+ " (via, cap, numero, citta, e_utente)"
+				+ " VALUES (?, ?, ?, ?, ?)";
 		
 		try
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			
-			PreparedStatement query = connection.prepareStatement(ID);
-			
-			ResultSet id = query.executeQuery();
-			
-			id.next();
-			int CID = id.getInt("id_consegna") + 1;
-			
-			
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setInt(1, CID);
-			preparedStatement.setString(2, ogg.getVia());
-			preparedStatement.setInt(3, ogg.getCap());
-			preparedStatement.setInt(4, ogg.getNumero());
-			preparedStatement.setString(5, ogg.getCitta());
-			preparedStatement.setString(6, ut.getEmail());
+			
+			preparedStatement.setString(1, ogg.getVia());
+			preparedStatement.setInt(2, ogg.getCap());
+			preparedStatement.setInt(3, ogg.getNumero());
+			preparedStatement.setString(4, ogg.getCitta());
+			preparedStatement.setInt(5, ut.getIdutente());
 	
 			preparedStatement.executeUpdate();
 
-				//connection.commit(); //Salva le modifiche sul database
+			connection.commit(); //Salva le modifiche sul database
 		} 
 		finally 
 		{
@@ -83,12 +75,12 @@ public class ConsegnaDAO {
 			{
 				bean.setIdconsegna(rs.getInt("id_consegna"));
 				bean.setVia(rs.getString("via"));
-				bean.setNumero(rs.getInt("numero"));
 				bean.setCap(rs.getInt("cap"));
+				bean.setNumero(rs.getInt("numero"));
 				bean.setCitta(rs.getString("citta"));
 				
 				MySQLUtenteDM udao = new MySQLUtenteDM();
-				bean.setUtente(udao.getUtente(rs.getString("utente")));
+				bean.setUtente(udao.getUtente(rs.getInt("e_utente")));
 			}
 
 		} 
@@ -147,7 +139,7 @@ public class ConsegnaDAO {
 
 		ArrayList<ConsegnaBean> arr = new ArrayList<ConsegnaBean>();
 
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE utente = ?";
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE e_utente = ?";
 
 		try 
 		{
@@ -162,8 +154,8 @@ public class ConsegnaDAO {
 				ConsegnaBean bean = new ConsegnaBean();
 				bean.setIdconsegna(rs.getInt("id_consegna"));
 				bean.setVia(rs.getString("via"));
-				bean.setNumero(rs.getInt("numero"));
 				bean.setCap(rs.getInt("cap"));
+				bean.setNumero(rs.getInt("numero"));
 				bean.setCitta(rs.getString("citta"));
 				
 				arr.add(bean);

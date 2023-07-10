@@ -184,7 +184,7 @@ public synchronized Utente getUtente(int code) throws SQLException {
 	
 
 	@Override
-	public void updateUtente(Utente utente) throws SQLException{
+	public void updateUtente(Utente utente) throws SQLException {
 	    Connection connection = null;
 	    PreparedStatement statement = null;
 

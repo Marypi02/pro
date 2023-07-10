@@ -150,7 +150,7 @@ public synchronized ArrayList<PagamentoBean> doRetrieveByUtente(String user) thr
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-			//preparedStatement.execute();
+			preparedStatement.execute();
 			preparedStatement.setString(1, user);
 			System.out.println("Query: " + preparedStatement.toString()); 
 
@@ -168,7 +168,7 @@ public synchronized ArrayList<PagamentoBean> doRetrieveByUtente(String user) thr
 				bean.setAnnoScadenza(rs.getInt("annoScadenza"));
 				
 				MySQLUtenteDM udao = new MySQLUtenteDM();
-				Utente ubean = udao.getUtente(rs.getInt("e_utente"));
+				Utente ubean = udao.getUtente(rs.getString("e_utente"));
 				bean.setUtente(ubean);
 				arr.add(bean);
 			}
@@ -272,7 +272,7 @@ public synchronized Collection<PagamentoBean> doRetrieveAll() throws SQLExceptio
 			bean.setAnnoScadenza(rs.getInt("annoScadenza"));
 			
 			MySQLUtenteDM utentedao = new MySQLUtenteDM();
-			Utente utente = utentedao.getUtente(rs.getInt("e_utente"));
+			Utente utente = utentedao.getUtente(rs.getString("e_utente"));
 		
 			bean.setUtente(utente);
 			

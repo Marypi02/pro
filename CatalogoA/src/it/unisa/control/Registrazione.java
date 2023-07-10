@@ -61,7 +61,7 @@ public class Registrazione extends HttpServlet {
 		
 		try {
 			if (utenteDAO.isEmailPresent(email)) {
-			    // L'email è già presente, mostra un messaggio all'utente o lancia un'eccezione
+			    // L'email ï¿½ giï¿½ presente, mostra un messaggio all'utente o lancia un'eccezione
 				RequestDispatcher dispatcher = request.getRequestDispatcher("RegistrationError.html");
 			    dispatcher.forward(request, response);
 			}else {

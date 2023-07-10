@@ -30,7 +30,7 @@
 	<body>
 		<jsp:include page="header.jsp" />
 			
-		<form method="post" action="Modifica_utente">
+		<form method="post" action="modUtente">
 			<div class="areaUtente" id="prova">
 				<div class="datiPersonali"> 
 					<h1><strong>Modifica dati personali</strong></h1><hr>

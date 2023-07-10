@@ -33,7 +33,7 @@ public class Mostra_ordini_utente extends HttpServlet {
             Utente ubean = (Utente) request.getSession().getAttribute("utente");
             if (ubean != null) {
                 try {
-                    ArrayList<ProductOrder> ordini = (ArrayList<ProductOrder>) odao.doRetrieveAll();
+                    ArrayList<ProductOrder> ordini = (ArrayList<ProductOrder>) odao.doRetrieveAllByUtente(ubean.getEmail());
                     request.setAttribute("ordini", ordini);
                 } catch (SQLException e) {
                     e.printStackTrace();

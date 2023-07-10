@@ -111,7 +111,9 @@ public class ProductOrder {
 	    setNumItems(0);
 	}
 
-	public double getTotalCost() {
+
+
+	public Double getTotalCost() {
 	    return(getNumItems() * getUnitCost());
 	}
 	

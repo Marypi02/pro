@@ -23,12 +23,11 @@ public class Salva_carta_pagamento extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String action = request.getParameter("action");
-    	PagamentoDAO pdao = new PagamentoDAO();
+
     	
     	if (action.equals("salvaPagamento")) {
-    		
     	    PagamentoBean bean = new PagamentoBean();
-    	    
+    	    PagamentoDAO pdao = new PagamentoDAO();
 
     	    bean.setNominativo(request.getParameter("intestatario"));
     	    bean.setCodice_carta(request.getParameter("cod_carta"));
@@ -50,8 +49,8 @@ public class Salva_carta_pagamento extends HttpServlet {
     	    Utente utente = (Utente) request.getSession().getAttribute("utente");
 
     	    try {
-    	        //PagamentoDAO pagamentoDAO = new PagamentoDAO();
-    	        List<PagamentoBean> pagamenti = pdao.doRetrieveByUtente(utente.getIdutente());
+    	        PagamentoDAO pagamentoDAO = new PagamentoDAO();
+    	        List<PagamentoBean> pagamenti = (List<PagamentoBean>) pagamentoDAO.doRetrieveByUtente(utente.getEmail());
     	        if(pagamenti != null) {
 					request.setAttribute("pagamenti", pagamenti);
 				}else {

@@ -149,7 +149,7 @@ public class ProductControl extends HttpServlet {
 		        dispatcher.forward(request, response);
 		    }
 		} else {
-		    // La sessione non è valida, reindirizza all'area pubblica
+		    // La sessione non ï¿½ valida, reindirizza all'area pubblica
 		    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
 		    dispatcher.forward(request, response);
 		}
