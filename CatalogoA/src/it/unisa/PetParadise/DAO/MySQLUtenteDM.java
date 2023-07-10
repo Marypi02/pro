@@ -19,6 +19,8 @@ public class MySQLUtenteDM implements UtenteDAO {
     /** La query per la lettura di un singolo cliente. */
     private static final String READ_QUERY = "SELECT * FROM utente WHERE email = ?";
     
+    private static final String READ_QUERY2 = "SELECT * FROM utente WHERE code = ?";
+    
     /** La query per la lettura di tutti i clienti. */
     private static final String READ_ALL_QUERY = "SELECT * FROM utente";
     
@@ -177,17 +179,24 @@ public synchronized Utente getUtente(int code) throws SQLException {
 			}
 	 
 		return utente;
-	}
+}
 	
 	
 
 	@Override
-	public void updateUtente(Utente utente) {
-	    Connection con = null;
+	public void updateUtente(Utente utente) throws SQLException{
+	    Connection connection = null;
 	    PreparedStatement statement = null;
+
+	    // Prepara l'istruzione SQL per l'aggiornamento
+	    String sql = "UPDATE utente SET email = ?, password = ?, nome = ?, cognome = ?, indirizzo = ?, citta = ?, admin = ? WHERE code = ?";
+
 	    try {
-	        con = DriverManagerConnectionPool.getConnection();
-	        statement = con.prepareStatement(UPDATE_QUERY);
+	        // Recupera la connessione al database
+	        connection = DriverManagerConnectionPool.getConnection();
+	        statement = connection.prepareStatement(sql);
+
+	        // Imposta i parametri dell'istruzione SQL con i valori dell'oggetto Utente
 	        statement.setString(1, utente.getEmail());
 	        statement.setString(2, utente.getPassword());
 	        statement.setString(3, utente.getNome());
@@ -196,25 +205,20 @@ public synchronized Utente getUtente(int code) throws SQLException {
 	        statement.setString(6, utente.getCitta());
 	        statement.setBoolean(7, utente.isAdmin());
 	        statement.setInt(8, utente.getIdutente());
-	        
-	       
+
+	        // Esegui l'istruzione di aggiornamento
 	        statement.executeUpdate();
-	    } catch (SQLException e) {
-	        e.printStackTrace();
 	    } finally {
 	        try {
-	            statement.close();
-	        } catch (Exception sse) {
-	            sse.printStackTrace();
-	        }
-	        try {
-	            con.close();
-	        } catch (Exception cse) {
-	            cse.printStackTrace();
+	            if (statement != null)
+	                statement.close();
+	        } finally {
+	            DriverManagerConnectionPool.releaseConnection(connection);
 	        }
 	    }
 	}
-	
+
+
 	
 	
 	

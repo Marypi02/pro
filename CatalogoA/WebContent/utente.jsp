@@ -100,9 +100,7 @@
 		        </div> 
 		       
 				
-				 <form action="modUtente" method="get">
-				    <input type="hidden" name="action" value="edit">
-				    <input type="hidden" name="userEmail" value="<%= obj.getEmail() %>">
+				 <form action ="modifica" method="get">
 					<input type="submit" class="Modifica" value="Modifica dati">
 				</form>	 
 				
@@ -137,17 +135,20 @@
 			<div class="met">
 				<h2><strong>Metodi di pagamento</strong></h2>
 				<form id="met_pag" method="post" action="./salva">
+				    <input type="hidden" name="action" value="salvaPagamento">
 					<input class="campi" type="text" placeholder="Intestatario" id="intestatario" name="intestatario" >
 					<input class="campi" type="text" placeholder="CVV" id="cod_cvv" name="cod_cvv" maxlength="3"  >
 					<input class="campi" type="month" placeholder="Mese scadenza" id="month" name="month" >
 					<input class="campi" type="text" placeholder="Codice carta" id="cod_carta" name="cod_carta" maxlength="12" >
-					<input type="hidden" name="action" value="salvaPagamento">
+					
 					<br>
-					<input type="submit" id="pay" class="save" value="Salva nuovo metodo di pagamento">
+				 <input type="submit" id="pay" class="save" value="Salva nuovo metodo di pagamento"> 
 
 				</form>
 				
-			<!--  	<form method="get" action="./salva">
+			
+				
+			 <!--  	<form method="get" action="./salva">
         			<input type="hidden" name="action" value="viewPagamento">
        	 			<input type="submit" value="vedi dati pagamento">
     		</form><br> -->
@@ -213,7 +214,7 @@
 
 			<div class="ciclo">
              		<p>I tuoi dati di consegna</p>
-       </div>
+          </div>
 
 <%
     for (ConsegnaBean pbean : obj.getConsegna()){ %>
@@ -227,6 +228,10 @@
 
 <div class="tabella">
     <table class="tab">
+    
+    	 <div class="ciclo">
+             		<p>Dati ordine</p>
+          </div>
         <tr>
             <th>ID ordine</th>
             <th>Data ordine</th>
