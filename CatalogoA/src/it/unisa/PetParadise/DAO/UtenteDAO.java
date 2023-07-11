@@ -17,8 +17,9 @@ public interface UtenteDAO {
 	 * @throws SQLException */
 	public void createUtente(Utente utente) throws SQLException;
 	
-	/** Aggiorna un oggetto Utente esistente. */
-	public void updateUtente(Utente utente);
+	/** Aggiorna un oggetto Utente esistente. 
+	 * @throws SQLException */
+	public void updateUtente(Utente utente) throws SQLException;
 	
 	/** Cancella un oggetto Utente esistente. */
 	public  boolean deleteUtente(int idutente) throws SQLException;

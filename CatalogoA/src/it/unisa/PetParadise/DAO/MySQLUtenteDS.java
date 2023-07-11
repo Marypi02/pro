@@ -40,7 +40,7 @@ public class MySQLUtenteDS implements UtenteDAO {
     private static final String READ_ALL_QUERY = "SELECT * FROM utente";
     
     /** La query per l'aggiornamento di un singolo cliente. */
-    private static final String UPDATE_QUERY = "UPDATE utente SET email=?,password=?, nome=?, cognome=?, username=?,  valuta=?, indirizzo=?, citta=?, admin=? WHERE code = ?";
+    private static final String UPDATE_QUERY = "UPDATE utente SET email=?,password=?, nome=?, cognome=?, indirizzo=?, citta=?, admin=? WHERE code = ?";
     
     /** La query per la cancellazione di un singolo cliente. */
     private static final String DELETE_QUERY = "DELETE FROM utente WHERE code = ?";
@@ -167,42 +167,50 @@ public class MySQLUtenteDS implements UtenteDAO {
 		return utente;
 	}
 
-	@Override
-	public void updateUtente(Utente utente) {
-		Connection con = null;
-        PreparedStatement statement = null;
-        try {
-        	con = ds.getConnection();
-        	statement = con.prepareStatement(UPDATE_QUERY);
-        	
-        	statement.setString(1, utente.getEmail());
-        	statement.setString(2, utente.getPassword());
-        	statement.setString(3, utente.getNome());
-            statement.setString(4, utente.getCognome());
-            statement.setString(5, utente.getIndirizzo());
-            statement.setString(6, utente.getCitta());
-            statement.setBoolean(7, utente.isAdmin());
-            statement.setInt(8, utente.getIdutente()); //individua l'utente
-            
-            
-        	statement.execute();
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-            	statement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                con.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-      
-	}
+		@Override
+		public void updateUtente(Utente utente) {
+		    Connection con = null;
+		    PreparedStatement statement = null;
+		    
+		    try {
+		        con = ds.getConnection();
+		        statement = con.prepareStatement(UPDATE_QUERY);
+
+		        statement.setString(1, utente.getEmail());
+		        statement.setString(2, utente.getPassword());
+		        statement.setString(3, utente.getNome());
+		        statement.setString(4, utente.getCognome());
+		        statement.setString(5, utente.getIndirizzo());
+		        statement.setString(6, utente.getCitta());
+		        statement.setBoolean(7, utente.isAdmin());
+		        statement.setInt(8, utente.getIdutente());
+
+		        int rowsUpdated = statement.executeUpdate();
+		        
+		        if (rowsUpdated > 0) {
+		            System.out.println("Utente aggiornato correttamente nel database.");
+		        } else {
+		            System.out.println("Nessuna riga aggiornata nel database.");
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            if (statement != null)
+		                statement.close();
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+		        try {
+		            if (con != null)
+		                con.close();
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+		    }
+		}
+
+
 
 	
 	//metodo doDelete

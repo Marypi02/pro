@@ -38,10 +38,8 @@
 						<div class="nickSX">
 							<div class="areaNick">
 							 <p><strong>Email</strong></p>
-			<input class="campi" type="hidden" name="code" value="<%= var.getIdutente()%> ">
-            <input class="campi" type="text" name="email_new" value="<%= var.getEmail()%>"> 
-            
-            <input class="campi" type="hidden" name="action" value="update">
+							 <input class="campi" type="hidden" name="code" value="<%= var.getIdutente()%>">
+                             <input class="campi" type="text" name="email" value="<%= var.getEmail()%>"> 
 						    </div>
 						</div>	
 					</div>
@@ -49,8 +47,8 @@
 					<div class="nicknameArea">				
 	            		<div class="nickSX">
 	                    	<div class="areaNick">
-		                        <p><strong>Password</strong></p>	\
-		                        <input class="campi" type="password" name="Password" value="<%= var.getPassword()%>">
+		                        <p><strong>Password</strong></p>	
+		                        <input class="campi" type="password" name="password" value="<%= var.getPassword()%>">
 	                    	</div>
 	            		</div>
 	        		</div>
@@ -61,7 +59,7 @@
 	            		<div class="nickSX">
 	                    	<div class="areaNick">
 		                        <p><strong>Nome</strong></p>
-		                        <input class="campi" type="text" name="Nome" value="<%= var.getNome()%>">
+		                        <input class="campi" type="text" name="nome" value="<%= var.getNome()%>">
 	                    	</div>
 	            		</div>
 	        		</div> 
@@ -70,7 +68,7 @@
 	            		<div class="nickSX">
 	                    	<div class="areaNick">
 		                        <p><strong>Cognome</strong></p>
-		                        <input class="campi" type="text" name="Cognome" value="<%= var.getCognome()%>">
+		                        <input class="campi" type="text" name="cognome" value="<%= var.getCognome()%>">
 	                    	</div>
 	            		</div>
 	        		</div>
@@ -81,7 +79,7 @@
 	            		<div class="nickSX">
 	                    	<div class="areaNick">
 		                        <p><strong>Indirizzo</strong></p>
-		                        <input class="campi" type="text" name="Indirizzo" value="<%= var.getIndirizzo()%>">
+		                        <input class="campi" type="text" name="indirizzo" value="<%= var.getIndirizzo()%>">
 	                    	</div>
 	            		</div>
 	        		</div>
@@ -89,17 +87,16 @@
 	        		<div class="nicknameArea">				
 	            		<div class="nickSX">
 	                    	<div class="areaNick">
-		                        <p><strong>Citta</strong></p>
-		                        <input class="campi" type="text" name="Citta" value="<%= var.getCitta()%>">
+		                        <p><strong>Città</strong></p>
+		                        <input class="campi" type="text" name="citta" value="<%= var.getCitta()%>">
 	                    	</div>
 	            		</div>
 	        		</div>
 	        		
-	        		
 	        		<div class="nicknameArea">				
 	            		<div class="nickSX">
 	                    	<div class="areaNick">
-		                        <input class="Modifica" type="submit" value="Conferma">
+		                        <input class="Modifica" type="submit" name="action" value="conferma">
 	                    	</div>
 	            		</div>
 	        		</div> 
@@ -109,6 +106,5 @@
 		<jsp:include page="footer.jsp" />
 	
 	</body>
-	
 	
 </html>

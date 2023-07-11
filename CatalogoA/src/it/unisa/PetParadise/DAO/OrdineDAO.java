@@ -197,7 +197,7 @@ public class OrdineDAO {
 		
 	}
 	
-	public synchronized Collection<ProductOrder> doRetrieveAll() throws SQLException {
+public synchronized Collection<ProductOrder> doRetrieveAll() throws SQLException {
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -260,73 +260,72 @@ public class OrdineDAO {
 		
 		
 	}
-	
 public synchronized Collection<ProductOrder> doRetrieveAllByUtente(String email) throws SQLException {
-		
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+	
+	Connection connection = null;
+	PreparedStatement preparedStatement = null;
 
-		Collection<ProductOrder> order = new ArrayList<ProductOrder>();
+	Collection<ProductOrder> order = new ArrayList<ProductOrder>();
+	
+	String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME + " JOIN " + OrdineDAO.TABLE_NAME2 +
+			           " ON ordine.cod_utente = utente.code WHERE utente.email = ?";
+	
+	
+	try 
+	{
+		connection = DriverManagerConnectionPool.getConnection();
+		preparedStatement = connection.prepareStatement(selectSQL);
+		preparedStatement.setString(1, email);
 		
-		String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME + " JOIN " + OrdineDAO.TABLE_NAME2 +
-				           " ON ordine.cod_utente = utente.code WHERE utente.email = ?";
-		
-		
+		System.out.println("Query: " + preparedStatement.toString()); // Stampa la query SQL per debug
+		ResultSet rs = preparedStatement.executeQuery();
+
+		while (rs.next()) 
+		{
+			ProductOrder bean = new ProductOrder();
+
+			bean.setIdOrdine(rs.getInt("id_ordine"));
+			bean.setData_ordine(rs.getDate("data_ordine"));
+			bean.setStato_ordine(rs.getString("stato_ordine"));
+			
+			ConsegnaDAO cdao = new ConsegnaDAO();
+			ConsegnaBean cbean = cdao.doRetrieveByKey(rs.getInt("cod_consegna"));
+			bean.setCodConsegna(cbean);
+			
+			PagamentoDAO pdao = new PagamentoDAO();
+			PagamentoBean pbean = pdao.doRetrieveByKey(rs.getInt("cod_pagamento"));
+			bean.setCodPagamento(pbean);
+			
+			MySQLUtenteDM udao = new MySQLUtenteDM();
+			Utente ubean = udao.getUtente(rs.getString("cod_utente"));
+			bean.setCodUtente(ubean);
+			
+			bean.setTotalCost(rs.getDouble("prezzo_totale"));
+			/*ComposizioneDAO codao = new ComposizioneDAO();
+			bean.setComposizione(codao.doRetrieveByOrdine(rs.getInt("id_ordine")));
+			*/
+			order.add(bean);
+		}
+
+	} 
+	finally 
+	{
 		try 
 		{
-			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, email);
-			
-			System.out.println("Query: " + preparedStatement.toString()); // Stampa la query SQL per debug
-			ResultSet rs = preparedStatement.executeQuery();
-
-			while (rs.next()) 
-			{
-				ProductOrder bean = new ProductOrder();
-
-				bean.setIdOrdine(rs.getInt("id_ordine"));
-				bean.setData_ordine(rs.getDate("data_ordine"));
-				bean.setStato_ordine(rs.getString("stato_ordine"));
-				
-				ConsegnaDAO cdao = new ConsegnaDAO();
-				ConsegnaBean cbean = cdao.doRetrieveByKey(rs.getInt("cod_consegna"));
-				bean.setCodConsegna(cbean);
-				
-				PagamentoDAO pdao = new PagamentoDAO();
-				PagamentoBean pbean = pdao.doRetrieveByKey(rs.getInt("cod_pagamento"));
-				bean.setCodPagamento(pbean);
-				
-				MySQLUtenteDM udao = new MySQLUtenteDM();
-				Utente ubean = udao.getUtente(rs.getString("cod_utente"));
-				bean.setCodUtente(ubean);
-				
-				bean.setTotalCost(rs.getDouble("prezzo_totale"));
-				/*ComposizioneDAO codao = new ComposizioneDAO();
-				bean.setComposizione(codao.doRetrieveByOrdine(rs.getInt("id_ordine")));
-				*/
-				order.add(bean);
-			}
-
+			if (preparedStatement != null)
+				preparedStatement.close();
 		} 
 		finally 
 		{
-			try 
-			{
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} 
-			finally 
-			{
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
+			DriverManagerConnectionPool.releaseConnection(connection);
 		}
-		return order;
-		
-		
-		
-		
 	}
+	return order;
+	
+	
+	
+	
+}
 	
 	public synchronized Collection<ProductOrder> getOrdersByDateRange(Date fromDate, Date toDate) throws SQLException {
 	    Connection connection = null;

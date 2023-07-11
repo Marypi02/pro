@@ -50,7 +50,7 @@ public class Salva_carta_pagamento extends HttpServlet {
 
     	    try {
     	        PagamentoDAO pagamentoDAO = new PagamentoDAO();
-    	        List<PagamentoBean> pagamenti = pagamentoDAO.doRetrieveByUtente(utente.getIdutente());
+    	        List<PagamentoBean> pagamenti = (List<PagamentoBean>) pagamentoDAO.doRetrieveByUtente(utente.getEmail());
     	        if(pagamenti != null) {
 					request.setAttribute("pagamenti", pagamenti);
 				}else {

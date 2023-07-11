@@ -99,7 +99,7 @@ public class ProductOrder {
     */
     
 	
-	public double getUnitCost() {
+	public Double getUnitCost() {
 		return(getProduct().getPrice());
 	}
 	
@@ -111,7 +111,9 @@ public class ProductOrder {
 	    setNumItems(0);
 	}
 
-	public double getTotalCost() {
+
+
+	public Double getTotalCost() {
 	    return(getNumItems() * getUnitCost());
 	}
 	
