@@ -5,9 +5,11 @@ USE storage2;
 DROP TABLE IF EXISTS storage2;
 
 CREATE TABLE product (	
+  categoria char(20) not null,
+  specie char(20) not null,
   code int primary key AUTO_INCREMENT,
   name char(60) not null,
-  description char(200),
+  description char(200) not null,
   price decimal(6,2) default 0,
   quantity int default 0,
   nome_immagine varchar(45) NOT NULL
@@ -94,19 +96,40 @@ CREATE TABLE `composizione` (
 ) ;
 
 
-INSERT INTO product values (1,"Ciotolola Doppia","Ciotola doppia per cani dal design unico, per contenere alimenti e/o acqua.",10.99,5,"1.jpg");
-INSERT INTO product values (2,"Ciotolola in Ceramica","Perfetta per cani e gatti, questa ciotola è la soluzione migliore per i pasti di tutti i giorni del tuo pet.",15.99,5,"2.jpg");
-INSERT INTO product values (3,"Virtus Dog Protein Selection","Alimento secco completo e bilanciato per cani adulti di qualsiasi razza e taglia ",25.99,13,"3.jpg");
-INSERT INTO product values (4,"Voliera in legno","Una raffinata e spaziosa voliera per canarini, cocorite e uccelli esotici.",270.30,5,"4.jpg");
-INSERT INTO product values (5,"Collare Outdoor Blu","Adatto ad un cane di piccola taglia",8.99,20,"5.jpg");
-INSERT INTO product values (6,"Shampoo per Cani dal Pelo Riccio","Ideato per cani col manto riccio, questo shampoo contribuisce a render eil pelo morbido e luminoso",15.99,50,"6.jpg");
-INSERT INTO product values (7,"Set Ossa di gomma","Gioco di gomma ",11.99,20,"7.jpg");
-INSERT INTO product values (8,"Trasportino Lux Vision ","Adatta per lunghi viaggi ",74.99,22,"8.jpg");
-INSERT INTO product values (9,"Croccantini per cani", "Alimento completo per cani di taglia media", 20.99, 100,"9.jpg");
-INSERT INTO product values (10,"Croccantini per gatti", "Alimento completo per gatti adulti", 15.99, 50,"10.jpg");
-INSERT INTO product values (11,"Cibo per pesci rossi", "Alimento in fiocchi per pesci rossi", 5.49, 200,"11.jpg");
-INSERT INTO product values (12,"Letto per cani", "Letto imbottito per cani di piccola taglia", 35.99, 20,"12.jpg");
-INSERT INTO product values (13,"Letto per gatti", "Letto in tessuto morbido per gatti", 25.99, 30,"13.jpg");
+INSERT INTO product values ("accessori","Cani",1,"Ciotolola Doppia","Ciotola doppia per cani dal design unico, per contenere alimenti e/o acqua.",10.99,5,"1.jpg");
+INSERT INTO product values ("accessori","Gatti",2,"Ciotolola in Ceramica","Perfetta per cani e gatti, questa ciotola è la soluzione migliore per i pasti di tutti i giorni del tuo pet.",15.99,5,"2.jpg");
+INSERT INTO product values ("cibo","Cani",3,"Virtus Dog Protein Selection","Alimento secco completo e bilanciato per cani adulti di qualsiasi razza e taglia ",25.99,13,"3.jpg");
+INSERT INTO product values ("gabbia","Uccelli",4,"Voliera in legno","Una raffinata e spaziosa voliera per canarini, cocorite e uccelli esotici.",270.30,5,"4.jpg");
+INSERT INTO product values ("accessori","Cani",5,"Collare Outdoor Blu","Adatto ad un cane di piccola taglia",8.99,20,"5.jpg");
+INSERT INTO product values ("igiene","Cani",6,"Shampoo per Cani dal Pelo Riccio","Ideato per cani col manto riccio, questo shampoo contribuisce a render eil pelo morbido e luminoso",15.99,50,"6.jpg");
+INSERT INTO product values ("giocattoli","Cani",7,"Set Ossa di gomma","Gioco di gomma ",11.99,20,"7.jpg");
+INSERT INTO product values ("accessori","Gatti",8,"Trasportino Lux Vision ","Adatta per lunghi viaggi ",74.99,22,"8.jpg");
+INSERT INTO product values ("cibo","Cani",9,"Croccantini per cani", "Alimento completo per cani di taglia media", 20.99, 100,"9.jpg");
+INSERT INTO product values ("cibo","Gatti",10,"Croccantini per gatti", "Alimento completo per gatti adulti", 15.99, 50,"10.jpg");
+INSERT INTO product values ("cibo","Pesci",11,"Cibo per pesci rossi", "Alimento in fiocchi per pesci rossi", 5.49, 200,"11.jpg");
+INSERT INTO product values ("accessori","Cani",12,"Letto per cani", "Letto imbottito per cani di piccola taglia", 35.99, 20,"12.jpg");
+INSERT INTO product values ("accessori","Gatti",13,"Letto per gatti", "Letto in tessuto morbido per gatti", 25.99, 30,"13.jpg");
+INSERT INTO product values ("igiene","Gatti",14,"Shampoo per Gatti alla Camomilla","Delicato shampoo alla camomilla per gatti dalla pelle sensibile",12.99,40,"14.jpg");
+INSERT INTO product values ("accessori","Uccelli",15,"Accessori per Uccelli ","Set di accessori per una gabbia",8.99,15,"15.jpg");
+INSERT INTO product values ("cibo","Cani",16,"Croccantini Grain-Free","Alimento secco per cani senza cereali, con proteine di alta qualità",29.99,50,"16.jpg");
+INSERT INTO product values ("accessori","Cani",17,"Collare e Guinzaglio in Pelle","Elegante collare e guinzaglio in pelle per cani di taglia media-grande",45.99,10,"17.jpg");
+INSERT INTO product values ("cibo","Pesci",18,"Cibo per Pesci Tropicali","Alimento in granuli per pesci tropicali, arricchito con vitamine e minerali",7.99,150,"18.jpg");
+INSERT INTO product values ("accessori","Gatti",19,"Scratcher per Gatti a Forma di Gatto","Scratcher in cartone a forma di gatto, perfetto per la cura delle unghie dei felini",18.99,25,"19.jpg");
+INSERT INTO product values ("accessori","Cani",20,"Pettorina per Cani","Comoda e resistente pettorina per cani di taglia media",22.99,30,"20.jpg");
+INSERT INTO product values ("igiene","Gatti",21,"Shampoo per gatti al profumo di fiori","Shampoo delicato per il manto dei gatti, arricchito con estratti di fiori per un profumo fresco e duraturo",12.99,30,"21.jpg");
+INSERT INTO product values ("giocattoli","Gatti",22,"Set di palline colorate","Set di 4 palline colorate per il divertimento dei gatti, adatte per giocare in casa o all'aperto",6.99,50,"22.jpg");
+INSERT INTO product values ("cibo","Uccelli",23,"Semi misti per uccelli esotici","Mix di semi ideale per la dieta degli uccelli esotici, confezionato con ingredienti di alta qualità",8.49,150,"23.jpg");
+INSERT INTO product values ("accessori","Pesci",24,"Termoriscaldatore per acquario","Termoriscaldatore adatto per acquari di piccola e media taglia, per garantire una temperatura costante dell'acqua",19.99,15,"24.jpg");
+INSERT INTO product values ("igiene","Uccelli",25,"Shampoo azzurro per pappagalli","Shampoo naturale all'essenza di mirtilli",7.99,40,"25.jpg");
+INSERT INTO product values ("accessori","Pesci",26,"Pietre decorative per acquario","Set di 5 pietre decorative per creare un ambiente naturale e piacevole nell'acquario",12.99,30,"26.jpg");
+INSERT INTO product values ("cibo","Pesci",27,"Cibo per pesci tropicale","Alimento in granuli per pesci tropicali, confezionato con ingredienti di alta qualità per una dieta sana ed equilibrata",6.99,100,"27.jpg");
+INSERT INTO product values ("accessori","Cani",28,"Rare felpa per cani","felpa colorata per canid di tutte le taglie",6.99,50,"28.jpg");
+INSERT INTO product values ("giocattoli","Cani",29,"Palla in gomma","Palla di gomma per far divertire il tuo cane ",8.49,150,"29.jpg");
+INSERT INTO product values ("cibo","Cani",30,"Snack per Cane ","Snack per Cane Anatra e Zucchine Happy Farm",19.99,15,"30.jpg");
+INSERT INTO product values ("gabbia","Uccelli",31,"Alba Gabbia per Canarini","Gabbia gialla per canarini",7.99,40,"31.jpg");
+INSERT INTO product values ("accessori","Gatti",32,"Tiragraffi per gatti ricambio – Azalea","Tiragraffi",12.99,30,"32.jpg");
+INSERT INTO product values ("accessori","Cani",33,"Ciotola per cani","Ciotola rosa per il tuo cucciolo",6.99,100,"33.jpg");
+
 
 
 

@@ -2,23 +2,28 @@
     pageEncoding="ISO-8859-1" import="java.util.*,it.unisa.model.ProductBean,it.unisa.model.cart,it.unisa.model.ProductOrder"%>
 
 <% 
+
     //ProductBean product = (ProductBean) request.getAttribute("product");
-	cart cart = (cart) request.getAttribute("cart");
+	cart cart = (cart) session.getAttribute("cart");
+	
 	%>
 	
+<jsp:include page="header.jsp"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="ProductStyle.css" rel="stylesheet" type="text/css">
+	<link href="css/cart.css" rel="stylesheet" type="text/css">
 <title>Cart</title>
 </head>
 <body>
+<div class=cart-page>
 <% if(cart != null) { %>
+<div class=cart-table>
 		<table border="1">
-		<caption>Cart</caption>
-		<tr>
-		    <th>Id</th>
+		<div class=titoloCarrello> <h4>CART</h4> </div>
+		<tr> 
+		    <th>Product</th>
 			<th>Name</th>
 			<th>Description</th>
 			<th>Unit Cost</th>
@@ -26,40 +31,58 @@
 			<th>Total Cost</th>
 			<th>Action</th>
 		</tr>
-		<% //List<ProductBean> prodcart = cart.getProducts();
-		   //for(ProductBean beancart: prodcart) {
+		<% 
 			   Map<ProductBean, ProductOrder> prodcart = cart.getProducts();
 			   for(Map.Entry<ProductBean, ProductOrder> beancart : prodcart.entrySet()){
 		%>
 		<tr>
-			<td><%=beancart.getKey().getCode()%></td>
+			<td><img src=images/<%=beancart.getKey().getNomeImg()%> class="imgProdotto"></td>
 			<td><%=beancart.getKey().getName()%></td>
 			<td><%=beancart.getKey().getDescription()%></td>
-			<td><%=beancart.getValue().getUnitCost()%></td>
+			<td><%=beancart.getValue().getUnitCost()%> </td>
 			<td>
+			
 			<form action="./cart" method="post">
+			<div class=update-button>
                 <input type="hidden" name="action" value="setNumOrder">
 			    <input type="number" name="quantity" value=<%=beancart.getValue().getNumItems() %>>
                 <input type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
-                <input type="submit" value="Update Order">
+             <button type="submit" class="pulsanteUPDATE" type="button" value="Update Order">Update Order</button>
+                 </div>
                 </form>
 			</td>
-			<td><%=beancart.getValue().getTotalCost() %></td>
-			<td><form action="./cart" method="post">
+			<td><%=beancart.getValue().getTotalCost()%> </td>
+			<td>
+			    <form action="./cart" method="post">
                 <input type="hidden" name="action" value="deleteC">
                 <input type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
-                <input type="submit" value="Delete from cart">
-                </form></td>
+                <button type="submit" class="pulsanteDELETE" type="button" value="Delete from cart">Delete from cart</button>
+                </form></td> 
 		</tr>
-		
 		<%} %>
+		
 	</table>	
 	
 	
+  <span class="cart-total">Total: <%= cart.getTotalPrice() %> </span>
+
+
+	</div>
+	</div>
+	<div class=bottoni>
 	            <form action="./cart" method="post">
                 <input type="hidden" name="action" value="comeBack">        
-                <input type="submit" value="Come Back to Catalog">
+                <button type="submit" class="pulsanteRETURN" type="button"  value="Come Back to Catalog">Come Back to Catalog</button>
                 </form>
-	<% } %>	
+                
+                       
+                <button type="submit" class="checkout-button" type="button"  value="Aquista">Aquista</button>
+                </div>
+	<% }else { %>	
+		<caption>Cart</caption>
+		<h1>Carrello vuoto</h1>
+		
+		<%} %>
+<div class="footer"><jsp:include page="footer.jsp"/></div>
 </body>
 </html>

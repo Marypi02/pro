@@ -123,6 +123,7 @@ public class ProductOrder {
 		Prezzo_totale = prezzo_totale;
 	}
 	
+	  
 	public ProductOrder() {
 		super();
 	}

@@ -16,7 +16,7 @@
     	 ArrayList<PagamentoBean> pagamenti =   (ArrayList<PagamentoBean>) request.getAttribute("pagamenti");
 	
     	ArrayList<ProductOrder> ordini = (ArrayList<ProductOrder>) request.getAttribute("ordini");	
-    	if(ordini == null){
+    	if(ordini != null){
     		response.sendRedirect("Mostra_ordini_utente?action=mostra");
     		return;
     	}

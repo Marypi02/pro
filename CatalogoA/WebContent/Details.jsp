@@ -1,56 +1,65 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*,it.unisa.model.ProductBean,it.unisa.model.cart"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="it.unisa.model.ProductBean"%>
 
-<%
-    ProductBean bean = (ProductBean) request.getAttribute("product");
 
-	%>
+
+<jsp:include page="header.jsp"/>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <link href="ProductStyle.css" rel="stylesheet" type="text/css">
-    <title>Product Details</title>
+    <link rel="stylesheet" href="css/details.css">
 </head>
 <body>
-    <h2>Product Details</h2>
-    <c:set var="id" value="${param.id}" />
-    <c:set var="product" value="${model.doRetrieveByKey(id)}" />
-	
-	<table border="1">
-		<tr>
-			<th>Code</th>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Price</th>
-			<th>Quantity</th>
-		</tr>
-		<tr>
-			<td>${product.getCode()}</td>
-			<td>${product.getName()}</td>
-			<td>${product.getDescription()}</td>
-			<td>${product.getPrice()}</td>
-			<td>${product.getQuantity()}</td>
-		</tr>
-	</table>
-	<table>
-	    <tr><th>Image:</th></tr>
-	    <tr>
-	        <td><img src="${pageContext.request.contextPath}/images/${product.getNomeImg()}" alt="Cannot load..."></td>
-	    </tr>
-	</table>
-	
-	<form action="./cart" method="post">
-	<input type="hidden" name="action" value="addC">
-	<input type="hidden" name="productCode" value="<%= bean.getCode() %>">
-	<input type="submit" value="Add to cart">
-	</form>
-	
-	<form action="./product" method="post">
-    <input type="hidden" name="action" value="comeBack">        
-    <input type="submit" value="Come Back to Catalog">
-    </form>
-                
+
+     <div class="titolo-pagina"> <h1>Product Details</h1> </div>
+    <% 
+        ProductBean product = (ProductBean) request.getAttribute("product");
+        
+    %>
+
+ <div class="product-wrapper">
+  <table class="image-table">
+    <tr>
+      <td>
+        <div class="product-images">
+          <img src="images/<%=product.getNomeImg()%>">
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <form action="./cart" method="post">
+          <input type="hidden" name="action" value="comeBack">        
+          <button type="submit" class="btn return-btn" type="button"  value="Come Back to Catalog">Come Back to Catalog</button>
+        </form>
+      </td>
+    </tr>
+  </table>
+
+  <table class="description-table">
+    <tr>
+      <td>
+        <div class="details">
+          <h2 class="product-brand"><%=product.getName()%></h2>
+          <p class="product-short-des"><%=product.getDescription()%></p>
+          <span class="product-price"><%=product.getPrice()%></span>
+
+          <form action="./cart" method="post">
+            <input type="hidden" name="action" value="addC">
+            <input type="hidden" name="productCode" value="<%= product.getCode() %>">
+            <button type="submit" class="btn cart-btn" type="button" value="Aggiungi">Add to cart</button>
+          </form>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+    
+    <div class="footer">
+    <jsp:include page="footer.jsp"/>
+</div>
 </body>
 </html>
-

@@ -7,6 +7,7 @@ public class ProductBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	String specie;
 	int code;
 	String name;
 	String description;
@@ -14,11 +15,22 @@ public class ProductBean implements Serializable {
 	String nomeImg;
 	int quantity;
 
+	
+
 	public ProductBean() {
+		specie = "";
 		code = -1;
 		name = "";
 		description = "";
 		quantity = 0;
+	}
+	
+	public String getSpecie() {
+		return specie;
+	}
+
+	public void setSpecie(String specie) {
+		this.specie = specie;
 	}
 
 	public int getCode() {

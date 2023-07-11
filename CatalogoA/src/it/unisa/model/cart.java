@@ -35,6 +35,17 @@ public class cart {
 		this.products = products;
 	}
 	
+	public double getTotalPrice() {
+	    double totalPrice = 0;
+
+	    for (ProductOrder productOrder : products.values()) {
+	        totalPrice += productOrder.getTotalCost();
+	    }
+
+	    return totalPrice;
+	}
+
+	
 	@SuppressWarnings({ "null", "unlikely-arg-type" })
 	public synchronized void addProduct(ProductBean product) {
 	    /*ProductOrder order = null;
@@ -136,5 +147,6 @@ public class cart {
 		    ProductOrder newOrder = new ProductOrder(product);
 		    products.put(newOrder.getProduct(), newOrder);
 	 }
+	
 	
 }

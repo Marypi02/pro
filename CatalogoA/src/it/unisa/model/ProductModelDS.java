@@ -162,6 +162,46 @@ public class ProductModelDS implements ProductModel {
 	    
 	}
 
+	
+	@Override
+    public synchronized Collection<ProductBean> get_prodotti() throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product ";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+		}
+	
+	
 	@Override
 	public synchronized Collection<ProductBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
@@ -204,5 +244,535 @@ public class ProductModelDS implements ProductModel {
 		}
 		return products;
 	}
+	
+	@Override
+    public synchronized Collection<ProductBean> getAccessori_cane() throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product WHERE specie='Cani'and categoria='accessori'";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+		}
+	@Override
+    public synchronized Collection<ProductBean> getAccessori_gatto() throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product WHERE specie='Gatti'and categoria='accessori'";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+		}
+	
+	@Override
+	public synchronized Collection<ProductBean> getAccessori_pesci() throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product WHERE specie='Pesci'and categoria='accessori'";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+		
+	}
+	@Override
+	public synchronized Collection<ProductBean> getAccessori_uccelli() throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product WHERE specie='Uccelli'and categoria='accessori'";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+		
+	}
+	@Override
+	public  synchronized Collection<ProductBean> getCibo_cane() throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product WHERE specie='Cani'and categoria='cibo'";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+		
+	}
+	@Override
+	public synchronized Collection<ProductBean> getCibo_gatto() throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product WHERE specie='Gatti'and categoria='cibo'";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+		
+	}
+	@Override
+	public synchronized Collection<ProductBean> getCibo_pesci() throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product WHERE specie='Pesci'and categoria='cibo'";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+	}
+	@Override
+	public synchronized Collection<ProductBean> getCibo_uccelli() throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product WHERE specie='Uccelli'and categoria='cibo'";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+		
+	}
+	@Override
+	public synchronized Collection<ProductBean> getGiocattoli_cane() throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product WHERE specie='Cani'and categoria='giocattoli'";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+		
+	}
+	@Override
+	public synchronized Collection<ProductBean> getGiocattoli_gatto() throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product WHERE specie='Gatti'and categoria='giocattoli'";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+		
+	}
+	@Override
+	public synchronized Collection<ProductBean> getGabbie_uccelli() throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product WHERE specie='Uccelli'and categoria='gabbia'";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+		
+	}
+	@Override
+	public synchronized Collection<ProductBean> getIgiene_cane() throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product WHERE specie='Cani'and categoria='igiene'";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+	}
+	@Override
+	public synchronized Collection<ProductBean> getIgiene_gatto() throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product WHERE specie='Gatti'and categoria='igiene'";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+	}
+	@Override
+	public synchronized Collection<ProductBean> getIgiene_uccelli() throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+   
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+	        
+	        String selectSQL = "SELECT * FROM product WHERE specie='Uccelli'and categoria='igiene'";
+
+	        try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+					ProductBean bean = new ProductBean();
+
+					bean.setCode(rs.getInt("CODE"));
+					bean.setName(rs.getString("NAME"));
+					bean.setDescription(rs.getString("DESCRIPTION"));
+					bean.setPrice(rs.getDouble("PRICE"));
+					bean.setQuantity(rs.getInt("QUANTITY"));
+					bean.setNomeImg(rs.getString("NOME_IMMAGINE"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return products;
+	}
+
+
 
 }

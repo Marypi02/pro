@@ -37,39 +37,39 @@
 <i class="fa-sharp fa-solid fa-dog"></i>
    <div class="dropdown"> <li class="header-link-item"><a href="#" class="header-link">Cani</a></li>
     <div class="dropdown-content">
-			<a href="cibo_cane.jsp"> Cibo </a>
-			<a href="accessori_cane.jsp"> Accessori </a>
-			<a href="giocattoli_cani.jsp"> Giocattoli </a>
-			<a href="igiene_cani.jsp"> Igiene </a>
+			<a href="product?action=cibo_cane"> Cibo </a>
+			<a href="product?action=accessori_cane"> Accessori </a>
+			<a href="product?action=giocattoli_cane"> Giocattoli </a>
+			<a href="product?action=igiene_cane"> Igiene </a>
 		</div>
 		</div>
 		<i class="fa-sharp fa-solid fa-cat"></i>
    <div class="dropdown"> <li class="header-link-item"><a href="#" class="header-link">Gatti</a></li>
     <div class="dropdown-content">
-			<a href="cibo_gatto.jsp"> Cibo </a>
-			<a href="accessori_gatti.jsp"> Accessori </a>
-			<a href="giocattoli_gatti.jsp"> Giocattoli </a>
-			<a href="igiene_gatto.jsp"> Igiene </a>
+			<a href="product?action=cibo_gatto"> Cibo </a>
+			<a href="product?action=accessori_gatto"> Accessori </a>
+			<a href="product?action=giocattoli_gatto"> Giocattoli </a>
+			<a href="product?action=igiene_gatto"> Igiene </a>
 		</div>
 		</div>
 		<i class="fa-solid fa-fish"></i>
   <div class="dropdown">  <li class="header-link-item"><a href="#" class="header-link">Pesci</a></li>
     <div class="dropdown-content">
-			<a href="cibo_pesci.jsp"> Cibo </a>
-			<a href="accessori_pesci.jsp"> Accessori </a>
+			<a href="product?action=cibo_pesci"> Cibo </a>
+			<a href="product?action=accessori_pesci"> Accessori </a>
 			
 		</div>
 		</div>
 		<i class="fa-solid fa-crow"></i>
    <div class="dropdown"> <li class="header-link-item"><a href="#" class="header-link">Uccelli</a></li>
     <div class="dropdown-content">
-			<a href="cibo_uccelli.jsp"> Cibo </a>
-			<a href="accessori_uccelli.jsp"> Accessori </a>
-			<a href="gabbie_uccelli.jsp"> Gabbie </a>
-			<a href="igiene_uccelli.jsp"> Igiene </a>
+			<a href="product?action=cibo_uccelli"> Cibo </a>
+			<a href="product?action=accessori_uccelli"> Accessori </a>
+			<a href="product?action=gabbie_uccelli"> Gabbie </a>
+			<a href="product?action=igiene_uccelli"> Igiene </a>
 		</div>
 		</div>
-    <li class="header-link-item"><a href="ProductView.jsp" class="header-link">Catalogo</a></li>
+    <li class="header-link-item"><a href="product?action=all_products" class="header-link">Catalogo</a></li>
 </ul>
 </body>
 
