@@ -85,7 +85,7 @@ public class ProductControl extends HttpServlet {
 					try {
 					    Collection<ProductBean> products = model.get_prodotti();
 					    request.setAttribute("products", products);
-					    RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
+					    RequestDispatcher dispatcher = request.getRequestDispatcher("ProductView.jsp");
 					    dispatcher.forward(request, response);
 					} catch (SQLException e) {
 					    System.out.println("Error: " + e.getMessage());}

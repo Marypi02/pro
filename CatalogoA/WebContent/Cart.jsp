@@ -39,7 +39,7 @@
 			<td><img src=images/<%=beancart.getKey().getNomeImg()%> class="imgProdotto"></td>
 			<td><%=beancart.getKey().getName()%></td>
 			<td><%=beancart.getKey().getDescription()%></td>
-			<td><%=beancart.getValue().getUnitCost()%> </td>
+			<td><%=beancart.getValue().getUnitCost()%></td>
 			<td>
 			
 			<form action="./cart" method="post">

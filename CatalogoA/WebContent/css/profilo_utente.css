@@ -3,14 +3,37 @@
 	display:grid;
 	
 }
-
-.Modifica{
-	text-decoration: none;
-	border: 1px solid #ffc1c1;
+.button {
+text-decoration: none;
+	border: 1px solid #E05D5D;
 	border-radius: 2em;
 	font-size: 1em;
 	color: black;
-	background-color: #ffc1c1;
+	background-color: #E05D5D;
+	font-weight: normal;
+	text-align:center;
+	width: 30%;
+	padding: 10px;
+    margin: 2px;
+    justify-content:space-around;
+   
+}
+
+.button:hover {
+color:black;
+	font-color:white;
+	background-color:lightblue;
+	transition:0.3s;
+	cursor: pointer;
+	border: lightblue;
+}
+.Modifica{
+	text-decoration: none;
+	border: 1px solid #E05D5D;
+	border-radius: 2em;
+	font-size: 1em;
+	color: black;
+	background-color: #E05D5D;
 	font-weight: normal;
 	text-align:center;
 	width: 100%;
@@ -35,11 +58,11 @@ a:hover{
 
 .save{
 	text-decoration: none;
-	border: 1px solid #ffc1c1;
+	border: 1px solid #E05D5D;
 	border-radius: 2em;
 	font-size: 1em;
 	color: black;
-	background-color: #ffc1c1;
+	background-color: #E05D5D;
 	font-weight: normal;
 	text-align:center;
 	width: 50%;

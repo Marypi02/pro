@@ -27,7 +27,7 @@
     <div class="header-nav-items">
     
 
-        <a href="#"><i class="fa-solid fa-circle-user fa-xl"></i></a>
+        <a href="utente.jsp"><i class="fa-solid fa-circle-user fa-xl"></i></a>
         <a href="Cart.jsp"><i class="fa fa-shopping-cart "></i></a>
     </div>
 </div>

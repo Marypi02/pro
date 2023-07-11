@@ -123,7 +123,7 @@
 		    </div>
 		</div>
 		
-		<button onclick="visualizzaCatalogo()">Visualizza catalogo prodotti</button>
+		<button  class="button" onclick="visualizzaCatalogo()">Visualizza catalogo prodotti</button>
 		
 		
 		

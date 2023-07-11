@@ -78,7 +78,7 @@ function carousel() {
   
 <div class="prodotto">
 			
-				<a href="Details.jsp">
+				<a href="product?action=read&id=<%= code %>" target="_blank" >
 							<img src="images/<%=img%>" class="imgProdotto">
 				</a>	
 							<%=nome%>
