@@ -27,6 +27,7 @@ public class Login extends HttpServlet {
 	 static UtenteDAO utenteDAO;
 	 
 	 static {
+		// Verifica se si sta utilizzando una sorgente dati (DataSource)
       if (isDataSource) {
           utenteDAO = new MySQLUtenteDS();
       } else {
@@ -56,7 +57,7 @@ public class Login extends HttpServlet {
 		
 		String redirectedPage = null;
 		try {
-			//caso in cui è l'admin
+			// Controllo se è l'amministratore
 			checkLogin(username, password);
 			request.getSession().setAttribute("adminRoles", true);
 			redirectedPage = "protected.jsp";
@@ -96,7 +97,7 @@ public class Login extends HttpServlet {
 	
 	private void checkLogin(String username, String password) throws Exception{
 		if("root@root.root".equals(username) && "admin".equals(password)) {
-			//
+			// Autenticazione amministratore
 		}else
 			throw new Exception("Invalid login and password");
 	}

@@ -2,15 +2,17 @@
 <%@ page import="java.util.*, it.unisa.model.*"%>
 <%@ page import="java.sql.*"%>
 	
-	<%
-	Collection<?> products = (Collection<?>) request.getAttribute("products");
-	if(products == null) {
-		response.sendRedirect("./product");	
-		return;
-	}
-	
-	ProductBean product = (ProductBean) request.getAttribute("product");
-	
+<%
+// Verifica se l'attributo "products" è presente nella richiesta
+Collection<?> products = (Collection<?>) request.getAttribute("products");
+if(products == null) {
+    // Se l'attributo "products" non è presente, reindirizza alla pagina di visualizzazione dei prodotti
+    response.sendRedirect("./product");	
+    return;
+}
+
+// Ottiene l'attributo "product" dalla richiesta
+ProductBean product = (ProductBean) request.getAttribute("product");
 %>
 
 
@@ -30,37 +32,37 @@
 <body>
 
 <%
-  if (products != null && products.size() != 0) {
+// Verifica se la collezione di prodotti non è vuota
+if (products != null && products.size() != 0) {
     Iterator<?> it = products.iterator();
     while (it.hasNext()) {
-      ProductBean bean = (ProductBean) it.next();
+        ProductBean bean = (ProductBean) it.next();
 %>
-<!-- Codice per visualizzare i prodotti -->
-<div class="prodotto">
-  <a href="product?action=read&id=<%= bean.getCode() %>" target="_blank" >
-    <img src="images/<%= bean.getNomeImg() %>" class="imgProdotto">
-  </a>
-  <%= bean.getName() %><br>
-  <%= bean.getPrice() %> &euro;
+    <!-- Codice per visualizzare i prodotti -->
+    <div class="prodotto">
+        <a href="product?action=read&id=<%= bean.getCode() %>" target="_blank" >
+            <img src="images/<%= bean.getNomeImg() %>" class="imgProdotto">
+        </a>
+        <%= bean.getName() %><br>
+        <%= bean.getPrice() %> &euro;
 
-  <form action="./cart" method="post">
-    <input type="hidden" name="action" value="addC">
-    <input type="hidden" name="productCode" value="<%= bean.getCode() %>">
-    <button type="submit" class="pulsante" type="button" value="Aggiungi">Add to cart</button>
-  </form>
-</div>
-<!-- Fine codice per visualizzare i prodotti -->
+        <form action="./cart" method="post">
+            <input type="hidden" name="action" value="addC">
+            <input type="hidden" name="productCode" value="<%= bean.getCode() %>">
+            <button type="submit" class="pulsante" type="button" value="Aggiungi">Add to cart</button>
+        </form>
+    </div>
+    <!-- Fine codice per visualizzare i prodotti -->
 <%
     }
-  } else {
+} else {
 %>
-<tr>
-  <td colspan="6">No products available</td>
-</tr>
+    <tr>
+        <td colspan="6">No products available</td>
+    </tr>
 <%
-  }
+}
 %>
-
 
 <div class="footer">
     <jsp:include page="footer.jsp"/>

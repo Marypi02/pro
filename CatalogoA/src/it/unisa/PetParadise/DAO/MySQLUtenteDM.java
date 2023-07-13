@@ -18,7 +18,6 @@ public class MySQLUtenteDM implements UtenteDAO {
     
     /** La query per la lettura di un singolo cliente. */
     private static final String READ_QUERY = "SELECT * FROM utente WHERE email = ?";
-    
     private static final String READ_QUERY2 = "SELECT * FROM utente WHERE code = ?";
     
     /** La query per la lettura di tutti i clienti. */
@@ -26,9 +25,8 @@ public class MySQLUtenteDM implements UtenteDAO {
     
     /** La query per l'aggiornamento di un singolo cliente. */
     private static final String UPDATE_QUERY = "UPDATE utente SET email=?, password=?, nome=?, cognome=?, indirizzo=?, citta=?, admin=? WHERE code = ?";
-    
-    
     private static final String UPDATE_QUERY2 = "INSERT INTO utente (email, password, nome, cognome,  indirizzo, citta, admin) VALUES (?, ?, ?, ?, ?, ?, ?)";
+   
     /** La query per la cancellazione di un singolo cliente. */
     private static final String DELETE_QUERY = "DELETE FROM utente WHERE code = ?";
 

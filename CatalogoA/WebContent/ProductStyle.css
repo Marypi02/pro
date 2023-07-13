@@ -1,8 +1,9 @@
 @CHARSET "UTF-8";
-
+.page{  
+	
+	justify-content:center;}
 html {
 	width: 500px;
-	margin: 10px auto;
 }
 
 h1 {
@@ -44,9 +45,7 @@ L'header della tabella ha il colore di sfondo impostato su #21A179, con il testo
 Infine, la caption della tabella ha un font più grande (font-size: 24px), in grassetto (font-weight: bold), centrata (text-align: center) e con un margine inferiore (margin-bottom: 20px).
 */
 
-body {
-  background-color: #EAF9D9;
-}
+
 
 table {
   width: 80%;
@@ -54,6 +53,7 @@ table {
   border-collapse: collapse;
   background-color: #FFFFFF;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 300%;
 }
 
 th, td {
@@ -67,12 +67,9 @@ th {
   color: #FFFFFF;
 }
 
-tr:nth-child(even) {
-  background-color: #E2C2C6;
-}
 
 tr:hover {
-  background-color: #FFDC5E;
+  background-color: #E2C2C6;
 }
 
 caption {

@@ -2,7 +2,7 @@
     import="java.util.*,it.unisa.model.ProductBean,it.unisa.model.cart"%>
     
     <%
-   
+     // Ottiene l'attributo "product" dalla richiesta
     ProductBean bean = (ProductBean) request.getAttribute("product");
 
 	%>

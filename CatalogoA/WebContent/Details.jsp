@@ -15,6 +15,7 @@
 
      <div class="titolo-pagina"> <h1>Product Details</h1> </div>
     <% 
+        // Ottiene l'attributo "product" dalla richiesta
         ProductBean product = (ProductBean) request.getAttribute("product");
         
     %>

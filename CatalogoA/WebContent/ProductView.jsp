@@ -2,15 +2,17 @@
 <%@ page import="java.util.*, it.unisa.model.*"%>
 <%@ page import="java.sql.*"%>
 	
-	<%
-	Collection<?> products = (Collection<?>) request.getAttribute("products");
-	if(products == null) {
-		response.sendRedirect("./product");	
-		return;
-	}
-	
-	ProductBean product = (ProductBean) request.getAttribute("product");
-	
+<%
+// Verifica se l'attributo "products" è presente nella richiesta
+Collection<?> products = (Collection<?>) request.getAttribute("products");
+if(products == null) {
+    // Se l'attributo "products" non è presente, reindirizza alla pagina di visualizzazione dei prodotti
+    response.sendRedirect("./product");	
+    return;
+}
+
+// Ottiene l'attributo "product" dalla richiesta
+ProductBean product = (ProductBean) request.getAttribute("product");
 %>
 
 

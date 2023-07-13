@@ -22,17 +22,17 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1" http-equiv="Content-Type" content="text/html">
-<link href="ProductStyle.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="css/protected.css" type="text/css">
 <title>Protected Page</title>
 </head>
 <body>
-<h1>Welcome to the Protected Page</h1>
+<div = class"page">
+<h1 >Welcome to the Protected Page</h1>
 <p align="center">Congratulations. You have accessed a protected document.</p>
-<br><br>
+<br>
 
+<tr>
 <h1>Products</h1>
-	<a href="product">List</a>
 	<table border="1">
 		<tr>
 			<th>Code <a href="product?sort=code">Sort</a></th>
@@ -124,6 +124,7 @@
 <form action="logout" method="get">
 <input type="submit" value="Logout">
 </form>
+</div>
 
 </body>
 </html>

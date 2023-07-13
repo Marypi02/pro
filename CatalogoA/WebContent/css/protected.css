@@ -1,50 +1,87 @@
-form input[type=text], 
-form input[type=password],
-form input[type=date], 
-form input[type=range], 
-form input[type=email],
-form input[type=url], 
-form input[type=time], 
-form input[list] {
-	width: 100%;
-	padding: 10px;
-	font-size: 16px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
-	margin-bottom: 10px;
+/* ProductStyle.css */
+
+
+
+ th{
+background-color: #E05D5D;
+height: auto;
+width: auto;
+text-transform: uppercase;
+ padding: 5px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
 }
 
-form textarea {
-	width: 100%;
-	padding: 10px;
-	font-size: 16px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
-	margin-bottom: 10px;
+
+ td {
+  padding: 5px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  width: auto;
+  height: auto;
+  background-color:  #f9f9f9;
 }
 
-form label {
-	font-weight: bold;
+/* Stile delle righe della tabella del carrello */
+tr:hover {
+  background-color: #f9f9f9;
 }
 
-form input[type=submit], 
-form input[type=reset] {
-	background-color: #4CAF50;
-	color: white;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
+/* Stile generale per la pagina */
+body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center; /* Centra il testo all'interno della pagina */
+  background-color: white; /* Colore di sfondo della pagina */
 }
 
-form input[type=submit]:hover, 
-form input[type=reset]:hover {
-	background-color: #45a049;
+h1 , h2{
+  text-align: center;
 }
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto; /* Centra la tabella all'interno della pagina */
+  text-align: center;
+}
+
 
 form {
-	width: 500px;
-	margin: 0 auto;
+  margin-bottom: 20px;
+  text-align: center; /* Centra il form all'interno della pagina */
+  max-width: 400px; /* Imposta la larghezza massima del form */
+  margin: 0 auto; /* Centra il form orizzontalmente */
+}
+
+label {
+  font-weight: bold;
+  display: block; /* Crea una nuova riga per ogni label */
+  text-align: center; /* Allinea il testo delle label a sinistra */
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+input[type="submit"],
+input[type="reset"] {
+  padding: 8px 16px;
+  background-color: #E05D5D; /* Colore del pulsante di submit e reset */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+  background-color: #ff8080;
 }

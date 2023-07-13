@@ -2,8 +2,7 @@
     pageEncoding="ISO-8859-1" import="java.util.*,it.unisa.model.ProductBean,it.unisa.model.cart,it.unisa.model.ProductOrder"%>
 
 <% 
-
-    //ProductBean product = (ProductBean) request.getAttribute("product");
+    //Recupera il carrello dalla sessione
 	cart cart = (cart) session.getAttribute("cart");
 	
 	%>
@@ -31,7 +30,7 @@
 			<th>Total Cost</th>
 			<th>Action</th>
 		</tr>
-		<% 
+		<%      // Itera sui prodotti nel carrello
 			   Map<ProductBean, ProductOrder> prodcart = cart.getProducts();
 			   for(Map.Entry<ProductBean, ProductOrder> beancart : prodcart.entrySet()){
 		%>

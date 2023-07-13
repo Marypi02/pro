@@ -2,7 +2,7 @@
     import="java.util.*,it.unisa.model.Utente"%>
     
     <%
-   
+    // Ottiene l'attributo "utente" dalla richiesta
     Utente bean = (Utente) request.getAttribute("utente");
 
 	%>

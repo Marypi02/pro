@@ -9,14 +9,13 @@ Collection<?> orderList = (Collection<?>) request.getAttribute("OrderList");
 <html>
 <head>
 <meta charset="ISO-8859-1" http-equiv="Content-Type" content="text/html">
-<link href="ProductStyle.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="css/protected.css" type="text/css">
 <title>Order List</title>
 </head>
 <body>
 <h1>Order List</h1>
   
-    <table>
+   <table border="1">
         <tr>
             <th>ID Order</th>
             <th>Customer ID</th>
@@ -47,6 +46,6 @@ Collection<?> orderList = (Collection<?>) request.getAttribute("OrderList");
         <input type="hidden" name="action" value="comeBack">
         <input type="submit" value="Torna alla pagina protetta">
     </form>
-    <!-- Aggiungi qui il resto del tuo contenuto -->
+   
 </body>
 </html>

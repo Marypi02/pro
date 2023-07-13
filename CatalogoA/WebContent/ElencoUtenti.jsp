@@ -10,7 +10,6 @@ Utente searchResult = (Utente) request.getAttribute("searchResult");
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1" http-equiv="Content-Type" content="text/html">
-<link href="ProductStyle.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="css/protected.css" type="text/css">
 <title>Users list</title>
 </head>
@@ -43,7 +42,7 @@ Utente searchResult = (Utente) request.getAttribute("searchResult");
         </tr>
         <% } %>
     </table>
-
+ <h1>Ricerca tramite email</h1>
     <form method="post" action="UserList">
         <input type="hidden" name="action" value="searchUser">
         <input type="text" name="email" placeholder="Inserisci l'email dell'utente">
@@ -52,7 +51,7 @@ Utente searchResult = (Utente) request.getAttribute("searchResult");
 
     <% if (searchResult != null) { %>
     <h2>Risultato della ricerca:</h2>
-    <table>
+    <table border="1">
         <tr>
             <th>Email</th>
             <th>First Name</th>
