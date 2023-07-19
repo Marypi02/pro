@@ -1,6 +1,5 @@
 package it.unisa.PetParadise.DAO;
 
-import it.unisa.model.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +8,34 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-public class OrdineDAO implements OrderModel { //OrdineDM
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+import it.unisa.model.ConsegnaBean;
+import it.unisa.model.DriverManagerConnectionPool;
+import it.unisa.model.OrderModel;
+import it.unisa.model.PagamentoBean;
+import it.unisa.model.ProductBean;
+import it.unisa.model.ProductOrder;
+import it.unisa.model.Utente;
+
+public class OrdineDS implements OrderModel{
+	
+	private static DataSource ds;
+
+	static {
+		try {
+			Context initCtx = new InitialContext();
+			Context envCtx = (Context) initCtx.lookup("java:comp/env");
+
+			ds = (DataSource) envCtx.lookup("jdbc/storage2");
+
+		} catch (NamingException e) {
+			System.out.println("Error:" + e.getMessage());
+		}
+	}
 	
 	private static final String TABLE_NAME = "ordine";
 	private static final String TABLE_NAME2 = "utente";
@@ -27,7 +53,7 @@ public class OrdineDAO implements OrderModel { //OrdineDM
 	            ResultSet orderKeys = null;
 	            
 	            try {
-	                con = DriverManagerConnectionPool.getConnection();
+	                con = ds.getConnection();
 	                con.setAutoCommit(false);
 
 	                // Creazione dell'ordine
@@ -95,7 +121,7 @@ public class OrdineDAO implements OrderModel { //OrdineDM
 	                        compositionStatement.close();
 	                    }
 	                    if (con != null) {
-	                        con.setAutoCommit(true);
+	                        //con.setAutoCommit(true);
 	                        con.close();
 	                    }
 	                } catch (SQLException ex) {
@@ -168,7 +194,7 @@ public class OrdineDAO implements OrderModel { //OrdineDM
 
 		try 
 		{
-			connection = DriverManagerConnectionPool.getConnection();
+			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
 			preparedStatement.setInt(1, idordine);
 
@@ -210,7 +236,8 @@ public class OrdineDAO implements OrderModel { //OrdineDM
 			} 
 			finally 
 			{
-				DriverManagerConnectionPool.releaseConnection(connection);
+				if (connection != null)
+					connection.close();
 			}
 		}
 		return bean;
@@ -223,11 +250,11 @@ public class OrdineDAO implements OrderModel { //OrdineDM
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + OrdineDAO.TABLE_NAME + " WHERE id_ordine = ?";
+		String deleteSQL = "DELETE FROM " + OrdineDS.TABLE_NAME + " WHERE id_ordine = ?";
 
 		try 
 		{
-			connection = DriverManagerConnectionPool.getConnection();
+			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(deleteSQL);
 			preparedStatement.setInt(1, idordine);
 
@@ -243,7 +270,8 @@ public class OrdineDAO implements OrderModel { //OrdineDM
 			} 
 			finally 
 			{
-				DriverManagerConnectionPool.releaseConnection(connection);
+				if (connection != null)
+					connection.close();
 			}
 		}
 		return (result != 0);
@@ -254,7 +282,7 @@ public class OrdineDAO implements OrderModel { //OrdineDM
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String upsql = "UPDATE " + OrdineDAO.TABLE_NAME + 
+		String upsql = "UPDATE " + OrdineDS.TABLE_NAME + 
 						" SET data_ordine = ?, stato_ordine = ?, cod_consegna = ?, cod_pagamento = ?, cod_utente = ?, prezzo_totale = ? " + 
 						"WHERE id_ordine = ?";
 		try 
@@ -282,7 +310,8 @@ public class OrdineDAO implements OrderModel { //OrdineDM
 			} 
 			finally 
 			{
-				DriverManagerConnectionPool.releaseConnection(connection);
+				if (connection != null)
+					connection.close();
 			}
 		}
 		
@@ -295,11 +324,11 @@ public synchronized Collection<ProductOrder> doRetrieveAll() throws SQLException
 
 		Collection<ProductOrder> order = new ArrayList<ProductOrder>();
 		
-		String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + OrdineDS.TABLE_NAME;
 		
 		try 
 		{
-			connection = DriverManagerConnectionPool.getConnection();
+			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
 
 			ResultSet rs = preparedStatement.executeQuery();
@@ -342,7 +371,8 @@ public synchronized Collection<ProductOrder> doRetrieveAll() throws SQLException
 			} 
 			finally 
 			{
-				DriverManagerConnectionPool.releaseConnection(connection);
+				if (connection != null)
+					connection.close();
 			}
 		}
 		return order;
@@ -358,13 +388,13 @@ public synchronized Collection<ProductOrder> doRetrieveAllByUtente(String email)
 
 	Collection<ProductOrder> order = new ArrayList<ProductOrder>();
 	
-	String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME + " JOIN " + OrdineDAO.TABLE_NAME2 +
+	String selectSQL = "SELECT * FROM " + OrdineDS.TABLE_NAME + " JOIN " + OrdineDS.TABLE_NAME2 +
 			           " ON ordine.cod_utente = utente.code WHERE utente.email = ?";
 	
 	
 	try 
 	{
-		connection = DriverManagerConnectionPool.getConnection();
+		connection = ds.getConnection();
 		preparedStatement = connection.prepareStatement(selectSQL);
 		preparedStatement.setString(1, email);
 		
@@ -408,7 +438,8 @@ public synchronized Collection<ProductOrder> doRetrieveAllByUtente(String email)
 		} 
 		finally 
 		{
-			DriverManagerConnectionPool.releaseConnection(connection);
+			if (connection != null)
+				connection.close();
 		}
 	}
 	return order;
@@ -424,10 +455,10 @@ public synchronized Collection<ProductOrder> doRetrieveAllByUtente(String email)
 
 	    Collection<ProductOrder> orderList = new ArrayList<>();
 
-	    String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME + " WHERE data_ordine BETWEEN ? AND ?";
+	    String selectSQL = "SELECT * FROM " + OrdineDS.TABLE_NAME + " WHERE data_ordine BETWEEN ? AND ?";
 
 	    try {
-	        connection = DriverManagerConnectionPool.getConnection();
+	        connection = ds.getConnection();
 	        preparedStatement = connection.prepareStatement(selectSQL);
 	        preparedStatement.setDate(1, new java.sql.Date(fromDate.getTime()));
 	        preparedStatement.setDate(2, new java.sql.Date(toDate.getTime()));
@@ -470,12 +501,11 @@ public synchronized Collection<ProductOrder> doRetrieveAllByUtente(String email)
 			} 
 			finally 
 			{
-				DriverManagerConnectionPool.releaseConnection(connection);
+				if (connection != null)
+					connection.close();
 			}
 	    }
 
 	    return orderList;
 	}
-
-	
 }

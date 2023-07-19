@@ -16,11 +16,24 @@ import javax.servlet.http.HttpServletResponse;
 import it.unisa.model.*;
 import it.unisa.PetParadise.DAO.ConsegnaDAO;
 import it.unisa.PetParadise.DAO.OrdineDAO;
+import it.unisa.PetParadise.DAO.OrdineDS;
 import it.unisa.PetParadise.DAO.PagamentoDAO;
 
 @WebServlet("/Mostra_ordini_utente")
 public class Mostra_ordini_utente extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    
+    static boolean isDataSource = true;
+	
+	static OrderModel model;
+	
+	static {
+		if (isDataSource) {
+			model = new OrdineDAO();
+		} else {
+			model = new OrdineDS();
+		}
+	}
 
     public Mostra_ordini_utente() {
         super();
@@ -28,7 +41,6 @@ public class Mostra_ordini_utente extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        OrdineDAO odao = new OrdineDAO();
 
         String action = request.getParameter("action");
 
@@ -36,7 +48,7 @@ public class Mostra_ordini_utente extends HttpServlet {
             Utente ubean = (Utente) request.getSession().getAttribute("utente");
             if (ubean != null) {
                 try {
-                    ArrayList<ProductOrder> ordini = (ArrayList<ProductOrder>) odao.doRetrieveAllByUtente(ubean.getEmail());
+                    ArrayList<ProductOrder> ordini = (ArrayList<ProductOrder>) model.doRetrieveAllByUtente(ubean.getEmail());
                     request.setAttribute("ordini", ordini);
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -77,14 +89,18 @@ public class Mostra_ordini_utente extends HttpServlet {
                 }
 
                 try {
-                    boolean success = odao.createOrdine(order);
-                    if (success) {
-                        request.getSession().removeAttribute("cart");
-                        request.setAttribute("message", "Ordine effettuato con successo!");
-                    } else {
-                    	System.out.println("Impossibile effettuare l'ordine!");
-                        request.setAttribute("message", "Errore durante la creazione dell'ordine.");
-                    }
+                	if(order == null) {
+                		System.out.println("L'ordine non esiste!");
+                	}else {
+                		boolean success = model.createOrdine(order);
+                		if (success) {
+                			request.getSession().removeAttribute("cart");
+                			//request.setAttribute("message", "Ordine effettuato con successo!");
+                		} else {
+                			System.out.println("Impossibile effettuare l'ordine!");
+                			//request.setAttribute("message", "Errore durante la creazione dell'ordine.");
+                		}
+                	}
                 } catch (SQLException e) {
                     e.printStackTrace();
                     request.setAttribute("message", "Errore durante la creazione dell'ordine.");

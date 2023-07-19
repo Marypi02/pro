@@ -49,7 +49,7 @@
     			<input type="hidden" name="action" value="setNumOrder">
     			<input type="number" name="quantity" id="quantity" value="<%=beancart.getValue().getNumItems() %>">
     			<input type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
-    			<button type="button" onclick="updateOrder()" class="pulsanteUPDATE">Update Order</button>
+    			<button type="submit" onclick="updateOrder()" class="pulsanteUPDATE" >Update Order</button>
     			<div class="error_message_quantity" style="display: none; color: red; font-size: 12px; margin-top: 5px;"></div>
   			</div>
 		</form>
