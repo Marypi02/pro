@@ -1,66 +1,73 @@
-body{
-	background-color: rgb(248, 248, 248);
-    text-align: left;
-    padding: 10px 10px 10px 10px;
-    font-family: sans-serif;
+body {
+  background-color: rgb(248, 248, 248);
+  text-align: left;
+  padding: 10px;
+  font-family: sans-serif;
 }
-.main{
-	/*margin-left: 30%;
-	margin-right: 30%;
-	text-align: center;*/
-	width: 320px;height: 550px;top: 50%;left: 50%;position: absolute;transform: translate(-50%,-50%);padding: 50px 30px;border-radius: 20px;
-	text-align:center;
-}
-.mini {
-	position: absolute;
-	top:54%;
-	left: 30%;
-	transform: translate(-50%,-50%);
-	text-decoration: none;
-	font-size: 12px;
-	line-height: 20px;
-	color: darkgrey;
-	margin:0px 0px 10px 0px;
 
+.main {
+  width: 100%;
+  max-width: 320px;
+  height: 550px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px 30px;
+  border-radius: 20px;
+  text-align: center;
 }
+
+.mini {
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 20px;
+  color: darkgrey;
+  margin: 0 0 10px 0;
+}
+
 img {
   max-width: 100%;
   height: auto;
 }
-h1{
-    color: black;
-    text-align: center;
+
+h1 {
+  color: black;
+  text-align: center;
 }
 
-input{
-    background-color: white;
-    border-radius: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 10px;
+input {
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
-input:focus{
-	border-style: solid;
-    background-color: white;
-    -moz-box-shadow: 0 0 25px grey;
-	-webkit-box-shadow:0 0 25px grey;
-	box-shadow: 0 0 25px grey;	
+
+input:focus {
+  border-style: solid;
+  background-color: white;
+  box-shadow: 0 0 25px grey;
 }
-#pulsante{
-    cursor: pointer;
-    border-radius: 10px;
-    width: 100%;
-    height: auto;
-    padding: 10px;
-    font-size: 150%;
-    
-    transition-duration: 0.4s;
+
+#pulsante {
+  cursor: pointer;
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  font-size: 150%;
+  transition-duration: 0.4s;
 }
-#pulsante:hover{
-	-moz-box-shadow: 0 0 25px #333333;		/* modo di aggiungere l'ombra in tutti i browser*/
-	-webkit-box-shadow:0 0 25px #333333;
-	box-shadow: 0 0 25px #333333;
-	
-	background-color: black;
-	color: white;
+
+#pulsante:hover {
+  box-shadow: 0 0 25px #333333;
+  background-color: black;
+  color: white;
 }

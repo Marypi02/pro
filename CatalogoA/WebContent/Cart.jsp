@@ -42,40 +42,51 @@
 			<td>
 			
 			<form action="./cart" method="post">
-			<div class=update-button>
-                <input type="hidden" name="action" value="setNumOrder">
-			    <input type="number" name="quantity" value=<%=beancart.getValue().getNumItems() %>>
-                <input type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
-             <button type="submit" class="pulsanteUPDATE" type="button" value="Update Order">Update Order</button>
-                 </div>
-                </form>
-			</td>
-			<td><%=beancart.getValue().getTotalCost()%> </td>
-			<td>
-			    <form action="./cart" method="post">
-                <input type="hidden" name="action" value="deleteC">
-                <input type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
-                <button type="submit" class="pulsanteDELETE" type="button" value="Delete from cart">Delete from cart</button>
-                </form></td> 
+  			<div class="update-button">
+    			<input type="hidden" name="action" value="setNumOrder">
+    			<input type="number" name="quantity" id="quantity" value="<%=beancart.getValue().getNumItems() %>">
+    			<input type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
+    			<button type="button" onclick="updateOrder()" class="pulsanteUPDATE">Update Order</button>
+    			<div class="error_message_quantity" style="display: none; color: red; font-size: 12px; margin-top: 5px;"></div>
+  			</div>
+		</form>
+
+		<td><%=beancart.getValue().getTotalCost()%> </td>
+
+	<td>
+ 		 <form action="./cart" method="post">
+    		<input type="hidden" name="action" value="deleteC">
+   			 <input type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
+    		<button type="button" onclick="deleteFromCart()" class="pulsanteDELETE">Delete from cart</button>
+  		</form>
+	</td>
 		</tr>
 		<%} %>
 		
 	</table>	
 	
 	
-  <span class="cart-total">Total: <%= cart.getTotalPrice() %> </span>
+  <span class="cart-total">Total: <%= cart.getTotalCost() %> </span>
 
 
 	</div>
 	</div>
 	<div class=bottoni>
+	
+	
+				<form action="./mostra_ordini_utente" method="post">
+                <input type="hidden" name="action" value="procediOrdine">        
+                <input type="submit" value="Procedi all'ordine">
+                </form>
+                
+                
 	            <form action="./cart" method="post">
                 <input type="hidden" name="action" value="comeBack">        
                 <button type="submit" class="pulsanteRETURN" type="button"  value="Come Back to Catalog">Come Back to Catalog</button>
                 </form>
                 
                        
-                <button type="submit" class="checkout-button" type="button"  value="Aquista">Aquista</button>
+                
                 </div>
 	<% }else { %>	
 		<caption>Cart</caption>
@@ -83,5 +94,39 @@
 		
 		<%} %>
 <div class="footer"><jsp:include page="footer.jsp"/></div>
+
+<script>
+function updateOrder() {
+	  var quantityField = document.getElementById("quantity");
+	  var quantityValue = quantityField.value;
+
+	  // Espressione regolare per la quantità (deve essere un numero intero positivo)
+	  var quantityRegex = /^[1-9]\d*$/;
+
+	  // Ripulisci i messaggi di errore precedenti
+	  document.querySelector(".error_message_quantity").textContent = "";
+	  document.querySelector(".error_message_quantity").style.display = "none";
+	  quantityField.classList.remove("error");
+
+	  if (!quantityRegex.test(quantityValue)) {
+	    document.querySelector(".error_message_quantity").textContent = "La quantità deve essere un numero intero positivo.";
+	    document.querySelector(".error_message_quantity").style.display = "block";
+	    quantityField.classList.add("error");
+	    return;
+	  }
+
+	  // Se la validazione ha successo, invia il modulo
+	  quantityField.parentNode.submit();
+	}
+
+
+  function deleteFromCart() {
+    // Conferma con l'utente prima di eliminare dal carrello
+    if (confirm("Sei sicuro di voler eliminare questo prodotto dal carrello?")) {
+      event.target.parentNode.submit();
+    }
+  }
+  
+  </script>
 </body>
 </html>

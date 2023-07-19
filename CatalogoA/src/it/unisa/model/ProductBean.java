@@ -7,6 +7,7 @@ public class ProductBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	String categoria; 
 	String specie;
 	int code;
 	String name;
@@ -25,6 +26,26 @@ public class ProductBean implements Serializable {
 		quantity = 0;
 	}
 	
+	public ProductBean(int code, String name) {
+        this.code = code;
+        this.name = name;
+        // Inizializza gli altri campi con valori di default
+        specie = "";
+        description = "";
+        price = 0.0;
+        nomeImg = "";
+        quantity = 0;
+    }
+	
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	
+
 	public String getSpecie() {
 		return specie;
 	}

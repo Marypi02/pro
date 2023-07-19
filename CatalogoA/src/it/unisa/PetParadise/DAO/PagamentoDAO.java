@@ -76,6 +76,7 @@ public class PagamentoDAO {
 			while (rs.next()) 
 			{
 				
+				//bean.setIdpagamento(rs.getInt("id_pagamento"));
 				bean.setNominativo(rs.getString("nominativo"));
 				bean.setCVV(rs.getInt("CVV"));
 				bean.setMeseScadenza(rs.getInt("meseScadenza"));
@@ -83,7 +84,7 @@ public class PagamentoDAO {
 				bean.setAnnoScadenza(rs.getInt("annoScadenza"));
 			
 				MySQLUtenteDM udao = new MySQLUtenteDM();
-				bean.setUtente(udao.getUtente(rs.getInt("e_utente")));
+				bean.setUtente(udao.getUtente(rs.getString("e_utente")));
 				
 			}
 
@@ -220,7 +221,7 @@ public synchronized ArrayList<PagamentoBean> doRetrieveByUtente(int code) throws
 			bean.setAnnoScadenza(rs.getInt("annoScadenza"));
 			
 			MySQLUtenteDM udao = new MySQLUtenteDM();
-			Utente ubean = udao.getUtente(rs.getInt("e_utente"));
+			Utente ubean = udao.getUtente(rs.getString("e_utente"));
 			bean.setUtente(ubean);
 			
 			arr.add(bean);

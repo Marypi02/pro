@@ -4,10 +4,10 @@ USE storage2;
 
 DROP TABLE IF EXISTS storage2;
 
-CREATE TABLE product (	
+CREATE TABLE product (
+  code int primary key AUTO_INCREMENT,
   categoria char(20) not null,
   specie char(20) not null,
-  code int primary key AUTO_INCREMENT,
   name char(60) not null,
   description char(200) not null,
   price decimal(6,2) default 0,
@@ -85,15 +85,16 @@ CREATE TABLE `ordine` (
 
 DROP TABLE IF EXISTS `composizione`;
 CREATE TABLE `composizione` (
+  `id_composizione` int NOT NULL AUTO_INCREMENT,
   `codi_prodotto` int NOT NULL,
   `num_ordine` int NOT NULL,
   `quantita` double NOT NULL,
-  `iva` double NOT NULL DEFAULT '0',
+  `iva` double NOT NULL DEFAULT 22,
   `prezzo` double(6,2) NOT NULL DEFAULT '0.00',
-  PRIMARY KEY (`codi_prodotto`,`num_ordine`),
+  PRIMARY KEY (`id_composizione`),
   FOREIGN KEY (`codi_prodotto`) REFERENCES `product` (`code`),
   FOREIGN KEY (`num_ordine`) REFERENCES `ordine` (`id_ordine`)
-) ;
+);
 
 
 INSERT INTO product values ("accessori","Cani",1,"Ciotolola Doppia","Ciotola doppia per cani dal design unico, per contenere alimenti e/o acqua.",10.99,5,"1.jpg");
@@ -139,8 +140,7 @@ INSERT INTO utente (email, password, nome, cognome, indirizzo, citta, admin)
 VALUES ("andreeacrintea3@gmail.com", "gggg", "Andreea", "Crintea","Via degli orti", "Santa Maria Capua Vetere, CA, 81055", 1);
 INSERT INTO utente (email, password, nome, cognome, indirizzo, citta, admin) 
 VALUES ("roksid09@gmail.com", "kkkk", "Roksana", "Duda","Via Pasquale Santoriello, 7", "Ottaviano, NA, 12345", 1);
-INSERT INTO utente (email, password, nome, cognome, indirizzo, citta, admin) 
-VALUES ("pippo.pippo@gmail.com", "pppp", "Pippo", "Pluto","Via Pasquale Senatore, 4", "Ottaviano, NA, 12345", 0);
+
 
 
 use storage2;

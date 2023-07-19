@@ -13,9 +13,7 @@ public class ConsegnaDAO {
 	
 	private static final String TABLE_NAME = "consegna";
 	
-	// Salva un oggetto ConsegnaBean nel database
 	public synchronized void doSave(ConsegnaBean ogg, Utente ut) throws SQLException {
-		
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -56,10 +54,8 @@ public class ConsegnaDAO {
 		}
 	}
 	
-	// Recupera un oggetto ConsegnaBean dal database dato l'id_consegna
 	public synchronized ConsegnaBean doRetrieveByKey(int id_consegna) throws SQLException 
 	{
-		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -77,14 +73,14 @@ public class ConsegnaDAO {
 
 			while (rs.next()) 
 			{
-				bean.setIdconsegna(rs.getInt("id_consegna"));
+				//bean.setIdconsegna(rs.getInt("id_consegna"));
 				bean.setVia(rs.getString("via"));
 				bean.setCap(rs.getInt("cap"));
 				bean.setNumero(rs.getInt("numero"));
 				bean.setCitta(rs.getString("citta"));
 				
 				MySQLUtenteDM udao = new MySQLUtenteDM();
-				bean.setUtente(udao.getUtente(rs.getInt("e_utente")));
+				bean.setUtente(udao.getUtente(rs.getString("e_utente")));
 			}
 
 		} 
@@ -103,7 +99,6 @@ public class ConsegnaDAO {
 		return bean;
 	}
 	
-	// Elimina un oggetto ConsegnaBean dal database dato l'id_consegna
 	public synchronized boolean doDelete(int id_consegna) throws SQLException 
 	{
 		Connection connection = null;
@@ -137,7 +132,6 @@ public class ConsegnaDAO {
 		return (result != 0);
 	}
 	
-	// Recupera un elenco di oggetti ConsegnaBean dal database dato l'utente
 	public synchronized ArrayList<ConsegnaBean> doRetrieveByUtente(String user) throws SQLException{
 		
 		Connection connection = null;
@@ -158,7 +152,7 @@ public class ConsegnaDAO {
 			while (rs.next()) 
 			{
 				ConsegnaBean bean = new ConsegnaBean();
-				bean.setIdconsegna(rs.getInt("id_consegna"));
+				//bean.setIdconsegna(rs.getInt("id_consegna"));
 				bean.setVia(rs.getString("via"));
 				bean.setCap(rs.getInt("cap"));
 				bean.setNumero(rs.getInt("numero"));

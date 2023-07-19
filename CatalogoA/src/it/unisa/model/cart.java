@@ -35,17 +35,6 @@ public class cart {
 		this.products = products;
 	}
 	
-	public double getTotalPrice() {
-	    double totalPrice = 0;
-
-	    for (ProductOrder productOrder : products.values()) {
-	        totalPrice += productOrder.getTotalCost();
-	    }
-
-	    return totalPrice;
-	}
-
-	
 	@SuppressWarnings({ "null", "unlikely-arg-type" })
 	public synchronized void addProduct(ProductBean product) {
 	    /*ProductOrder order = null;
@@ -104,7 +93,7 @@ public class cart {
 	        // gestione dell'eccezione
 	    	System.out.println("Errore!");
 	    }
-	//Controlla se il carrello � vuoto
+	//Controlla se il carrello ï¿½ vuoto
 	    if (products.isEmpty()) {
 	        // Reindirizza l'utente alla pagina dei prodotti
 	        response.sendRedirect("ProductView.jsp");
@@ -148,5 +137,12 @@ public class cart {
 		    products.put(newOrder.getProduct(), newOrder);
 	 }
 	
-	
+	public double getTotalCost() {
+		double totalCost = 0.0;
+		for (Map.Entry<ProductBean, ProductOrder> entry : products.entrySet()) {
+			ProductOrder productOrder = entry.getValue();
+			totalCost += productOrder.getTotalCost();
+		}
+		return totalCost;
+	}
 }

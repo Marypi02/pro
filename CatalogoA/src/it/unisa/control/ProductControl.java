@@ -229,19 +229,27 @@ public class ProductControl extends HttpServlet {
 				    request.setAttribute("products", products);
 					
 				}else if (action.equalsIgnoreCase("insert")) {
+					String categoria = request.getParameter("categoria");
+			        String specie = request.getParameter("specie");
 					String name = request.getParameter("name");
-					String description = request.getParameter("description");
-					double price = Double.parseDouble(request.getParameter("price"));
-					int quantity = Integer.parseInt(request.getParameter("quantity"));
-					String nameImg = request.getParameter("nameImg");
-
-					ProductBean bean = new ProductBean();
-					bean.setName(name);
-					bean.setDescription(description);
-					bean.setPrice(price);
-					bean.setQuantity(quantity);
-					bean.setNomeImg(nameImg);
-					model.doSave(bean);
+		            String description = request.getParameter("description");
+		            double price = Double.parseDouble(request.getParameter("price"));
+		            int quantity = Integer.parseInt(request.getParameter("quantity"));
+		            String nameImg = request.getParameter("nameImg");
+		           
+		            
+		            // Assuming you have a ProductBean class to represent a product entity
+		            ProductBean bean = new ProductBean();
+		            bean.setCategoria(categoria);
+		            bean.setSpecie(specie);
+		            bean.setName(name);
+		            bean.setDescription(description);
+		            bean.setPrice(price);
+		            bean.setQuantity(quantity);
+		            bean.setNomeImg(nameImg);
+		            
+		            
+		            model.doSave(bean);
 				}
 			}			
 		} catch (SQLException e) {

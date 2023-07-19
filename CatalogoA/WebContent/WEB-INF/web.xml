@@ -106,5 +106,13 @@
   <servlet-name>Modifica_utente</servlet-name>
   <url-pattern>/modUtente</url-pattern>
 </servlet-mapping>
+<servlet>
+  <servlet-name>SearchServlet</servlet-name>
+  <servlet-class>it.unisa.control.SearchServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>SearchServlet</servlet-name>
+  <url-pattern>/search</url-pattern>
+</servlet-mapping>
 
 </web-app>

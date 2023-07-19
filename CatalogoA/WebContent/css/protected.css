@@ -1,28 +1,25 @@
-/* ProductStyle.css */
-
-
-
- th{
-background-color: #E05D5D;
-height: auto;
-width: auto;
-text-transform: uppercase;
- padding: 5px;
+/* Stile delle intestazioni della tabella */
+th {
+  background-color: #E05D5D;
+  height: auto;
+  width: auto;
+  text-transform: uppercase;
+  padding: 5px;
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
-
- td {
+/* Stile delle celle della tabella */
+td {
   padding: 5px;
   text-align: center;
   border-bottom: 1px solid #ddd;
   width: auto;
   height: auto;
-  background-color:  #f9f9f9;
+  background-color: #f9f9f9;
 }
 
-/* Stile delle righe della tabella del carrello */
+/* Stile delle righe della tabella del carrello al passaggio del mouse */
 tr:hover {
   background-color: #f9f9f9;
 }
@@ -32,32 +29,31 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  text-align: center; /* Centra il testo all'interno della pagina */
-  background-color: white; /* Colore di sfondo della pagina */
+  text-align: center;
+  background-color: white;
 }
 
-h1 , h2{
+h1, h2 {
   text-align: center;
 }
 
 table {
   border-collapse: collapse;
-  margin: 0 auto; /* Centra la tabella all'interno della pagina */
+  margin: 0 auto;
   text-align: center;
 }
 
-
 form {
   margin-bottom: 20px;
-  text-align: center; /* Centra il form all'interno della pagina */
-  max-width: 400px; /* Imposta la larghezza massima del form */
-  margin: 0 auto; /* Centra il form orizzontalmente */
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 label {
   font-weight: bold;
-  display: block; /* Crea una nuova riga per ogni label */
-  text-align: center; /* Allinea il testo delle label a sinistra */
+  display: block;
+  text-align: center;
 }
 
 input[type="text"],
@@ -74,7 +70,7 @@ textarea {
 input[type="submit"],
 input[type="reset"] {
   padding: 8px 16px;
-  background-color: #E05D5D; /* Colore del pulsante di submit e reset */
+  background-color: #E05D5D;
   color: white;
   border: none;
   border-radius: 4px;
@@ -84,4 +80,29 @@ input[type="reset"] {
 input[type="submit"]:hover,
 input[type="reset"]:hover {
   background-color: #ff8080;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  table {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+  }
+
+  input[type="submit"],
+  input[type="reset"] {
+    width: 100%;
+  }
 }

@@ -1,90 +1,94 @@
-.datiPersonali{
-	justify-content:center;
-	display:grid;
-	padding:10px;
-	text-align:center;
+.datiPersonali {
+  justify-content: center;
+  display: grid;
+  padding: 10px;
+  text-align: center;
 }
 
-.Modifica{
-	text-decoration: none;
-	border: 1px solid #E05D5D;
-	border-radius: 2em;
-	font-size: 1em;
-	color: black;
-	background-color: #E05D5D;
-	font-weight: normal;
-	text-align:center;
-	width: 40%;
-	padding: 10px;
-    margin: 2px;
-    justify-content:space-around;
-    width:100%;
+.Modifica {
+  text-decoration: none;
+  border: 1px solid #e05d5d;
+  border-radius: 2em;
+  font-size: 1em;
+  color: black;
+  background-color: #e05d5d;
+  font-weight: normal;
+  text-align: center;
+  width: 40%;
+  padding: 10px;
+  margin: 2px;
+  justify-content: space-around;
+  width: 100%;
 }
 
-a:hover{
-	color:white;
-	text-decoration:none;
+a:hover {
+  color: white;
+  text-decoration: none;
 }
 
 .Modifica:hover {
-	color:black;
-	font-color:white;
-	background-color:lightblue;
-	transition:0.3s;
-	cursor: pointer;
-	border: lightblue;
+  color: black;
+  font-color: white;
+  background-color: lightblue;
+  transition: 0.3s;
+  cursor: pointer;
+  border: lightblue;
 }
 
-.campi{
-	border-radius:10px;
-	border: 1px solid grey;
-	text-align:center;
-	margin:2px;
+.campi {
+  border-radius: 10px;
+  border: 1px solid grey;
+  text-align: center;
+  margin: 2px;
 }
 
-form#met_pag{
-	padding:10px;
+form#met_pag {
+  padding: 10px;
 }
 
 div#prova {
-    margin: 0;
+  margin: 0;
 }
 
 .datiPersonali p {
-	font-size: 1em;
+  font-size: 1em;
 }
 
-.areaNick{
-	margin-left:5px;
-	width:100%;
+.areaNick {
+  margin-left: 5px;
+  width: 100%;
 }
 
 .areaUtente {
-  margin: 1% 15%;
-  padding:2%;
+  margin: 1% 5%;
+  padding: 2%;
 }
 
-.nickSX, .pwSX{
-	display:flex;
-	width:50%;
-	padding:2%;
+.nickSX,
+.pwSX {
+  display: flex;
+  width: 50%;
+  padding: 2%;
 }
 
-.nickDX, .pwDX{
-	width:50%;
+.nickDX,
+.pwDX {
+  width: 50%;
 }
 
-.nicknameArea{
-	display:flex;
-	width:100%;
-	justify-content:center;
-
+.nicknameArea {
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
-@media (max-width: 800px){
-	.areaUtente {
-  		margin: 1% 1%;
-  		padding:2%;
-	}
+@media (max-width: 800px) {
+  .areaUtente {
+    margin: 1% 1%;
+    padding: 2%;
+  }
 
-
+  .Modifica {
+    width: 80%;
+  }
+}

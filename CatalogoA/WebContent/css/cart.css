@@ -1,30 +1,27 @@
 @charset "ISO-8859-1";
-@charset "ISO-8859-1";
+
 .cart-page {
-  display:flex;
-	width:100%;
-	justify-content:center;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
-.imgProdotto
-{
-	width:20%;
+.imgProdotto {
+  width: 20%;
 }
 
 .cart-total {
   font-weight: bold;
-  margin-top:10px;
+  margin-top: 10px;
 }
 
 .titoloCarrello {
-	border-bottom:1px solid black;
-	font-weight:bold;
-	font-size:1.5em;
-	display:flex;
-	justify-content:center;
+  border-bottom: 1px solid black;
+  font-weight: bold;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
 }
-
-
 
 /* Stile della tabella del carrello */
 .cart-table {
@@ -32,16 +29,15 @@
   padding: 10px 20px;
 }
 
- th{
-background-color: #E05D5D;
-height: auto;
-width: auto;
-text-transform: uppercase;
- padding: 5px;
+th {
+  background-color: #E05D5D;
+  height: auto;
+  width: auto;
+  text-transform: uppercase;
+  padding: 5px;
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
-
 
 .cart-table td {
   padding: 5px;
@@ -55,6 +51,7 @@ text-transform: uppercase;
 .cart-table tr:hover {
   background-color: #f9f9f9;
 }
+
 .bottoni {
   display: flex;
   justify-content: space-between;
@@ -62,50 +59,49 @@ text-transform: uppercase;
 }
 
 /* Stile del pulsante di ritorno alla homepage */
-.pulsanteRETURN{
-background-color: #E05D5D;
+.pulsanteRETURN {
+  background-color: #E05D5D;
   color: #fff;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-   text-decoration: none;
-	border: 1px solid ;
-	font-size: 0.7em;
-	font-weight: bold;
-	text-align:center;
-	color:white;
-    justify-content:space-around;
-    text-transform: uppercase;
-   margin-right: auto;
-   margin-bottom: 30px;
-   margin-top: 30px;
-   	border-radius: 2em;
-   	  margin-left: 10px;
+  text-decoration: none;
+  border: 1px solid;
+  font-size: 0.7em;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  justify-content: space-around;
+  text-transform: uppercase;
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  border-radius: 2em;
+  margin-left: 10px;
 }
 
 /* Stile del pulsante di aggiornamento articolo nel carrello */
-.pulsanteUPDATE{
-	font-size: 0.7em;
-	font-weight: bold;
-	text-align:center;
-	 text-transform: uppercase;
+.pulsanteUPDATE {
+  font-size: 0.7em;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 
 /* Stile del pulsante di rimozione articolo dal carrello */
 .pulsanteDELETE {
-  	text-decoration: none;
-	font-size: 0.7em;
-	font-weight: bold;
-	text-align:center;
-	color:black;
-	width: 100%;
-	padding: 10px;
-    bottom: 50px;
-    justify-content:space-around;
-    text-transform: uppercase;
+  text-decoration: none;
+  font-size: 0.7em;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  width: 100%;
+  padding: 10px;
+  bottom: 50px;
+  justify-content: space-around;
+  text-transform: uppercase;
 }
-
 
 /* Stile del pulsante di checkout */
 .checkout-button {
@@ -114,32 +110,32 @@ background-color: #E05D5D;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-   margin-left: auto;
-   margin-bottom: 30px;
-   text-decoration: none;
-	border: 1px solid ;
-	font-size: 0.7em;
-	font-weight: bold;
-	text-align:center;
-	color:white;
-    justify-content:space-around;
-    text-transform: uppercase;
-    border-radius: 2em;
-    margin-top: 30px;
-    margin-right: 10px;
-    	
+  margin-left: auto;
+  margin-bottom: 30px;
+  text-decoration: none;
+  border: 1px solid;
+  font-size: 0.7em;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  justify-content: space-around;
+  text-transform: uppercase;
+  border-radius: 2em;
+  margin-top: 30px;
+  margin-right: 10px;
 }
 
-.checkout-button:hover,.pulsanteRETURN:hover {
-	background-color: #ff8080;
-	transition:0.3s;
-	cursor: pointer;
-	border: #000000;
-	color:#000000;
-	 transition: 0.2s;
-    text-decoration:none;
-    transform: scale(1.01);
-	box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
+.checkout-button:hover,
+.pulsanteRETURN:hover {
+  background-color: #ff8080;
+  transition: 0.3s;
+  cursor: pointer;
+  border: #000000;
+  color: #000000;
+  transition: 0.2s;
+  text-decoration: none;
+  transform: scale(1.01);
+  box-shadow: 3px 6px 14px -2px rgba(45, 59, 85, 0.82);
 }
 
 /* Stile del messaggio di nessun articolo nel carrello */
@@ -147,4 +143,36 @@ background-color: #E05D5D;
   margin-top: 20px;
   text-align: center;
   color: #888;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cart-table td,
+  .cart-table th {
+    padding: 5px;
+    font-size: 14px;
+  }
+  
+  .imgProdotto {
+    width: 30%;
+  }
+}
+
+@media (max-width: 576px) {
+  .cart-page {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .imgProdotto {
+    width: 50%;
+  }
+  
+  .pulsanteRETURN,
+  .pulsanteUPDATE,
+  .pulsanteDELETE,
+  .checkout-button {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
 }

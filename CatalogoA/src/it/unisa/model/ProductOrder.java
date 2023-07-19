@@ -1,20 +1,19 @@
 package it.unisa.model;
 import java.sql.Date;
-import java.util.*;
 /*NECESSARIA PER LA PAGINA DEL CARRELLO*/
 
 public class ProductOrder {
 	private ProductBean product;
 	private int numItems;
 	int idOrdine;
-	PagamentoBean codPagamento;
-	ConsegnaBean codConsegna;
-	Utente codUtente;
-	Date data_ordine;
-	String stato_ordine;
-	Double Prezzo_totale;
+	private PagamentoBean codPagamento;
+	private ConsegnaBean codConsegna;
+	private Utente codUtente;
+	private Date data_ordine;
+	private String stato_ordine;
+	private Double Prezzo_totale;
 	//private List<ProductOrder> orderItems;
-	
+
 	public ProductOrder(ProductBean product) {
 		setProduct(product);
 		setNumItems(1);
@@ -74,8 +73,8 @@ public class ProductOrder {
 	}
 	
 	
-	public void setData_ordine(Date data_ordine) {
-		this.data_ordine = data_ordine;
+	public void setData_ordine(Date date) {
+		this.data_ordine = date;
 	}
 	
 	
@@ -99,7 +98,7 @@ public class ProductOrder {
     */
     
 	
-	public Double getUnitCost() {
+	public double getUnitCost() {
 		return(getProduct().getPrice());
 	}
 	
@@ -110,8 +109,6 @@ public class ProductOrder {
 	public void cancelOrder() {
 	    setNumItems(0);
 	}
-
-
 
 	public Double getTotalCost() {
 	    return(getNumItems() * getUnitCost());
@@ -125,7 +122,6 @@ public class ProductOrder {
 		Prezzo_totale = prezzo_totale;
 	}
 	
-	  
 	public ProductOrder() {
 		super();
 	}
