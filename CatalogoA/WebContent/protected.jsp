@@ -80,24 +80,26 @@
   <div class="error_message" id="specieError"></div>
 
   <label for="name">Name:</label><br>
-  <input name="name" type="text" maxlength="20" required placeholder="Enter name"><br>
+  <input name="name" type="text" maxlength="60" required placeholder="Enter name"><br>
   <div class="error_message" id="nameError"></div>
 
   <label for="description">Description:</label><br>
-  <textarea name="description" maxlength="100" rows="3" required placeholder="Enter description"></textarea><br>
+  <textarea name="description" maxlength="200" rows="3" required placeholder="Enter description"></textarea><br>
   <div class="error_message" id="descriptionError"></div>
 
   <label for="price">Price:</label><br>
-  <input name="price" type="text" placeholder="Enter price"><br>
+  <input name="price" type="text"  required placeholder="Enter price (e.g., 10.99)"><br>
   <div class="error_message" id="priceError"></div>
-
-  <label for="nameImg">NameImg:</label><br>
-  <input name="nameImg" type="text" maxlength="20" required placeholder="Enter nameImg"><br>
-  <div class="error_message" id="nameImgError"></div>
 
   <label for="quantity">Quantity:</label><br>
   <input name="quantity" type="number" min="1" value="1" placeholder="Enter quantity"><br>
   <div class="error_message" id="quantityError"></div>
+
+  <label for="nome_immagine">NameImg:</label><br>
+  <input name="nome_immagine" type="text" maxlength="20" required placeholder="Enter nameImg"><br>
+  <div class="error_message" id="nameImgError"></div>
+
+  
   <br>
   <input type="submit" value="Add"> <input type="reset" value="Reset">
 </form>
@@ -148,8 +150,9 @@ function validateProductForm() {
     var nameField = document.getElementsByName("name")[0];
     var descriptionField = document.getElementsByName("description")[0];
     var priceField = document.getElementsByName("price")[0];
-    var nameImgField = document.getElementsByName("nameImg")[0];
     var quantityField = document.getElementsByName("quantity")[0];
+    var nameImgField = document.getElementsByName("nome_immagine")[0];
+    
 
     var categoriaRegex = /^[\s\S]{3,20}$/;
     var specieRegex = /^[\s\S]{3,20}$/;
@@ -162,16 +165,19 @@ function validateProductForm() {
     var nameError = document.getElementById("nameError");
     var descriptionError = document.getElementById("descriptionError");
     var priceError = document.getElementById("priceError");
-    var nameImgError = document.getElementById("nameImgError");
     var quantityError = document.getElementById("quantityError");
+    var nameImgError = document.getElementById("nameImgError");
+    
 
+    // Rimuovi eventuali messaggi di errore precedenti
     categoriaError.textContent = "";
     specieError.textContent = "";
     nameError.textContent = "";
     descriptionError.textContent = "";
     priceError.textContent = "";
-    nameImgError.textContent = "";
     quantityError.textContent = "";
+    nameImgError.textContent = "";
+    
 
     var validForm = true;
 
@@ -199,16 +205,18 @@ function validateProductForm() {
       priceError.textContent = "Please enter a valid price.";
       validForm = false;
     }
+    
+    if (!quantityRegex.test(quantityField.value)) {
+        quantityError.textContent = "Please enter a valid quantity.";
+        validForm = false;
+      }
 
     if (!nameRegex.test(nameImgField.value)) {
       nameImgError.textContent = "Please enter a valid nameImg (up to 20 characters).";
       validForm = false;
     }
 
-    if (!quantityRegex.test(quantityField.value)) {
-      quantityError.textContent = "Please enter a valid quantity.";
-      validForm = false;
-    }
+    
 
     return validForm;
   }
@@ -247,11 +255,12 @@ function validateDateFilter() {
 
 var formFields = document.querySelectorAll("form input:not([type=hidden]), form textarea");
 for (var i = 0; i < formFields.length; i++) {
+	//Quando l'utente seleziona un campo, il placeholder viene temporaneamente rimosso per consentire l'inserimento dei dati
     formFields[i].addEventListener("focus", function() {
         this.setAttribute("data-original-placeholder", this.getAttribute("placeholder"));
         this.setAttribute("placeholder", "");
     });
-
+    // Se l'utente lascia il campo vuoto, il placeholder viene ripristinato per fornire un suggerimento visivo su cosa inserire.
     formFields[i].addEventListener("blur", function() {
         if (this.value === "") {
             this.setAttribute("placeholder", this.getAttribute("data-original-placeholder"));

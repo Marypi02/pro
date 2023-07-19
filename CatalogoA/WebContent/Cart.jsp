@@ -19,8 +19,11 @@
 <div class=cart-page>
 <% if(cart != null) { %>
 <div class=cart-table>
+
+	<h4>CART</h4> 
 		<table border="1">
-		<div class=titoloCarrello> <h4>CART</h4> </div>
+		<!--  <div class=titoloCarrello> --> 
+		
 		<tr> 
 		    <th>Product</th>
 			<th>Name</th>
@@ -35,7 +38,7 @@
 			   for(Map.Entry<ProductBean, ProductOrder> beancart : prodcart.entrySet()){
 		%>
 		<tr>
-			<td><img src=images/<%=beancart.getKey().getNomeImg()%> class="imgProdotto"></td>
+			<td><img src="images/<%=beancart.getKey().getNomeImg()%>" class="imgProdotto"></td>
 			<td><%=beancart.getKey().getName()%></td>
 			<td><%=beancart.getKey().getDescription()%></td>
 			<td><%=beancart.getValue().getUnitCost()%></td>

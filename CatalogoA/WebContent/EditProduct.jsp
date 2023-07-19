@@ -19,6 +19,14 @@
     <form action="product" method="post" onsubmit="return validateForm()">
         <input type="hidden" name="action" value="updateProduct">
         <input type="hidden" name="id" value="${product.getCode()}">
+        
+        <label for="categoria">Categoria:</label><br>
+ 		<input name="categoria" id="categoria" type="text" maxlength="20" value="${product.getCategoria()}" required placeholder="Categoria" class="form-field"><br>
+  		<div id="categoriaError" class="error_message" ></div>
+
+  		<label for="specie">Specie:</label><br>
+  		<input name="specie" id="specie" type="text" maxlength="20" value="${product.getSpecie()}" required placeholder="Specie" class="form-field"><br>
+  		<div id="specieError" class="error_message" ></div>
 
         <label for="name">Name:</label>
         <input type="text" name="name" id="name" maxlength="20" value="${product.getName()}" placeholder="Name" class="form-field">
@@ -50,6 +58,8 @@
 
     <script>
         function validateForm() {
+        	var categoriaField = document.getElementById("categoria");
+        	var specieField = document.getElementById("specie");
             var nameField = document.getElementById("name");
             var descriptionField = document.getElementById("description");
             var priceField = document.getElementById("price");
@@ -57,6 +67,8 @@
             var nameImgField = document.getElementById("nameImg");
 
             // Espressioni regolari per la validazione dei campi
+            var categoriaRegex = /^[\s\S]{3,20}$/;
+    		var specieRegex = /^[\s\S]{3,20}$/;
             var nameRegex = /^[a-zA-Z\s]{1,50}$/;
             var descriptionRegex = /^.{1,100}$/;
             var priceRegex = /^\d+(\.\d{1,3})?$/;
@@ -67,6 +79,18 @@
             var errorMessages = document.getElementsByClassName("error_message");
             for (var i = 0; i < errorMessages.length; i++) {
                 errorMessages[i].textContent = "";
+            }
+            
+         // Validazione del campo Categoria
+            if (!categoriaRegex.test(categoriaField.value)) {
+                document.getElementById("categoriaError").textContent = "Please enter a valid categoria (up to 20 characters).";
+                return false;
+            }
+         
+         // Validazione del campo Specie
+            if (!specieRegex.test(specieField.value)) {
+                document.getElementById("specieError").textContent = "Please enter a valid name (up to 20 characters).";
+                return false;
             }
 
             // Validazione del campo Name
@@ -101,6 +125,22 @@
 
             return true;
         }
+        
+        var formFields = document.querySelectorAll("form input:not([type=hidden]), form textarea");
+        for (var i = 0; i < formFields.length; i++) {
+        	//Quando l'utente seleziona un campo, il placeholder viene temporaneamente rimosso per consentire l'inserimento dei dati
+            formFields[i].addEventListener("focus", function() {
+                this.setAttribute("data-original-placeholder", this.getAttribute("placeholder"));
+                this.setAttribute("placeholder", "");
+            });
+            // Se l'utente lascia il campo vuoto, il placeholder viene ripristinato per fornire un suggerimento visivo su cosa inserire.
+            formFields[i].addEventListener("blur", function() {
+                if (this.value === "") {
+                    this.setAttribute("placeholder", this.getAttribute("data-original-placeholder"));
+                }
+            });
+        }
+        
     </script>
 </body>
 </html>
