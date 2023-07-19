@@ -207,6 +207,8 @@ public class ProductControl extends HttpServlet {
 				    
 				}else if(action.equalsIgnoreCase("updateProduct")) {
 					int id = Integer.parseInt(request.getParameter("id"));
+					String categoria = request.getParameter("categoria");
+			        String specie = request.getParameter("specie");
 					String name = request.getParameter("name");
 					String description = request.getParameter("description");
 					double price = Double.parseDouble(request.getParameter("price"));
@@ -215,6 +217,8 @@ public class ProductControl extends HttpServlet {
 					
 					ProductBean bean = new ProductBean();
 					bean.setCode(id);
+					bean.setCategoria(categoria);
+			        bean.setSpecie(specie);
 					bean.setName(name);
 					bean.setDescription(description);
 					bean.setPrice(price);
@@ -235,7 +239,7 @@ public class ProductControl extends HttpServlet {
 		            String description = request.getParameter("description");
 		            double price = Double.parseDouble(request.getParameter("price"));
 		            int quantity = Integer.parseInt(request.getParameter("quantity"));
-		            String nameImg = request.getParameter("nameImg");
+		            String nameImg = request.getParameter("nome_immagine");
 		           
 		            
 		            // Assuming you have a ProductBean class to represent a product entity

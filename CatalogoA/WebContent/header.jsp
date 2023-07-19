@@ -87,59 +87,7 @@
 </ul>
 
 
-<script>
-  document.getElementById("searchButton").addEventListener("click", function() {
-    var searchInput = document.getElementById("searchInput").value;
-    var searchResultsDiv = document.getElementById("searchResults");
-    
-    // Effettua la richiesta AJAX
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        var results = JSON.parse(xhr.responseText);
-        displaySearchResults(results);
-      }
-    };
-    xhr.open("GET", "SearchServlet?query=" + encodeURIComponent(searchInput), true);
-    xhr.send();
-  });
-  
-  function displaySearchResults(results) {
-	  var searchResultsDiv = document.getElementById("searchResults");
-	  searchResultsDiv.innerHTML = "";
-	  
-	  if (results.length === 0) {
-	    searchResultsDiv.innerHTML = "Nessun risultato trovato.";
-	    return;
-	  }
-	  
-	  for (var i = 0; i < results.length; i++) {
-	    var product = results[i];
-	    var productLink = document.createElement("a");
-	    productLink.href = "product?action=read&id=" + product.code;
-	    productLink.target = "_blank";
-	    
-	    var productName = document.createTextNode(product.name);
-	    var productDescription = document.createTextNode(product.description);
-	    var productPrice = document.createTextNode(product.price + "€");
-	    
-	    var productImage = document.createElement("img");
-	    productImage.src = "images/" + product.nomeImg;
-	    productImage.className = "imgProdotto";
-	    
-	    productLink.appendChild(productImage);
-	    productLink.appendChild(document.createElement("br"));
-	    productLink.appendChild(productName);
-	    productLink.appendChild(document.createElement("br"));
-	    productLink.appendChild(productDescription);
-	    productLink.appendChild(document.createElement("br"));
-	    productLink.appendChild(productPrice);
-	    
-	    searchResultsDiv.appendChild(productLink);
-	  }
-	}
 
-</script>
 
 </body>
 
