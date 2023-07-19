@@ -54,20 +54,20 @@ public class ConsegnaDAO {
 		}
 	}
 	
-	public synchronized ConsegnaBean doRetrieveByKey(int id_consegna) throws SQLException 
+	public synchronized ConsegnaBean doRetrieveByKey(int id_user) throws SQLException 
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		ConsegnaBean bean = new ConsegnaBean();
 
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE id_consegna = ?";
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE e_utente = ?";
 
 		try 
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setInt(1, id_consegna);
+			preparedStatement.setInt(1, id_user);
 
 			ResultSet rs = preparedStatement.executeQuery();
 

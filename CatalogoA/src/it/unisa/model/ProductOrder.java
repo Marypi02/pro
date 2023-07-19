@@ -1,5 +1,7 @@
 package it.unisa.model;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 /*NECESSARIA PER LA PAGINA DEL CARRELLO*/
 
 public class ProductOrder {
@@ -12,7 +14,8 @@ public class ProductOrder {
 	private Date data_ordine;
 	private String stato_ordine;
 	private Double Prezzo_totale;
-	//private List<ProductOrder> orderItems;
+	private Double totalPrice; //serve per sapere la spesa totale dell'ordine 
+	private List<ProductBean> orderItems;
 
 	public ProductOrder(ProductBean product) {
 		setProduct(product);
@@ -88,15 +91,16 @@ public class ProductOrder {
 	}
 	
 	
-	/*public List<ProductOrder> getOrderItems() {
+	public List<ProductBean> getOrderItems() {
         return orderItems;
     }
 
-    public void addOrderItem(ProductOrder orderItem) {
-        orderItems.add(orderItem);
+    public void addOrderItem(ProductBean Item) {
+    	if(orderItems == null) {
+    		orderItems = new ArrayList<ProductBean>();
+    	}
+        orderItems.add(Item);
     }
-    */
-    
 	
 	public double getUnitCost() {
 		return(getProduct().getPrice());
@@ -109,7 +113,8 @@ public class ProductOrder {
 	public void cancelOrder() {
 	    setNumItems(0);
 	}
-
+	
+	//serve per calcolare il costo totale del prodotto x nel carrello in base a prezzo unitario e items
 	public Double getTotalCost() {
 	    return(getNumItems() * getUnitCost());
 	}
@@ -125,5 +130,23 @@ public class ProductOrder {
 	public ProductOrder() {
 		super();
 	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	/*public void setTotalPrice() {
+		this.totalPrice = 0.0;
+		
+        if (orderItems != null) {
+            for (ProductBean product : orderItems) {
+                totalPrice += (product.getPrice() * numItems);
+            }
+        }
+	}*/
 	
 }

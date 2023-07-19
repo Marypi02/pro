@@ -14,7 +14,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/mated14-16g/Downloads/mysql-connector-java-8.0.30.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mated14-16g/Desktop/TSW/GamerBarter-master/GamerBarter-master/GameBarter_Reboot/WebContent/WEB-INF/lib/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/maria/Downloads/mysql-connector-java-8.0.30.jar"/>
+	<classpathentry kind="lib" path="C:/Users/maria/Downloads/gson-2.8.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -5,9 +5,9 @@ USE storage2;
 DROP TABLE IF EXISTS storage2;
 
 CREATE TABLE product (
-  code int primary key AUTO_INCREMENT,
   categoria char(20) not null,
   specie char(20) not null,
+  code int primary key AUTO_INCREMENT,
   name char(60) not null,
   description char(200) not null,
   price decimal(6,2) default 0,
@@ -28,7 +28,7 @@ admin boolean not null
 
 DROP TABLE IF EXISTS `recensione`;
 CREATE TABLE `recensione` (
-  `idRecensione` int NOT NULL AUTO_INCREMENT,
+  `idRecensione` int AUTO_INCREMENT,
   `prodotto` int NOT NULL,
   `utente` int NOT NULL,
   `voto` int NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE `metodo_pagamento` (
 
 DROP TABLE IF EXISTS `ordine`;
 CREATE TABLE `ordine` (
-  `id_ordine` int NOT NULL,
+  `id_ordine` int AUTO_INCREMENT,
   `data_ordine` date NOT NULL,
   `stato_ordine` varchar(45) NOT NULL,
   `cod_consegna` int NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE `ordine` (
 
 DROP TABLE IF EXISTS `composizione`;
 CREATE TABLE `composizione` (
-  `id_composizione` int NOT NULL AUTO_INCREMENT,
+  `id_composizione` int AUTO_INCREMENT,
   `codi_prodotto` int NOT NULL,
   `num_ordine` int NOT NULL,
   `quantita` double NOT NULL,
@@ -147,14 +147,14 @@ use storage2;
 INSERT INTO consegna (via, cap, numero, citta, e_utente)
 VALUES ('Via Roma 123', 00100, 5, 'Roma', 1);
 INSERT INTO consegna (via, cap, numero, citta, e_utente)
-VALUES ('Via Roma 123', 00100, 5, 'Roma', 4);
+VALUES ('Via Roma 123', 00100, 5, 'Roma', 3);
 
 INSERT INTO metodo_pagamento (nominativo, CVV, meseScadenza, codice_carta, annoScadenza, e_utente)
 VALUES ('Mario Rossi', 123, 12, '1234567890123456', 2025, 1);
 INSERT INTO metodo_pagamento (nominativo, CVV, meseScadenza, codice_carta, annoScadenza, e_utente)
-VALUES ('Mario Rossi', 123, 12, '1234567890122456', 2026, 4);
+VALUES ('Mario Rossi', 123, 12, '1234567890122456', 2026, 3);
 
 INSERT INTO ordine (id_ordine, data_ordine, stato_ordine, cod_consegna, cod_pagamento, cod_utente, prezzo_totale)
 VALUES (1, '2023-07-04', 'In attesa', 1, 1, 1, 50.00);
 INSERT INTO ordine (id_ordine, data_ordine, stato_ordine, cod_consegna, cod_pagamento, cod_utente, prezzo_totale)
-VALUES (2, '2023-07-03', 'Spedito', 1, 1, 4, 50.00);
+VALUES (2, '2023-07-03', 'Spedito', 1, 1, 3, 50.00);

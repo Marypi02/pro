@@ -56,20 +56,20 @@ public class PagamentoDAO {
 	  
 	 }
 	
-	public synchronized PagamentoBean doRetrieveByKey(int idpagamento) throws SQLException 
+	public synchronized PagamentoBean doRetrieveByKey(int idUser) throws SQLException 
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		PagamentoBean bean = new PagamentoBean();
 
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE id_pagamento = ?";
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE e_utente = ?";
 
 		try 
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setInt(1, idpagamento);
+			preparedStatement.setInt(1, idUser);
 
 			ResultSet rs = preparedStatement.executeQuery();
 

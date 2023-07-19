@@ -15,6 +15,97 @@ public class OrdineDAO {
 	private static final String TABLE_NAME = "ordine";
 	private static final String TABLE_NAME2 = "utente";
 	
+	        private static final String CREATE_ORDINE_QUERY = "INSERT INTO ordine (data_ordine, stato_ordine, cod_consegna, cod_pagamento, cod_utente, prezzo_totale) VALUES (?, ?, ?, ?, ?, ?)";
+	        private static final String CREATE_COMPOSIZIONE_QUERY = "INSERT INTO composizione (cod_prodotto, num_ordine, quantita, iva, prezzo) VALUES (?, ?, ?, ?, ?)";
+	        private static final String SELECT_ORDINI_BY_UTENTE_QUERY = "SELECT * FROM ordine WHERE cod_utente = ?";
+	        // Aggiungi altre query necessarie
+
+	        @SuppressWarnings("resource")
+			public boolean createOrdine(ProductOrder order) throws SQLException {
+	            Connection con = null;
+	            PreparedStatement orderStatement = null;
+	            PreparedStatement compositionStatement = null;
+	            ResultSet orderKeys = null;
+	            
+	            try {
+	                con = DriverManagerConnectionPool.getConnection();
+	                con.setAutoCommit(false);
+
+	                // Creazione dell'ordine
+	                orderStatement = con.prepareStatement(CREATE_ORDINE_QUERY);
+	                orderStatement.setDate(1, new java.sql.Date(order.getData_ordine().getTime()));
+	                orderStatement.setString(2, order.getStato_ordine());
+	                orderStatement.setInt(3, order.getCodConsegna().getIdconsegna());
+	                orderStatement.setInt(4, order.getCodPagamento().getIdpagamento());
+	                orderStatement.setInt(5, order.getCodUtente().getIdutente());
+	                orderStatement.setDouble(6, order.getTotalPrice());
+	                orderStatement.executeUpdate();
+
+	                // Recupero l'ID dell'ordine appena creato
+	                orderKeys = orderStatement.getGeneratedKeys();
+	                int orderId;
+	                if (orderKeys.next()) {
+	                    orderId = orderKeys.getInt(1);
+	                } else {
+	                    throw new SQLException("Errore durante la creazione dell'ordine.");
+	                }
+
+	                // Creazione della composizione dell'ordine
+	                compositionStatement = con.prepareStatement(CREATE_COMPOSIZIONE_QUERY);
+	                for (ProductBean product : order.getOrderItems()) {
+	                    compositionStatement.setInt(1, product.getCode());
+	                    compositionStatement.setInt(2, orderId);
+	                    compositionStatement.setInt(3, order.getNumItems());
+	                    compositionStatement.setDouble(4, 22);
+	                    compositionStatement.setDouble(5, order.getTotalCost());
+	                    compositionStatement.addBatch();
+	                }
+
+	                // Esecuzione delle operazioni in batch per la composizione
+	                int[] compositionBatchResults = compositionStatement.executeBatch();
+
+	                // Controllo che tutte le operazioni siano andate a buon fine
+	                for (int result : compositionBatchResults) {
+	                    if (result <= 0) {
+	                        throw new SQLException("Errore durante la creazione della composizione dell'ordine.");
+	                    }
+	                }
+
+	                // Commit delle operazioni
+	                con.commit();
+	                return true;
+	            } catch (SQLException e) {
+	                if (con != null) {
+	                    try {
+	                        con.rollback();
+	                    } catch (SQLException rollbackEx) {
+	                        rollbackEx.printStackTrace();
+	                    }
+	                }
+	                e.printStackTrace();
+	                return false;
+	            } finally {
+	                try {
+	                    if (orderKeys != null) {
+	                        orderKeys.close();
+	                    }
+	                    if (orderStatement != null) {
+	                        orderStatement.close();
+	                    }
+	                    if (compositionStatement != null) {
+	                        compositionStatement.close();
+	                    }
+	                    if (con != null) {
+	                        con.setAutoCommit(true);
+	                        con.close();
+	                    }
+	                } catch (SQLException ex) {
+	                    ex.printStackTrace();
+	                }
+	            }
+	        }
+	        
+	/*
 	public synchronized int doSave(ProductOrder user) throws SQLException
 	{
 		Connection connection = null;
@@ -65,6 +156,7 @@ public class OrdineDAO {
 		}
 		
 	}
+	*/
 	
 	public synchronized ProductOrder doRetrieveByKey(int idordine) throws SQLException
 	{
