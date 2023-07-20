@@ -16,7 +16,7 @@
 	var request = new XMLHttpRequest();
 	function searchInfo() {
 		var name = document.vinform.name.value;
-		var url = "TestSearch.jsp?val=" + name;
+		var url = "NavBar.jsp?val=" + name;
 
 		try {
 			request.onreadystatechange = function() {
