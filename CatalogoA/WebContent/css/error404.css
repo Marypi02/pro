@@ -1,0 +1,46 @@
+.acquisto {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.grazie {
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.torna {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+input.procedi {
+    padding: 10px;
+    border: 1px solid #E05D5D;
+    border-radius: 18px;
+    background-color: #E05D5D;
+}
+
+.responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+.procedi:hover{
+ 
+  transition: 0.3s; /* Aggiunge una transizione di 0.3 secondi */
+  cursor: pointer; /* Imposta il cursore del mouse a "pointer" al passaggio del mouse */
+  border: lightblue; /* Cambia il colore del bordo del pulsante al passaggio del mouse */
+  color: white; /* Cambia il colore del testo del pulsante al passaggio del mouse */
+  text-decoration: none; /* Rimuove la sottolineatura al passaggio del mouse */
+  transform: scale(1.01); /* Applica una leggera scala del 1% al pulsante al passaggio del mouse */
+  -webkit-box-shadow: 3px 6px 14px -2px rgba(45, 59, 85, 0.82); /* Aggiunge una leggera ombra */
+  -moz-box-shadow: 3px 6px 14px -2px rgba(45, 59, 85, 0.82); /* Aggiunge una leggera ombra */
+  box-shadow: 3px 6px 14px -2px rgba(45, 59, 85, 0.82); /* Aggiunge una leggera ombra */
+}

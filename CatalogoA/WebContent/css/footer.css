@@ -26,7 +26,9 @@ ul {
 
 .footer {
   background-color: #3ba99c;
-  padding: 70px 0;
+
+    padding: 20px 0;
+
 }
 
 .footer-col {
@@ -104,5 +106,10 @@ ul {
 @media (max-width: 574px) {
   .footer-col {
     width: 100%;
+  }
+}
+
+  li, ul, p, h4{
+    font-size: 13px;
   }
 }

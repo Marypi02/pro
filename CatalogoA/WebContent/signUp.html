@@ -12,84 +12,89 @@
 	}
 
 	function validateForm() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementsByName("password")[0].value;
+        var nome = document.getElementsByName("nome")[0].value;
+        var cognome = document.getElementsByName("cognome")[0].value;
+        var indirizzo = document.getElementsByName("indirizzo")[0].value;
+        
+        var emailErr = document.getElementById("emailErr");
+        var passwordErr = document.getElementById("passwordErr");
+        var nameErr = document.getElementById("nameErr");
+        var cognomeErr = document.getElementById("cognomeErr");
+        var indirizzoErr = document.getElementById("indirizzoErr");
+        
 
-		var nome = document.regForm.nome.value;
-		var cognome = document.regForm.cognome.value;
-		var email = document.regForm.email.value;
-		var password = document.regForm.password.value;
-		var indirizzo = document.regForm.indirizzo.value
+        emailErr.innerHTML = "";
+        passwordErr.innerHTML = "";
+        nameErr.innerHTML = "";
+        cognomeErr.innerHTML = "";
+        indirizzoErr.innerHTML = "";
+        
 
-		var nameErr = cognomeErr = passwordErr = emailErr = indirizzoErr = true;
+        var isValid = true;
+        var emailExists = document.getElementById("email").getAttribute("data-email-exists");
 
-		//Nome
-		if (nome == "") {
-			printError("nameErr", "Inserire un nome");
-		} else {
-			var regex = /^[a-zA-Z\s]+$/;
-			if (regex.test(nome) === false) {
-				printError("nameErr", "Inserire un nome valido");
-			} else {
-				printError("nameErr", "");
-				nameErr = false;
-			}
-		}
+        // Validazione campo email
+        var emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (!emailPattern.test(email)) {
+            emailErr.innerHTML = "Inserisci un indirizzo email valido";
+            isValid = false;
+        }
 
-		//Cognome
-		if (cognome == "") {
-			printError("cognomeErr", "Inserire un cognome");
-		} else {
-			var regex = /^[a-zA-Z\s]+$/;
-			if (regex.test(cognome) === false) {
-				printError("cognomeErr", "Inserire un cognome valido");
-			} else {
-				printError("cognomeErr", "");
-				cognomeErr = false;
-			}
-		}
+        // If email exists in the database, show error message and prevent form submission
+        if (emailExists === "true") {
+           
+            isValid = false;
+        }
+        
+        
 
-		//E-mail
-		if (email == "") {
-			printError("emailErr", "Inserire una e-mail");
-		} else {
-			var regex = /^\S+@\S+\.\S+$/;
-			if (regex.test(email) === false) {
-				printError("emailErr", "Inserire una e-mail valida");
-			} else {
-				printError("emailErr", "");
-				emailErr = false;
-			}
-		}
+        // Validazione campo password
+        var passwordPattern = /^.{3,}$/;
+        if (!passwordPattern.test(password)) {
+            passwordErr.innerHTML = "La password deve contenere almeno 3 caratteri";
+            isValid = false;
+        }
 
-		//Password
-		if (password == "") {
-			printError("passwordErr", "Inserire una password");
-		} else {
-			var regex = /^[A-Za-z]\w{7,14}$/;
-			if (regex.test(password) === false) {
-				printError("passwordErr", "Inserire una password valido");
-			} else {
-				printError("passwordErr", "");
-				passwordErr = false;
-			}
-		}
+        // Validazione campo nome
+        var nomePattern = /^[a-zA-Z\s]{3,}$/;
+        if (!nomePattern.test(nome)) {
+            nameErr.innerHTML = "Inserisci un nome valido, solo lettere sono ammesse";
+            isValid = false;
+        }
 
-		//Indirizzo
-		if (indirizzo == "") {
-			printError("indirizzoErr", "Inserire un indirizzo");
-		} else {
-			var regex = /^[0-9a-zA-Z,]\w{8,60}]+$/;
-			if (regex.test(indirizzo) === false) {
-				printError("indirizzoErr", "Inserire un indirizzo valido");
-			} else {
-				printError("indirizzoErr", "");
-				indirizzoErr = false;
-			}
-		}
+        // Validazione campo cognome
+        var cognomePattern = /^[a-zA-Z\s]{3,}$/;;
+        if (!cognomePattern.test(cognome)) {
+            cognomeErr.innerHTML = "Inserisci un cognome valido, solo lettere sono ammesse";
+            isValid = false;
+        }
 
-		if ((nameErr = cognomeErr = usernameErr = passwordErr = emailErr) == true) {
-			return false;
-		}
-	};
+        // Validazione campo indirizzo
+        var indirizzoPattern = /^.{3,}$/;
+        if (!indirizzoPattern.test(indirizzo)) {
+            indirizzoErr.innerHTML = "Inserisci un indirizzo valido, solo lettere, numeri e spazi sono ammessi";
+            isValid = false;
+        }
+   
+        return isValid;
+    }
+	
+	function checkEmailExists() {
+        var email = document.getElementById("email").value;
+        check(email, function (exists) {
+            if (exists) {
+                document.getElementById("email").setAttribute("data-email-exists", "true");
+                
+            } else {
+                document.getElementById("email").removeAttribute("data-email-exists");
+                
+            }
+        });
+    }
+	
+	
 
 	//controlla se l'email e' presente nel db
 	function check(value) {
@@ -124,14 +129,14 @@
 
 <body>
 	<div class="main">
-		<a href="home.html"><img src="loginImage/logo.png" alt="Logo"
+		<a href="Homepage.jsp"><img src="loginImage/logo.png" alt="Logo"
 			width="100"></a>
 		<h1>Creazione account</h1>
 
 		<form name="regForm" action="utente" onsubmit="return validateForm()"
 			method="post">
-			<input type="email" name="email" id="email" class="testo" placeholder="Email"
-				autofocus onkeyup="check(this.value);"><br>
+			<input type="text" name="email" id="email" class="testo" placeholder="Email"
+				autofocus onkeyup="check(this.value);" autofocus onblur="checkEmailExists();"><br>
 			<div class="error" id="emailErr"></div>
 
 			<input type="password" name="password" class="testo" maxlength="8"

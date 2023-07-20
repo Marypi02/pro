@@ -1,101 +1,183 @@
-@charset "ISO-8859-1";
-
-.titolo-pagina {
-	border-bottom:1px solid black;
-	font-weight:bold;
-	font-size:1.5em;
-	display:flex;
-	justify-content:center;
+/* Stili per il body, la tabella e le celle */
+.details-body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
-        .product-wrapper {
-            display: flex;
-            justify-content: space-between;
-        }
-	
-        .image-table, .description-table {
-            width: 50%;
-            border-collapse: collapse;
-        }
 
-        .image-table td, .description-table td {
-            padding: 0;
-        }
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    
+}
 
-        .product-images img {
-            width: 300px;
-            height: auto;
-        }
+.details{padding:50px;}
 
-        .details {
-            padding: 20px;
-        }
+.details-table td {
+   
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    width: 50%; /* Imposta la larghezza delle celle al 50% della larghezza della tabella */
+    background-color: white;
+     border-left: 1px solid;
+    
+}
 
-.details .product-brand{
+/* Stili per l'immagine del prodotto */
+.product-images img {
+    max-width: 300px;
+    height: auto;
+    margin-top: 20px;
+    padding:10px;
+    
+}
+
+/* Stili per i dettagli del prodotto */
+.product-brand {
     text-transform: capitalize;
     font-size: 30px;
+    
 }
 
-.details .product-short-des{
+.product-short-des {
     font-size: 25px;
     line-height: 30px;
-    height: auto;
     margin: 15px 0 30px;
 }
 
-.product-price{
+.product-price {
     font-weight: 700;
     font-size: 30px;
 }
 
-
-.product-sub-heading{
-    font-size: 30px;
-    text-transform: uppercase;
-    margin: 60px 0 10px;
-    font-weight: 300;
-}
-
-
-
+/* Stili per i bottoni */
 .btn {
-  color: #fff;
-  background-color: #E05D5D;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  text-decoration: none;
-  border: 1px solid;
-  font-size: 0.7em;
-  font-weight: bold;
-  text-align: center;
-  color: white;
-  justify-content: space-around;
-  text-transform: uppercase;
-  border-radius: 2em;
+    background-color: #E05D5D;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid  #E05D5D;
+    font-size: 0.7em;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 2em;
 }
 
 .return-btn {
-  margin-left: 20px;
-  margin-bottom: 70px;
+    margin-bottom: 20px;
 }
 
 .cart-btn {
-  margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.btn:hover {
+    background-color: #ff8080;
+}
+
+/* Stili per il titolo della pagina */
+.titolo-pagina {
+    
+    font-weight: bold;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    font-size:15px;
+}
+
+/* Stili per il footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+
+@media screen and (max-width: 675px) {
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    
+}
+
+.details-table td {
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    width: 50%; /* Imposta la larghezza delle celle al 50% della larghezza della tabella */
+    background-color: white;
+}
+
+/* Stili per l'immagine del prodotto */
+.product-images img {
+    max-width: 250px;
+    height: auto;
+    
+    
 }
 
 
-.cart-btn:hover, .return-btn:hover{
-	background-color: #ff8080;
-	transition:0.3s;
-	cursor: pointer;
-	border: #000000;
-	color:#000000;
-	 transition: 0.2s;
-    text-decoration:none;
-    transform: scale(1.01);
-	box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
+
+.product-short-des {
+    font-size: 20px;
+    line-height: 30px;
+    margin: 15px 0 30px;
 }
- @media (min-width: 768px) {
-            .image-table, .description-table {
-                width: 50%;
-            }
+
+.product-price {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+    @media screen and (max-width: 540px) {
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    
+}
+        .details-table td {
+        width: 100%; /* Imposta la larghezza delle celle al 100% della larghezza della tabella per occupare l'intera larghezza dello schermo */
+        display: block; /* Imposta le celle come blocchi per farle apparire una sotto l'altra */
+        border-bottom: 1px solid;
+        }
+
+
+/* Stili per l'immagine del prodotto */
+.product-images img {
+    max-width: 300px;
+    height: auto;
+    
+    
+}
+.titolo-pagina{
+    font-size: 15px;
+}
+
+
+.product-short-des {
+    font-size: 20px;
+    line-height: 30px;
+    margin: 15px 0 30px;
+}
+
+.product-price {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+/* Stili per i bottoni */

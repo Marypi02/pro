@@ -179,7 +179,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product ";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -201,7 +201,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;
@@ -263,7 +264,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product WHERE specie='Cani'and categoria='accessori'";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -285,7 +286,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;
@@ -300,7 +302,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product WHERE specie='Gatti'and categoria='accessori'";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -322,7 +324,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;
@@ -338,7 +341,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product WHERE specie='Pesci'and categoria='accessori'";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -360,7 +363,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;
@@ -376,7 +380,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product WHERE specie='Uccelli'and categoria='accessori'";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -398,7 +402,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;
@@ -414,7 +419,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product WHERE specie='Cani'and categoria='cibo'";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -436,7 +441,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;
@@ -452,7 +458,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product WHERE specie='Gatti'and categoria='cibo'";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -474,7 +480,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;
@@ -490,7 +497,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product WHERE specie='Pesci'and categoria='cibo'";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -512,7 +519,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;
@@ -527,7 +535,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product WHERE specie='Uccelli'and categoria='cibo'";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -549,7 +557,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;
@@ -565,7 +574,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product WHERE specie='Cani'and categoria='giocattoli'";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -587,7 +596,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;
@@ -603,7 +613,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product WHERE specie='Gatti'and categoria='giocattoli'";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -625,7 +635,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;
@@ -641,7 +652,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product WHERE specie='Uccelli'and categoria='gabbia'";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -663,7 +674,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;
@@ -679,7 +691,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product WHERE specie='Cani'and categoria='igiene'";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -701,7 +713,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;
@@ -716,7 +729,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product WHERE specie='Gatti'and categoria='igiene'";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -738,7 +751,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;
@@ -753,7 +767,7 @@ public class ProductModelDS implements ProductModel {
 	        String selectSQL = "SELECT * FROM product WHERE specie='Uccelli'and categoria='igiene'";
 
 	        try {
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				ResultSet rs = preparedStatement.executeQuery();
@@ -775,7 +789,8 @@ public class ProductModelDS implements ProductModel {
 					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					DriverManagerConnectionPool.releaseConnection(connection);
+					if(connection != null)
+						connection.close();
 				}
 			}
 			return products;

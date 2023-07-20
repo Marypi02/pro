@@ -1,178 +1,215 @@
-@charset "ISO-8859-1";
 
-.cart-page {
-  display: flex;
-  width: 100%;
-  justify-content: center;
+/* Questa regola CSS imposta lo stile per il body */
+.cart-body {
+  font-family: Arial, sans-serif; /* Usa il font Arial*/
+  padding: 20px; /* Aggiunge un padding di 20px al contenuto all'interno del body */
+
 }
 
-.imgProdotto {
-  width: 20%;
+
+/* Questa regola CSS imposta lo stile per l'h1 */
+.cart-h1 {
+  margin-top: 20px; /* Aggiunge uno spazio vuoto sopra l'h1 di 20px */
+  margin-bottom: 20px; /* Aggiunge uno spazio vuoto sotto l'h1 di 20px */
+  text-align: center; /* Allinea il testo dell'h1 al centro */
+
 }
 
-.cart-total {
-  font-weight: bold;
-  margin-top: 10px;
-}
 
-.titoloCarrello {
-  border-bottom: 1px solid black;
-  font-weight: bold;
-  font-size: 1.5em;
-  display: flex;
-  justify-content: center;
-}
+/* Questa regola CSS imposta lo stile per la tabella */
 
-/* Stile della tabella del carrello */
 .cart-table {
-  width: 100%;
-  padding: 10px 20px;
-}
-
-th {
-  background-color: #E05D5D;
-  height: auto;
-  width: auto;
-  text-transform: uppercase;
-  padding: 5px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-}
-
-.cart-table td {
-  padding: 5px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-  width: auto;
-  height: auto;
-}
-
-/* Stile delle righe della tabella del carrello */
-.cart-table tr:hover {
-  background-color: #f9f9f9;
-}
-
-.bottoni {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Stile del pulsante di ritorno alla homepage */
-.pulsanteRETURN {
-  background-color: #E05D5D;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  text-decoration: none;
-  border: 1px solid;
-  font-size: 0.7em;
-  font-weight: bold;
-  text-align: center;
-  color: white;
-  justify-content: space-around;
-  text-transform: uppercase;
-  margin-right: auto;
-  margin-bottom: 30px;
-  margin-top: 30px;
-  border-radius: 2em;
-  margin-left: 10px;
-}
-
-/* Stile del pulsante di aggiornamento articolo nel carrello */
-.pulsanteUPDATE {
-  font-size: 0.7em;
-  font-weight: bold;
-  text-align: center;
-  text-transform: uppercase;
+  width: 100%; /* Imposta la larghezza della tabella al 100% della larghezza disponibile */
+  border-collapse: collapse; /* Unisce i bordi delle celle della tabella */
+  border: 1px solid; /* Aggiunge un bordo con spessore di 1px intorno alla tabella */
 }
 
 
-/* Stile del pulsante di rimozione articolo dal carrello */
-.pulsanteDELETE {
-  text-decoration: none;
-  font-size: 0.7em;
-  font-weight: bold;
-  text-align: center;
-  color: black;
-  width: 100%;
+/* Questa regola CSS imposta lo stile per le celle delle tabelle th e td */
+.cart-th, .cart-td {
+  border: 1px solid; /* Aggiunge un bordo con spessore di 1px intorno alle celle della tabella */
+  padding: 10px; /* Aggiunge un padding di 10px al contenuto all'interno delle celle */
+  text-align: left; /* Allinea il testo delle celle a sinistra */
+  border-bottom: 1px solid #ddd; /* Aggiunge un bordo con spessore di 1px sotto le celle della tabella */
+}
+
+/* Questa regola CSS imposta lo stile per le immagini all'interno delle celle */
+.cart-img {
+  width: 100%; /* Imposta la larghezza delle immagini al 100% della larghezza disponibile */
+  max-width: 200px; /* Imposta la larghezza massima delle immagini a 200px */
+  height: auto; /* Imposta l'altezza delle immagini in base al rapporto di aspetto originale */
+}
+
+/* Questa regola CSS imposta lo stile per le intestazioni delle colonne della tabella th */
+.cart-th {
+  border: 1px solid; /* Aggiunge un bordo con spessore di 1px intorno alle celle delle intestazioni delle colonne */
+  background-color: #e05d5dd6; /* Imposta il colore di sfondo delle celle delle intestazioni delle colonne */
+}
+
+/* Questa regola CSS imposta lo stile per i bottoni */
+.cart-button {
+  background-color: #e05d5dd6; /* Imposta il colore di sfondo dei bottoni */
+  font-weight: bold; /* Imposta lo spessore del testo in grassetto */
+  text-align: center; /* Allinea il testo dei bottoni al centro */
+  color: black; /* Imposta il colore del testo a nero */
+  padding: 8px; /* Aggiunge un padding di 8px al contenuto all'interno dei bottoni */
+  text-transform: uppercase; /* Trasforma il testo in maiuscolo */
+  border: 1px solid #e05d5dd6; /* Aggiunge un bordo con spessore di 1px intorno ai bottoni */
+  border-radius: 2em; /* Aggiunge un bordo arrotondato ai bottoni */
+  font-size: 0.7em; /* Imposta la dimensione del testo a 0.7em */
+  margin-top: 10px; /* Aggiunge uno spazio vuoto sopra i bottoni di 10px */
+  margin-bottom: 10px; /* Aggiunge uno spazio vuoto sotto i bottoni di 10px */
+}
+
+/* Questa regola CSS imposta lo stile per gli elementi span */
+.cart-total {
+  font-weight: bold; /* Imposta lo spessore del testo in grassetto */
+  text-transform: uppercase; /* Trasforma il testo in maiuscolo */
+}
+
+/* Questa regola CSS imposta lo stile per la sezione delle azioni */
+.actions {
+  text-align: center; /* Allinea il testo delle azioni al centro */
+  margin-top: 20px; /* Aggiunge uno spazio vuoto sopra la sezione delle azioni di 20px */
+}
+
+/* Questa regola CSS imposta lo stile per i link delle azioni */
+.actions a {
+  display: inline-block; /* Imposta i link come elementi in linea bloccata */
+  padding: 10px 20px; /* Aggiunge un padding di 10px orizzontale e 20px verticale ai link */
+  background-color: #4CAF50; /* Imposta il colore di sfondo dei link */
+  color: white; /* Imposta il colore del testo a bianco */
+  text-decoration: none; /* Rimuove la sottolineatura dai link */
+  border-radius: 4px; /* Aggiunge un bordo arrotondato ai link */
+  margin-right: 10px; /* Aggiunge uno spazio vuoto a destra dei link di 10px */
+}
+
+/* Questa regola CSS imposta lo stile per l'ultimo link delle azioni */
+.actions a:last-child {
+  background-color: #e05d5dd6; /* Imposta un diverso colore di sfondo per l'ultimo link delle azioni */
+}
+
+/* Stili CSS per rendere la tabella responsive */
+@media screen and (max-width: 620px) {
+   .cart-body {
   padding: 10px;
-  bottom: 50px;
-  justify-content: space-around;
-  text-transform: uppercase;
 }
+  
+  .cartr-table {
+    font-size: 5px;
+  }
 
-/* Stile del pulsante di checkout */
-.checkout-button {
-  background-color: #E05D5D;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin-left: auto;
-  margin-bottom: 30px;
-  text-decoration: none;
-  border: 1px solid;
-  font-size: 0.7em;
-  font-weight: bold;
-  text-align: center;
-  color: white;
-  justify-content: space-around;
-  text-transform: uppercase;
-  border-radius: 2em;
-  margin-top: 30px;
-  margin-right: 10px;
-}
-
-.checkout-button:hover,
-.pulsanteRETURN:hover {
-  background-color: #ff8080;
-  transition: 0.3s;
-  cursor: pointer;
-  border: #000000;
-  color: #000000;
-  transition: 0.2s;
-  text-decoration: none;
-  transform: scale(1.01);
-  box-shadow: 3px 6px 14px -2px rgba(45, 59, 85, 0.82);
-}
-
-/* Stile del messaggio di nessun articolo nel carrello */
-.empty-cart-message {
-  margin-top: 20px;
-  text-align: center;
-  color: #888;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .cart-table td,
-  .cart-table th {
-    padding: 5px;
-    font-size: 14px;
+   .cart-input  {
+  width: 70px; 
+  height: 20px;
+  font-size: 10px; 
   }
   
-  .imgProdotto {
-    width: 30%;
+    .cart-h1{
+      font-size: 20px;
+    }
+    
+  
+  .cart-th, .cart-td {
+    padding: 4px;
   }
+  
+  .cart-img {
+    max-width: 80px;
+  }
+.cart-total{
+  font-size: 11px;
+}
+  .cart-button{
+    padding: 2px;
+  }
+
 }
 
-@media (max-width: 576px) {
-  .cart-page {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .imgProdotto {
-    width: 50%;
-  }
-  
-  .pulsanteRETURN,
-  .pulsanteUPDATE,
-  .pulsanteDELETE,
-  .checkout-button {
+
+@media screen and (max-width: 768px) {
+  .cart-table {
     font-size: 12px;
-    padding: 8px 16px;
+  }
+  
+  .cart-th, .cart-td {
+    padding: 5px;
+  }
+  
+  .cart-img {
+    max-width: 100px;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+   .cart-body {
+  padding: 10px;
+}
+
+  .cart-table {
+    font-size: 10px;
+  }
+
+  .cart-input  {
+  width: 50px; 
+  height: 15px; 
+  font-size: 8px; 
+  }
+  
+    .cart-h1{
+      font-size: 20px;
+    }
+    
+  
+  .cart-th, .cart-td {
+    padding: 1px;
+  }
+  
+  .cart-img {
+    max-width: 80px;
+  }
+.cart-total{
+  font-size: 11px;
+}
+  .cart-button{
+    padding: 1px;
+  }
+
+}
+
+
+@media screen and (max-width: 320px) {
+  .cart-body {
+  padding: 10px;
+
+}
+  .cart-table {
+    font-size: 8px;
+  }
+
+  .cart-input  {
+  width: 30px; 
+  height: 10px;
+  font-size: 6px; 
+  }
+  
+    .cart-h1{
+      font-size: 20px;
+    }
+    
+  
+  .cart-th, .cart-td {
+    padding: 1px;
+  }
+  
+  .cart-img {
+    max-width: 60px;
+  }
+.cart-total{
+  font-size: 10px;}
+
+  .cart-button{
+    padding: 1px;
   }
 }

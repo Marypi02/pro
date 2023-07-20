@@ -6,9 +6,9 @@
 
 <jsp:include page="header.jsp"/>
 
-<html>
+<html lang="en">
 
-<head lang="en">
+<head>
  	 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="stylesheet" href="css/homepagestyle.css">
@@ -54,7 +54,7 @@ function carousel() {
                 // Connessione al database
                 String url = "jdbc:mysql://localhost:3306/storage2?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
                 String user = "root";
-                String password = "password";
+                String password = "Sorre2811@";
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = DriverManager.getConnection(url, user, password);
                 conn.setAutoCommit(false);
@@ -67,7 +67,7 @@ function carousel() {
 
                     // Iterazione sui risultati della query
                     %>
-<div class="div_esterno">
+<div class="cat-body">
   <% while (rs.next()) {
     int code = rs.getInt("code");
     String img = rs.getString("nome_immagine");
@@ -76,10 +76,10 @@ function carousel() {
     String prezzo = rs.getString("price");
   %>
   
-<div class="prodotto">
+<div class="cat-prodotto">
 			
 				<a href="product?action=read&id=<%= code %>" target="_blank" >
-							<img src="images/<%=img%>" class="imgProdotto">
+							<img src="images/<%=img%>" class="cat-imgProdotto">
 				</a>	
 							<%=nome%>
 							<br>
@@ -89,7 +89,7 @@ function carousel() {
 					 <form action="./cart" method="post">
 					  <input type="hidden" name="action" value="addC">
 					  <input type="hidden" name="productCode" value="<%= code%>">
-					  <button type="submit" class="pulsante" type="button" value="Aggiungi">Add to cart</button>
+					  <button type="submit" class="cat-pulsante" type="button" value="Aggiungi">Add to cart</button>
 					</form>
 						
 					

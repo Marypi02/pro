@@ -46,11 +46,6 @@
 	    
 	    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	    <script>
-			function visualizzaCatalogo() {
-   				 window.location.href = "ProductView.jsp";
-					}
-			</script>
 	    
 		<title>andreea |Area utente</title>
 	</head>
@@ -125,15 +120,7 @@
 					
 												
 		    </div>
-		</div>
-		
-		<button onclick="visualizzaCatalogo()">Visualizza catalogo prodotti</button>
-		
-		
-		
-		
-		
-		
+		</div>		
 		
 		<div class="metodi">
 			<div class="met">

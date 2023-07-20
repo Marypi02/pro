@@ -4,18 +4,20 @@
 }
 
 .button {
-  text-decoration: none;
-  border: 1px solid #e05d5d;
-  border-radius: 2em;
-  font-size: 1em;
-  color: black;
-  background-color: #e05d5d;
-  font-weight: normal;
-  text-align: center;
-  width: 30%;
-  padding: 10px;
-  margin: 2px;
-  justify-content: space-around;
+text-decoration: none;
+	border: 1px solid #E05D5D;
+	border-radius: 2em;
+	font-size: 1em;
+	color: black;
+	background-color: #E05D5D;
+	font-weight: normal;
+	text-align:center;
+	width: 30%;
+	padding: 5px;
+    margin: 2px;
+    justify-content:space-around;
+   
+
 }
 
 .button:hover {
@@ -56,19 +58,21 @@ a:hover {
   border: lightblue;
 }
 
-.save {
-  text-decoration: none;
-  border: 1px solid #e05d5d;
-  border-radius: 2em;
-  font-size: 1em;
-  color: black;
-  background-color: #e05d5d;
-  font-weight: normal;
-  text-align: center;
-  width: 50%;
-  padding: 10px;
-  margin: 10px;
-  justify-content: space-around;
+
+.save{
+	text-decoration: none;
+	border: 1px solid #E05D5D;
+	border-radius: 2em;
+	font-size: 1em;
+	color: black;
+	background-color: #E05D5D;
+	font-weight: normal;
+	text-align:center;
+	width: 50%;
+	padding: 11px;
+    margin: 10px;
+    justify-content:space-around;
+
 }
 
 .save:hover {
@@ -203,7 +207,7 @@ th {
   font-size: 1.3em;
 }
 
-tr:nth-child(even) {
+tr:nth-child(odd) {
   background-color: lightblue;
 }
 
@@ -241,39 +245,16 @@ tr:nth-child(even) {
   }
 }
 
-@media (max-width: 800px) {
-  .areaUtente {
-    margin: 1% 1%;
-    padding: 2%;
-  }
 
-  .metodi {
-    flex-direction: column;
-  }
-
-  .ciclo {
-    font-size: 1.5em;
-  }
-}
-
-@media (max-width: 500px) {
-  .button {
-    width: 50%;
-  }
-
-  .save {
-    width: 80%;
-  }
-
-  .campi {
-    width: 80%;
-  }
-
-  .Modifica2 {
-    width: 80%;
-  }
-
-  .fattura {
-    font-size: 0.6em;
-  }
-}
+@media (max-width: 800px){
+	.areaUtente {
+  		margin: 1% 1%;
+  		padding:2%;
+	}
+	
+	.metodi{
+		flex-direction:column;
+	}
+	th, p, strong, .save{
+		font-size:15px;
+	}

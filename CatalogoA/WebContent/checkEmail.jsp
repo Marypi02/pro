@@ -21,7 +21,7 @@
 		}
 
 		if (count > 0) {
-			data = "Email giÃ  eistente!";
+			data = "Email già  eistente!";
 		} else {
 			//data = "You can register now!!!!";
 		}

@@ -203,7 +203,7 @@ public class ProductModelDM implements ProductModel {
    
 		Collection<ProductBean> products = new LinkedList<ProductBean>();
 	        
-	        String selectSQL = "SELECT * FROM product ";
+	        String selectSQL = "SELECT * FROM " + ProductModelDM.TABLE_NAME;
 
 	        try {
 				connection = DriverManagerConnectionPool.getConnection();

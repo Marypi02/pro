@@ -20,8 +20,8 @@ ProductBean product = (ProductBean) request.getAttribute("product");
 
 <!DOCTYPE html>
 
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="stylesheet" href="css/categorie.css">
@@ -29,8 +29,8 @@ ProductBean product = (ProductBean) request.getAttribute("product");
     <title>Products</title>
 </head>
 
-<body>
-
+<body >
+<div class="cat-body">
 <%
 // Verifica se la collezione di prodotti non è vuota
 if (products != null && products.size() != 0) {
@@ -39,17 +39,17 @@ if (products != null && products.size() != 0) {
         ProductBean bean = (ProductBean) it.next();
 %>
     <!-- Codice per visualizzare i prodotti -->
-    <div class="prodotto">
+    <div class="cat-prodotto">
         <a href="product?action=read&id=<%= bean.getCode() %>" target="_blank" >
-            <img src="images/<%= bean.getNomeImg() %>" class="imgProdotto">
+            <img src="images/<%= bean.getNomeImg() %>" class="cat-imgProdotto">
         </a>
-        <%= bean.getName() %><br>
-        <%= bean.getPrice() %> &euro;
+        <p><%= bean.getName() %></p><br>
+        <p style =" font-weight: bold;"><%= bean.getPrice() %> &euro;</p>  
 
         <form action="./cart" method="post">
             <input type="hidden" name="action" value="addC">
             <input type="hidden" name="productCode" value="<%= bean.getCode() %>">
-            <button type="submit" class="pulsante" type="button" value="Aggiungi">Add to cart</button>
+            <button type="submit" class="cat-pulsante" type="button" value="Aggiungi">Add to cart</button>
         </form>
     </div>
     <!-- Fine codice per visualizzare i prodotti -->
@@ -63,7 +63,7 @@ if (products != null && products.size() != 0) {
 <%
 }
 %>
-
+</div>
 <div class="footer">
     <jsp:include page="footer.jsp"/>
 </div>

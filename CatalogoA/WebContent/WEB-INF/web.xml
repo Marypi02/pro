@@ -4,6 +4,7 @@
   <welcome-file-list>
     <welcome-file>Homepage.jsp</welcome-file>
   </welcome-file-list>
+ 
   <resource-ref>
     <description>JNDI reference to a data source</description>
     <res-ref-name>jdbc/storage2</res-ref-name>
@@ -114,5 +115,5 @@
   <servlet-name>SearchServlet</servlet-name>
   <url-pattern>/search</url-pattern>
 </servlet-mapping>
-
+ 
 </web-app>

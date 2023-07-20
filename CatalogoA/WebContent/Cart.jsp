@@ -16,86 +16,73 @@
 <title>Cart</title>
 </head>
 <body>
-<div class=cart-page>
+<div class="cart-body">
 <% if(cart != null) { %>
-<div class=cart-table>
 
-	<h4>CART</h4> 
-		<table border="1">
-		<!--  <div class=titoloCarrello> --> 
-		
-		<tr> 
-		    <th>Product</th>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Unit Cost</th>
-			<th>Number</th>
-			<th>Total Cost</th>
-			<th>Action</th>
-		</tr>
-		<%      // Itera sui prodotti nel carrello
+  <h1 class="cart-h1">Carrello</h1>
+ 
+  <table class="cart-table">
+    <thead>
+      <tr class="cart-tr">
+        <th class="cart-th">Immagine</th>
+        <th class="cart-th">Nome</th>
+        <th class="cart-th">Descrizione</th>
+        <th class="cart-th">Costo unico</th>
+        <th class="cart-th">Numero</th>
+        <th class="cart-th">Costo totale</th>
+        <th class="cart-th">Azione</th>
+      </tr>
+    </thead>
+    <tbody class="cart.tbody">
+     <%      // Itera sui prodotti nel carrello
+
 			   Map<ProductBean, ProductOrder> prodcart = cart.getProducts();
 			   for(Map.Entry<ProductBean, ProductOrder> beancart : prodcart.entrySet()){
 		%>
-		<tr>
-			<td><img src="images/<%=beancart.getKey().getNomeImg()%>" class="imgProdotto"></td>
-			<td><%=beancart.getKey().getName()%></td>
-			<td><%=beancart.getKey().getDescription()%></td>
-			<td><%=beancart.getValue().getUnitCost()%></td>
-			<td>
-			
-			<form action="./cart" method="post">
-  			<div class="update-button">
-    			<input type="hidden" name="action" value="setNumOrder">
-    			<input type="number" name="quantity" id="quantity" value="<%=beancart.getValue().getNumItems() %>">
-    			<input type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
-    			<button type="submit" onclick="updateOrder()" class="pulsanteUPDATE" >Update Order</button>
-    			<div class="error_message_quantity" style="display: none; color: red; font-size: 12px; margin-top: 5px;"></div>
-  			</div>
-		</form>
 
-		<td><%=beancart.getValue().getTotalCost()%> </td>
-
-	<td>
- 		 <form action="./cart" method="post">
-    		<input type="hidden" name="action" value="deleteC">
-   			 <input type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
-    		<button type="button" onclick="deleteFromCart()" class="pulsanteDELETE">Delete from cart</button>
-  		</form>
-	</td>
-		</tr>
-		<%} %>
-		
-	</table>	
-	
-	
-  <span class="cart-total">Total: <%= cart.getTotalCost() %> </span>
-
-
-	</div>
-	</div>
-	<div class=bottoni>
-	
-	
-				<form action="./mostra_ordini_utente" method="post">
-                <input type="hidden" name="action" value="procediOrdine">        
-                <input type="submit" value="Procedi all'ordine">
+      <tr class="cart-tr">
+        <td class="cart-td"><img class="cart-img" src=images/<%=beancart.getKey().getNomeImg()%> class="imgProdotto"></td>
+	    <td class="cart-td"><%=beancart.getKey().getName()%></td>
+		<td class="cart-td"><%=beancart.getKey().getDescription()%></td>
+		<td class="cart-td"><%=beancart.getValue().getUnitCost()%>&euro;</td>
+        <td class="cart-td"><form action="./cart" method="post"> 
+        <input type="hidden" name="action" value="setNumOrder">
+			    <input class="cart-input" type="number" name="quantity" value=<%=beancart.getValue().getNumItems() %>>
+                <input class="cart-input" type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
+             <button type="submit" class="cart-button" type="button" value="Update Order">Update Order</button>
+                 </div>
                 </form>
-                
-                
-	            <form action="./cart" method="post">
+        </td>
+        <td class="cart-td"><%=beancart.getValue().getTotalCost()%>&euro;</td>
+        
+        <td class="cart-td"> <form action="./cart" method="post">
+                <input type="hidden" name="action" value="deleteC">
+                <input type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
+                <button type="submit" class="cart-button" type="button" value="Delete from cart">Delete from cart</button>
+                </form></td>
+      </tr>
+    </tbody>
+    <%} %>
+  </table>
+   <span class="cart-total">Total: <%= cart.getTotalCost() %>&euro;</span>
+  <div class="actions">
+     <form action="./cart" method="post">
+
                 <input type="hidden" name="action" value="comeBack">        
-                <button type="submit" class="pulsanteRETURN" type="button"  value="Come Back to Catalog">Come Back to Catalog</button>
+                <button type="submit" class="cart-button" type="button"  value="Come Back to Catalog">Come Back to Catalog</button>
                 </form>
                 
-                       
-                
+<form action="./mostra_ordini_utente" method="post">
+                <input type="hidden" name="action" value="procediOrdine"> 
+    <button type="submit" class="cart-button" type="button"  value="Procedi all'ordine">Aquista</button>
+</form>
                 </div>
 	<% }else { %>	
-		<caption>Cart</caption>
+		
 		<h1>Carrello vuoto</h1>
 		
 		<%} %>
+		</div>
 <div class="footer"><jsp:include page="footer.jsp"/></div>
 
 <script>
@@ -103,7 +90,7 @@ function updateOrder() {
 	  var quantityField = document.getElementById("quantity");
 	  var quantityValue = quantityField.value;
 
-	  // Espressione regolare per la quantità (deve essere un numero intero positivo)
+	  // Espressione regolare per la quantitï¿½ (deve essere un numero intero positivo)
 	  var quantityRegex = /^[1-9]\d*$/;
 
 	  // Ripulisci i messaggi di errore precedenti
@@ -112,7 +99,7 @@ function updateOrder() {
 	  quantityField.classList.remove("error");
 
 	  if (!quantityRegex.test(quantityValue)) {
-	    document.querySelector(".error_message_quantity").textContent = "La quantità deve essere un numero intero positivo.";
+	    document.querySelector(".error_message_quantity").textContent = "La quantitï¿½ deve essere un numero intero positivo.";
 	    document.querySelector(".error_message_quantity").style.display = "block";
 	    quantityField.classList.add("error");
 	    return;
