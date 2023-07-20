@@ -1,6 +1,5 @@
 package it.unisa.control;
 
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,6 +14,7 @@ import it.unisa.model.ConsegnaBean;
 import it.unisa.model.Utente;
 import it.unisa.PetParadise.DAO.ConsegnaDAO;
 import it.unisa.PetParadise.DAO.MySQLUtenteDM;
+
 
 /**
  * Servlet implementation class Salva_ind_consegna

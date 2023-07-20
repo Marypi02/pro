@@ -114,7 +114,7 @@ public class MySQLUtenteDS implements UtenteDAO {
         finally {
 			try {
 				if (statement != null)
-					statement.close();
+						statement.close();
 			} finally {
 				if (con != null)
 					con.close();
@@ -156,7 +156,7 @@ public class MySQLUtenteDS implements UtenteDAO {
 	        } finally {
 	        	try {
 					if (statement != null)
-						statement.close();
+							statement.close();
 				} finally {
 					if (con != null)
 						con.close();
@@ -197,13 +197,13 @@ public class MySQLUtenteDS implements UtenteDAO {
 		    } finally {
 		        try {
 		            if (statement != null)
-		                statement.close();
+		                	statement.close();
 		        } catch (SQLException e) {
 		            e.printStackTrace();
 		        }
 		        try {
 		            if (con != null)
-		                con.close();
+		                	con.close();
 		        } catch (SQLException e) {
 		            e.printStackTrace();
 		        }
@@ -233,10 +233,10 @@ public class MySQLUtenteDS implements UtenteDAO {
         finally {
 			try {
 				if (statement != null)
-					statement.close();
+						statement.close();
 			} finally {
 				if (con != null)
-					con.close();
+						con.close();
 			}
 		}
 		return (result != 0);

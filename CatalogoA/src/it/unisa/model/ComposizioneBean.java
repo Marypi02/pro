@@ -4,7 +4,7 @@ public class ComposizioneBean {
     private int codi_prodotto;
     private int num_ordine;
     private double quantita;
-    static final double iva = 22;
+    static final Double iva = 22.0;
     private double prezzo;
 
     public int getCodi_prodotto() {

@@ -34,7 +34,7 @@ public class DriverManagerConnectionPool  {
 	}
 
 
-	/*public static synchronized Connection getConnection() throws SQLException {
+	public static synchronized Connection getConnection() throws SQLException {
 		Connection connection;
 
 		if (!freeDbConnections.isEmpty()) {
@@ -53,30 +53,9 @@ public class DriverManagerConnectionPool  {
 		}
 
 		return connection;
-	}*/
-	
-	public static synchronized Connection getConnection() throws SQLException {
-	    Connection connection;
-
-	    if (!freeDbConnections.isEmpty()) {
-	        connection = (Connection) freeDbConnections.get(0);
-	        freeDbConnections.remove(0);
-
-	        try {
-	            if (connection.isClosed()) {
-	                connection.close();
-	                connection = getConnection();
-	            }
-	        } catch (SQLException e) {
-	            connection.close();
-	            connection = getConnection();
-	        }
-	    } else {
-	        connection = createDBConnection();
-	    }
-
-	    return connection;
 	}
+	
+	
 
 
 	public static synchronized void releaseConnection(Connection connection) throws SQLException {

@@ -18,7 +18,7 @@ public class Utente {
 	
 	private String indirizzo;
 	private String citta;
-	static final boolean admin = false;
+    static final boolean ADMIN = false;
 
 	ArrayList<PagamentoBean> Pagamento = new ArrayList<>();
 	ArrayList<ConsegnaBean> Consegna = new ArrayList<>();
@@ -179,7 +179,7 @@ public class Utente {
 	 * @return the admin
 	 */
 	public boolean isAdmin() {
-		return admin;
+		return ADMIN;
 	}
 	
 	public ArrayList<PagamentoBean> getPagamento() {

@@ -48,7 +48,8 @@ public class OrderList extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("ElencoOrdini.jsp");
 		        dispatcher.forward(request, response);
 			}*/
-		}/*else*/ if(action.equalsIgnoreCase("allOrders")) {  //mostra
+		}/*else*/ 
+		if(action.equalsIgnoreCase("allOrders")) {  //mostra
 			//Recupero tutti gli ordini
 			try {
 				var = (List<ProductOrder>) odao.doRetrieveAll();
