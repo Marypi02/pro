@@ -8,7 +8,7 @@
 		String port = "3306";
 		String db = "storage2";
 		String username = "root";
-		String password = "Sorre2811@";
+		String password = "Paolinoerra01!";
 		
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection con = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", username, password);
