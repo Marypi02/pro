@@ -6,7 +6,7 @@ import java.util.Date;
 
 public interface OrderModel {
 	
-	public boolean createOrdine(ProductOrder order) throws SQLException;
+	public int createOrdine(ProductOrder order) throws SQLException;
 	public ProductOrder doRetrieveByKey(int idordine) throws SQLException;
 	public boolean doDelete(int idordine) throws SQLException;
 	public void doUpdate (ProductOrder var) throws SQLException;

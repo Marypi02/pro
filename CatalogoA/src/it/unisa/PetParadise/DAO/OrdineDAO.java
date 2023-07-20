@@ -15,147 +15,46 @@ public class OrdineDAO implements OrderModel { //OrdineDM
 	private static final String TABLE_NAME2 = "utente";
 	
 	        private static final String CREATE_ORDINE_QUERY = "INSERT INTO ordine (data_ordine, stato_ordine, cod_consegna, cod_pagamento, cod_utente, prezzo_totale) VALUES (?, ?, ?, ?, ?, ?)";
-	        private static final String CREATE_COMPOSIZIONE_QUERY = "INSERT INTO composizione (cod_prodotto, num_ordine, quantita, iva, prezzo) VALUES (?, ?, ?, ?, ?)";
-	        private static final String SELECT_ORDINI_BY_UTENTE_QUERY = "SELECT * FROM ordine WHERE cod_utente = ?";
-	        // Aggiungi altre query necessarie
-
-	        @SuppressWarnings("resource")
-			public boolean createOrdine(ProductOrder order) throws SQLException {
-	            Connection con = null;
-	            PreparedStatement orderStatement = null;
-	            PreparedStatement compositionStatement = null;
-	            ResultSet orderKeys = null;
+	        //private static final String CREATE_COMPOSIZIONE_QUERY = "INSERT INTO composizione (cod_prodotto, num_ordine, quantita, iva, prezzo) VALUES (?, ?, ?, ?, ?)";
+	        
+	        
+	        public synchronized int createOrdine(ProductOrder order) throws SQLException{
+	        	Connection connection = null;
+	            PreparedStatement preparedStatement = null;
+	            
+	            int code = 0;
 	            
 	            try {
-	                con = DriverManagerConnectionPool.getConnection();
-	                con.setAutoCommit(false);
-
-	                // Creazione dell'ordine
-	                orderStatement = con.prepareStatement(CREATE_ORDINE_QUERY);
-	                orderStatement.setDate(1, new java.sql.Date(order.getData_ordine().getTime()));
-	                orderStatement.setString(2, order.getStato_ordine());
-	                orderStatement.setInt(3, order.getCodConsegna().getIdconsegna());
-	                orderStatement.setInt(4, order.getCodPagamento().getIdpagamento());
-	                orderStatement.setInt(5, order.getCodUtente().getIdutente());
-	                orderStatement.setDouble(6, order.getTotalPrice());
-	                orderStatement.executeUpdate();
-
-	                // Recupero l'ID dell'ordine appena creato
-	                orderKeys = orderStatement.getGeneratedKeys();
-	                int orderId;
-	                if (orderKeys.next()) {
-	                    orderId = orderKeys.getInt(1);
-	                } else {
-	                    throw new SQLException("Errore durante la creazione dell'ordine.");
-	                }
-
-	                // Creazione della composizione dell'ordine
-	                compositionStatement = con.prepareStatement(CREATE_COMPOSIZIONE_QUERY);
-	                for (ProductBean product : order.getOrderItems()) {
-	                    compositionStatement.setInt(1, product.getCode());
-	                    compositionStatement.setInt(2, orderId);
-	                    compositionStatement.setInt(3, order.getNumItems());
-	                    compositionStatement.setDouble(4, 22);
-	                    compositionStatement.setDouble(5, order.getTotalCost());
-	                    compositionStatement.addBatch();
-	                }
-
-	                // Esecuzione delle operazioni in batch per la composizione
-	                int[] compositionBatchResults = compositionStatement.executeBatch();
-
-	                // Controllo che tutte le operazioni siano andate a buon fine
-	                for (int result : compositionBatchResults) {
-	                    if (result <= 0) {
-	                        throw new SQLException("Errore durante la creazione della composizione dell'ordine.");
-	                    }
-	                }
-
-	                // Commit delle operazioni
-	                con.commit();
-	                return true;
-	            } catch (SQLException e) {
-	                if (con != null) {
-	                    try {
-	                        con.rollback();
-	                    } catch (SQLException rollbackEx) {
-	                        rollbackEx.printStackTrace();
-	                    }
-	                }
-	                e.printStackTrace();
-	                return false;
+	                connection = DriverManagerConnectionPool.getConnection();
+	                preparedStatement = connection.prepareStatement(CREATE_ORDINE_QUERY);
+	               
+	                preparedStatement.setDate(1, new java.sql.Date(order.getData_ordine().getTime()));
+	                preparedStatement.setString(2, order.getStato_ordine());
+	                preparedStatement.setInt(3, order.getCodConsegna().getIdconsegna());
+	                preparedStatement.setInt(4, order.getCodPagamento().getIdpagamento());
+	                preparedStatement.setInt(5, order.getCodUtente().getIdutente());
+	                preparedStatement.setDouble(6, order.getTotalPrice());
+	                preparedStatement.executeUpdate();
+	                
+	                connection.commit();
+	                
+	                ResultSet keys = preparedStatement.getGeneratedKeys();
+	    			keys.next();
+	    			code = keys.getInt(1);
+	    			
 	            } finally {
 	                try {
-	                    if (orderKeys != null) {
-	                        orderKeys.close();
-	                    }
-	                    if (orderStatement != null) {
-	                        orderStatement.close();
-	                    }
-	                    if (compositionStatement != null) {
-	                        compositionStatement.close();
-	                    }
-	                    if (con != null) {
-	                        con.setAutoCommit(true);
-	                        con.close();
-	                    }
-	                } catch (SQLException ex) {
-	                    ex.printStackTrace();
-	                }
+	                	if (preparedStatement != null)
+	    					preparedStatement.close();
+	    			} finally {
+	    				if(connection != null) {
+	    					connection.close();
+	    				}
+	    			}
+	                
 	            }
+	            return code;
 	        }
-	        
-	/*
-	public synchronized int doSave(ProductOrder user) throws SQLException
-	{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		
-		String ID = "SELECT id_ordine FROM ordine ORDER BY id_ordine DESC LIMIT 1";
-		
-
-		String insertSQL = "INSERT INTO " + OrdineDAO.TABLE_NAME
-					+ " (id_ordine, data_ordine, stato_ordine, cod_consegna, cod_pagamento, cod_utente, prezzo_totale)"
-					+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-		try
-		{
-			connection = DriverManagerConnectionPool.getConnection();
-			
-			PreparedStatement query = connection.prepareStatement(ID);
-			
-			ResultSet id = query.executeQuery();
-			
-			id.next();
-			int CID = id.getInt("id_ordine") + 1;
-			
-			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setInt(1, CID);
-			preparedStatement.setDate(2, user.getData_ordine());
-			preparedStatement.setString(3, user.getStato_ordine());
-			preparedStatement.setInt(4, user.getCodConsegna().getIdconsegna());
-			preparedStatement.setInt(5, user.getCodPagamento().getIdpagamento());
-			preparedStatement.setString(6, user.getCodUtente().getEmail());
-			preparedStatement.setDouble(7, user.getTotalCost());
-	
-			preparedStatement.executeUpdate();
-			return CID;
-				//connection.commit(); //Salva le modifiche sul database
-		} 
-		finally 
-		{
-			try 
-			{
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} 
-			finally 
-			{
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-		
-	}
-	*/
 	
 	public synchronized ProductOrder doRetrieveByKey(int idordine) throws SQLException
 	{
@@ -351,6 +250,7 @@ public synchronized Collection<ProductOrder> doRetrieveAll() throws SQLException
 		
 		
 	}
+
 public synchronized Collection<ProductOrder> doRetrieveAllByUtente(String email) throws SQLException {
 	
 	Connection connection = null;
@@ -358,8 +258,13 @@ public synchronized Collection<ProductOrder> doRetrieveAllByUtente(String email)
 
 	Collection<ProductOrder> order = new ArrayList<ProductOrder>();
 	
+	
+	/*
 	String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME + " JOIN " + OrdineDAO.TABLE_NAME2 +
 			           " ON ordine.cod_utente = utente.code WHERE utente.email = ?";
+			           */
+	
+	String selectSQL = "SELECT * FROM ordine JOIN utente ON ordine.cod_utente = utente.code WHERE utente.email = ?";
 	
 	
 	try 

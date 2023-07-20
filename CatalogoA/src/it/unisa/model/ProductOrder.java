@@ -15,7 +15,7 @@ public class ProductOrder {
 	private String stato_ordine;
 	private Double Prezzo_totale;
 	private Double totalPrice; //serve per sapere la spesa totale dell'ordine 
-	private List<ProductBean> orderItems;
+	//private List<ProductBean> orderItems;
 
 	public ProductOrder(ProductBean product) {
 		setProduct(product);
@@ -89,7 +89,7 @@ public class ProductOrder {
 	public void setStato_ordine(String stato_ordine) {
 		this.stato_ordine = stato_ordine;
 	}
-	
+	 /*
 	
 	public List<ProductBean> getOrderItems() {
         return orderItems;
@@ -101,6 +101,7 @@ public class ProductOrder {
     	}
         orderItems.add(Item);
     }
+    */
 	
 	public double getUnitCost() {
 		return(getProduct().getPrice());

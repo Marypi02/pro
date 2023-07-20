@@ -12,11 +12,11 @@ import it.unisa.model.DriverManagerConnectionPool;
 public class ComposizioneDAO {
 	private static final String TABLE_NAME = "composizione";
 
-    public void createComposizione(ComposizioneBean composizione) throws SQLException {
+    public synchronized void createComposizione(ComposizioneBean composizione) throws SQLException {
     	
     	Connection connection = null;
     	
-        String query = "INSERT INTO" + ComposizioneDAO.TABLE_NAME + "(codi_prodotto, num_ordine, quantita, iva, prezzo) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO " + ComposizioneDAO.TABLE_NAME + "(cod_prodotto, num_ordine, quantita, iva, prezzo) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement statement = null;
 
         try {
@@ -31,10 +31,16 @@ public class ComposizioneDAO {
             statement.setDouble(5, composizione.getPrezzo());
 
             statement.executeUpdate();
+            connection.commit();
         } finally {
-            if (statement != null) {
-                statement.close();
-            }
+        	try {
+            	if (statement != null)
+					statement.close();
+			} finally {
+				if(connection != null) {
+					connection.close();
+				}
+			}
         }
     }
 
@@ -55,7 +61,7 @@ public class ComposizioneDAO {
 
             while (resultSet.next()) {
                 ComposizioneBean composizione = new ComposizioneBean();
-                composizione.setCodi_prodotto(resultSet.getInt("codi_prodotto"));
+                composizione.setCodi_prodotto(resultSet.getInt("cod_prodotto"));
                 composizione.setNum_ordine(resultSet.getInt("num_ordine"));
                 composizione.setQuantita(resultSet.getDouble("quantita"));
                 composizione.setPrezzo(resultSet.getDouble("prezzo"));
