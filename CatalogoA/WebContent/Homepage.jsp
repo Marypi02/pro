@@ -54,7 +54,7 @@ function carousel() {
                 // Connessione al database
                 String url = "jdbc:mysql://localhost:3306/storage2?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
                 String user = "root";
-                String password = "password";
+                String password = "Paolinoerra01!";
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = DriverManager.getConnection(url, user, password);
                 conn.setAutoCommit(false);
