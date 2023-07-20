@@ -94,7 +94,7 @@
 	//controlla se l'email e' presente nel db
 	function check(value) {
 		xmlHttp = GetXmlHttpObject()
-		var url = "checkajax.jsp";
+		var url = "checkEmail.jsp";
 		url = url + "?email=" + value;
 		xmlHttp.onreadystatechange = stateChanged
 		xmlHttp.open("GET", url, true)
