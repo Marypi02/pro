@@ -91,9 +91,10 @@
 		}
 	};
 
+	//controlla se l'email e' presente nel db
 	function check(value) {
 		xmlHttp = GetXmlHttpObject()
-		var url = "checkajax.jsp";
+		var url = "checkEmail.jsp";
 		url = url + "?email=" + value;
 		xmlHttp.onreadystatechange = stateChanged
 		xmlHttp.open("GET", url, true)
@@ -102,7 +103,7 @@
 	function stateChanged() {
 		if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete") {
 			var showdata = xmlHttp.responseText;
-			document.getElementById("mydiv").innerHTML = showdata;
+			document.getElementById("emailErr").innerHTML = showdata;
 		}
 	}
 	function GetXmlHttpObject() {

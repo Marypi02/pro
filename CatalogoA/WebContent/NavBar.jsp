@@ -20,7 +20,7 @@
 			} else {
 				//out.print("<table border='1' cellpadding='2' width='100%'>");
 				while (rs.next()) {
-					out.print("<a href='#'> " + rs.getString(2) + "</a>");
+					out.print("<a href='#'> " + rs.getString(4) + "</a>");
 				}
 				//out.print("</table>");
 			} //end of else for rs.isBeforeFirst  
