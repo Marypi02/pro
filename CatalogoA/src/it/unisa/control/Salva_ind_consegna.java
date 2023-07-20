@@ -1,6 +1,5 @@
 package it.unisa.control;
 
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,6 +14,7 @@ import it.unisa.model.ConsegnaBean;
 import it.unisa.model.Utente;
 import it.unisa.PetParadise.DAO.ConsegnaDAO;
 import it.unisa.PetParadise.DAO.MySQLUtenteDM;
+
 
 /**
  * Servlet implementation class Salva_ind_consegna
@@ -43,15 +43,11 @@ public class Salva_ind_consegna extends HttpServlet {
 			cbean.setNumero(Integer.parseInt(request.getParameter("number")));
 			cbean.setCitta(request.getParameter("citta"));
 			
-			
+			Utente ute = (Utente) request.getSession().getAttribute("utente");
 			try {
-				Utente ute = (Utente) request.getSession().getAttribute("utente");
+				
 				cdao.doSave(cbean, ute);
-				
-				
-				request.getSession().setAttribute("utente", ute); // Salvo l'utente nella sessione per poter vedere subito il cambiamento
-				response.sendRedirect(request.getContextPath() + "/utente.jsp");
-
+				request.getRequestDispatcher("utente.jsp").forward(request, response);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();

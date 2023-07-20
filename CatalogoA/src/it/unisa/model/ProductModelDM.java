@@ -1,16 +1,13 @@
 package it.unisa.model;
 
 
-
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
+
 
 public class ProductModelDM implements ProductModel {
 
@@ -23,16 +20,18 @@ public class ProductModelDM implements ProductModel {
 		PreparedStatement preparedStatement = null;
 
 		String insertSQL = "INSERT INTO " + ProductModelDM.TABLE_NAME
-				+ " (NAME, DESCRIPTION, PRICE, QUANTITY, NOME_IMMAGINE) VALUES (?, ?, ?, ?, ?)";
+				+ " (CATEGORIA, SPECIE, NAME, DESCRIPTION, PRICE, QUANTITY, NOME_IMMAGINE) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setString(1, product.getName());
-			preparedStatement.setString(2, product.getDescription());
-			preparedStatement.setDouble(3, product.getPrice());
-			preparedStatement.setInt(4, product.getQuantity());
-			preparedStatement.setString(5, product.getNomeImg());
+			preparedStatement.setString(1, product.getCategoria());
+			preparedStatement.setString(2, product.getSpecie());
+			preparedStatement.setString(3, product.getName());
+			preparedStatement.setString(4, product.getDescription());
+			preparedStatement.setDouble(5, product.getPrice());
+			preparedStatement.setInt(6, product.getQuantity());
+			preparedStatement.setString(7, product.getNomeImg());
 
 			preparedStatement.executeUpdate();
 
@@ -46,6 +45,9 @@ public class ProductModelDM implements ProductModel {
 			}
 		}
 	}
+	
+	
+	
 
 	@Override
 	public synchronized ProductBean doRetrieveByKey(int code) throws SQLException {
@@ -65,6 +67,8 @@ public class ProductModelDM implements ProductModel {
 
 			while (rs.next()) {
 				bean.setCode(rs.getInt("CODE"));
+				bean.setCategoria(rs.getString("CATEGORIA"));
+				bean.setSpecie(rs.getString("SPECIE"));
 				bean.setName(rs.getString("NAME"));
 				bean.setDescription(rs.getString("DESCRIPTION"));
 				bean.setPrice(rs.getDouble("PRICE"));
@@ -115,18 +119,20 @@ public class ProductModelDM implements ProductModel {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String updateSQL = "UPDATE product SET name=?, description=?, price=?, quantity=?, nome_immagine=? WHERE code=?";
+		String updateSQL = "UPDATE product SET categoria=?, specie=?, name=?, description=?, price=?, quantity=?, nome_immagine=? WHERE code=?";
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(updateSQL);
 			
-			preparedStatement.setString(1, product.getName());
-	        preparedStatement.setString(2, product.getDescription());
-	        preparedStatement.setDouble(3, product.getPrice());
-	        preparedStatement.setInt(4, product.getQuantity());
-	        preparedStatement.setString(5, product.getNomeImg());
-	        preparedStatement.setInt(6, product.getCode());  //individua il prodotto
+			preparedStatement.setString(1, product.getCategoria());
+			preparedStatement.setString(2, product.getSpecie());
+			preparedStatement.setString(3, product.getName());
+	        preparedStatement.setString(4, product.getDescription());
+	        preparedStatement.setDouble(5, product.getPrice());
+	        preparedStatement.setInt(6, product.getQuantity());
+	        preparedStatement.setString(7, product.getNomeImg());
+	        preparedStatement.setInt(8, product.getCode());  //individua il prodotto
 	        preparedStatement.executeUpdate();
 			
 			int result = preparedStatement.executeUpdate();
@@ -166,6 +172,8 @@ public class ProductModelDM implements ProductModel {
 				ProductBean bean = new ProductBean();
 
 				bean.setCode(rs.getInt("CODE"));
+				bean.setName(rs.getString("CATEGORIA"));
+				bean.setName(rs.getString("SPECIE"));
 				bean.setName(rs.getString("NAME"));
 				bean.setDescription(rs.getString("DESCRIPTION"));
 				bean.setPrice(rs.getDouble("PRICE"));

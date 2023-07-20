@@ -18,6 +18,7 @@
 <body>
 <div class="cart-body">
 <% if(cart != null) { %>
+
   <h1 class="cart-h1">Carrello</h1>
  
   <table class="cart-table">
@@ -34,9 +35,11 @@
     </thead>
     <tbody class="cart.tbody">
      <%      // Itera sui prodotti nel carrello
+
 			   Map<ProductBean, ProductOrder> prodcart = cart.getProducts();
 			   for(Map.Entry<ProductBean, ProductOrder> beancart : prodcart.entrySet()){
 		%>
+
       <tr class="cart-tr">
         <td class="cart-td"><img class="cart-img" src=images/<%=beancart.getKey().getNomeImg()%> class="imgProdotto"></td>
 	    <td class="cart-td"><%=beancart.getKey().getName()%></td>
@@ -61,14 +64,18 @@
     </tbody>
     <%} %>
   </table>
-   <span class="cart-total">Total: <%= cart.getTotalPrice() %> &euro;</span>
+   <span class="cart-total">Total: <%= cart.getTotalCost() %> &euro;</span>
   <div class="actions">
      <form action="./cart" method="post">
+
                 <input type="hidden" name="action" value="comeBack">        
                 <button type="submit" class="cart-button" type="button"  value="Come Back to Catalog">Come Back to Catalog</button>
                 </form>
                 
-    <button type="submit" class="cart-button" type="button"  value="Aquista">Aquista</button>
+<form action="./mostra_ordini_utente" method="post">
+                <input type="hidden" name="action" value="procediOrdine"> 
+    <button type="submit" class="cart-button" type="button"  value="Procedi all'ordine">Aquista</button>
+</form>
                 </div>
 	<% }else { %>	
 		
@@ -77,5 +84,39 @@
 		<%} %>
 		</div>
 <div class="footer"><jsp:include page="footer.jsp"/></div>
+
+<script>
+function updateOrder() {
+	  var quantityField = document.getElementById("quantity");
+	  var quantityValue = quantityField.value;
+
+	  // Espressione regolare per la quantità (deve essere un numero intero positivo)
+	  var quantityRegex = /^[1-9]\d*$/;
+
+	  // Ripulisci i messaggi di errore precedenti
+	  document.querySelector(".error_message_quantity").textContent = "";
+	  document.querySelector(".error_message_quantity").style.display = "none";
+	  quantityField.classList.remove("error");
+
+	  if (!quantityRegex.test(quantityValue)) {
+	    document.querySelector(".error_message_quantity").textContent = "La quantità deve essere un numero intero positivo.";
+	    document.querySelector(".error_message_quantity").style.display = "block";
+	    quantityField.classList.add("error");
+	    return;
+	  }
+
+	  // Se la validazione ha successo, invia il modulo
+	  quantityField.parentNode.submit();
+	}
+
+
+  function deleteFromCart() {
+    // Conferma con l'utente prima di eliminare dal carrello
+    if (confirm("Sei sicuro di voler eliminare questo prodotto dal carrello?")) {
+      event.target.parentNode.submit();
+    }
+  }
+  
+  </script>
 </body>
 </html>

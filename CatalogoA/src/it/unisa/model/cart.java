@@ -2,13 +2,11 @@ package it.unisa.model;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
+
 
 public class cart {
 
@@ -34,17 +32,6 @@ public class cart {
 	public void setProducts(Map<ProductBean, ProductOrder> products) {
 		this.products = products;
 	}
-	
-	public double getTotalPrice() {
-	    double totalPrice = 0;
-
-	    for (ProductOrder productOrder : products.values()) {
-	        totalPrice += productOrder.getTotalCost();
-	    }
-
-	    return totalPrice;
-	}
-
 	
 	@SuppressWarnings({ "null", "unlikely-arg-type" })
 	public synchronized void addProduct(ProductBean product) {
@@ -85,7 +72,7 @@ public class cart {
 				}
 			}
 		}*/
-	public void deleteProduct(ProductBean product, HttpServletResponse response) throws IOException {
+	public void deleteProduct(ProductBean product) throws IOException {
 	    Iterator<Map.Entry<ProductBean, ProductOrder>> iterator = products.entrySet().iterator();
 	    while (iterator.hasNext()) {
 	        Map.Entry<ProductBean, ProductOrder> entry = iterator.next();
@@ -104,7 +91,7 @@ public class cart {
 	        // gestione dell'eccezione
 	    	System.out.println("Errore!");
 	    }
-	//Controlla se il carrello � vuoto
+	//Controlla se il carrello ï¿½ vuoto
 	    if (products.isEmpty()) {
 	        // Reindirizza l'utente alla pagina dei prodotti
 	        response.sendRedirect("ProductView.jsp");
@@ -148,5 +135,12 @@ public class cart {
 		    products.put(newOrder.getProduct(), newOrder);
 	 }
 	
-	
+	public double getTotalCost() {
+		double totalCost = 0.0;
+		for (Map.Entry<ProductBean, ProductOrder> entry : products.entrySet()) {
+			ProductOrder productOrder = entry.getValue();
+			totalCost += productOrder.getTotalCost();
+		}
+		return totalCost;
+	}
 }

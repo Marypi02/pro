@@ -1,19 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
- 
+	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 
 <script type="text/javascript" src="caption.js"></script>
 <head>
 <link rel="stylesheet" href="css/header.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    	<script src="https://kit.fontawesome.com/0a07c70885.js" crossorigin="anonymous"></script>
-    	
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<script src="https://kit.fontawesome.com/0a07c70885.js"
+	crossorigin="anonymous"></script>
+<script>
+	var request = new XMLHttpRequest();
+	function searchInfo() {
+		var name = document.vinform.name.value;
+		var url = "NavBar.jsp?val=" + name;
+
+		try {
+			request.onreadystatechange = function() {
+				if (request.readyState == 4) {
+					var val = request.responseText;
+					document.getElementById('mylocation').innerHTML = val;
+				}
+			}//end of function  
+			request.open("GET", url, true);
+			request.send();
+		} catch (e) {
+			alert("Impossibile connettersi al server!");
+		}
+	}
+</script>
+
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
 </head>
+
 <body class"header-body">
 
 <nav class="header-navbar">
@@ -23,9 +47,15 @@
 </a>
     <div class="header-nav-items">
         <div class="header-search">
-            <input type="text" class="header-search-box" placeholder="search brand, product">
-            <button class="header-search-btn">search</button>
-        </div>
+    <input type="text" class="header-search-box" placeholder="search brand, product">
+    <button class="header-search-btn">search</button>
+    
+    <form name="searchForm"> <!-- Nome del form rinominato in "searchForm" -->
+        <input type="text" id="ricercabar" name="name" onkeyup="searchInfo()" placeholder="Cerca su PetParadise">
+        <div id="mylocation"></div>
+    </form>
+</div>
+
         <a href="utente.jsp"><i class="fa-solid fa-circle-user fa-xl"></i></a>
         <a href="Cart.jsp"><i class="fa fa-shopping-cart "></i></a>
     </div>
@@ -41,7 +71,7 @@
 			<a href="product?action=accessori_cane"> Accessori </a>
 			<a href="product?action=giocattoli_cane"> Giocattoli </a>
 			<a href="product?action=igiene_cane"> Igiene </a>
-		</div>
+
 		</div></li>
 		
 		
@@ -73,16 +103,14 @@
 			<a href="product?action=accessori_uccelli"> Accessori </a>
 			<a href="product?action=gabbie_uccelli"> Gabbie </a>
 			<a href="product?action=igiene_uccelli"> Igiene </a>
+
 		</div>
+
 		</div></li>
 		
 		
     <li class="header-link-item"><a href="product?action=all_products" class="header-link"><i class='fa-solid fa-bars'></i><p>Catalogo</p></a></li>
 </ul>
-
-
-
-
 
 </body>
 

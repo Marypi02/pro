@@ -3,7 +3,7 @@ package it.unisa.control;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +27,6 @@ public class Login extends HttpServlet {
 	 static UtenteDAO utenteDAO;
 	 
 	 static {
-		// Verifica se si sta utilizzando una sorgente dati (DataSource)
       if (isDataSource) {
           utenteDAO = new MySQLUtenteDS();
       } else {
@@ -57,13 +56,13 @@ public class Login extends HttpServlet {
 		
 		String redirectedPage = null;
 		try {
-			// Controllo se è l'amministratore
+			//caso in cui Ã¨ l'admin
 			checkLogin(username, password);
 			request.getSession().setAttribute("adminRoles", true);
 			redirectedPage = "protected.jsp";
 		}catch(Exception e) {
 			//CASO UTENTE NORMALE
-			//controllo prima se è registrato
+			//controllo prima se Ã¨ registrato
 			try {
 				//verifico che sia presente nel db e che la password corrisponda a quella usata in fase di registrazione
 				if (utenteDAO.isEmailPresent(username) /*&& password.equals(utenteDAO.getUtente(username).getPassword())*/) {
@@ -95,11 +94,11 @@ public class Login extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private void checkLogin(String username, String password) throws Exception{
+	private void checkLogin(String username, String password) throws IllegalArgumentException{
 		if("root@root.root".equals(username) && "admin".equals(password)) {
-			// Autenticazione amministratore
+			//
 		}else
-			throw new Exception("Invalid login and password");
+			throw new IllegalArgumentException("Invalid login and password");
 	}
 
 }

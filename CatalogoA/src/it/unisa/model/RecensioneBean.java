@@ -7,7 +7,7 @@ public class RecensioneBean {
 	private ProductBean prodotto;
 	private String testo;
 	
-	public RecensioneBean() {
+	public RecensioneBean() { //è il costruttore
 	}
 
 	public int getIdRecensione() {

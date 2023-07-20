@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, it.unisa.model.*"%>
+   
     
    <%Utente obj = (Utente)request.getSession().getAttribute("utente");
     	if(obj == null){%>
@@ -12,11 +13,14 @@
     		
     	<% }  
  
+    	
+    	
  		
-    	 ArrayList<PagamentoBean> pagamenti =   (ArrayList<PagamentoBean>) request.getAttribute("pagamenti");
+    	Collection<PagamentoBean> pagamenti = (ArrayList<PagamentoBean>) request.getAttribute("pagamenti");
+    	
 	
     	ArrayList<ProductOrder> ordini = (ArrayList<ProductOrder>) request.getAttribute("ordini");	
-    	if(ordini != null){
+    	if(ordini == null){
     		response.sendRedirect("Mostra_ordini_utente?action=mostra");
     		return;
     	}
@@ -25,7 +29,7 @@
     
     
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 	<head>
 	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -123,7 +127,7 @@
 		    </div>
 		</div>
 		
-		<button  class="button" onclick="visualizzaCatalogo()">Visualizza catalogo prodotti</button>
+		<button onclick="visualizzaCatalogo()">Visualizza catalogo prodotti</button>
 		
 		
 		
@@ -141,17 +145,16 @@
 					<input class="campi" type="month" placeholder="Mese scadenza" id="month" name="month" >
 					<input class="campi" type="text" placeholder="Codice carta" id="cod_carta" name="cod_carta" maxlength="12" >
 					
+					
 					<br>
 				 <input type="submit" id="pay" class="save" value="Salva nuovo metodo di pagamento"> 
 
 				</form>
 				
-			
-				
-			 <!--  	<form method="get" action="./salva">
+		
+				<form method="get" action="./salva">
         			<input type="hidden" name="action" value="viewPagamento">
-       	 			<input type="submit" value="vedi dati pagamento">
-    		</form><br> -->
+    		</form><br>   
     		
     
 			</div>
@@ -171,67 +174,23 @@
 			</div>	    
 		</div>
 		
-			<div class="error_box">
-				<p class="error_message_cvv" style="display:none;"></p>
-				<p class="error_message_carta" style="display:none;"></p>
-				<p class="error_message_via" style="display:none;"></p>
-				<p class="error_message_prov" style="display:none;"></p>
-			</div>
+				<div class="error_box">
+  					<p class="error_message error_message_cvv"></p>
+  					<p class="error_message error_message_carta"></p>
+ 				    <p class="error_message error_message_via"></p>
+  					<p class="error_message error_message_prov"></p>
+				</div>
+
 
 		
     <br>
-		<div class="ciclo">
-    <p>I tuoi dati di pagamento</p>
-</div>
-
-<table>
-    <tr>
-        <th>Nominativo</th>
-        <th>CVV</th>
-        <th>Mese Scadenza</th>
-        <th>Codice Carta</th>
-        <th>Anno Scadenza</th>
-    </tr>
-
-    <% if (pagamenti != null && !pagamenti.isEmpty()) {
-        for (PagamentoBean pagamento : pagamenti) {
-    %>
-    <tr>
-        <td><%= pagamento.getNominativo() %></td>
-        <td><%= pagamento.getCVV() %></td>
-        <td><%= pagamento.getMeseScadenza() %></td>
-        <td><%= pagamento.getCodice_carta() %></td>
-        <td><%= pagamento.getAnnoScadenza() %></td>
-    </tr>
-    <% }
-    } else {
-    %>
-    <tr>
-        <td colspan="5">No payment methods available</td>
-    </tr>
-    <% } %>
-</table>
-
-			<div class="ciclo">
-             		<p>I tuoi dati di consegna</p>
-          </div>
-
-<%
-    for (ConsegnaBean pbean : obj.getConsegna()){ %>
-    <div class="dunno">
-        <p><strong>Via:</strong> <%=pbean.getVia() %></p>
-        <p><strong>CAP:</strong> <%=pbean.getCap() %></p>
-        <p><strong>Numero:</strong> <%=pbean.getNumero() %></p>
-        <p><strong>Città:</strong> <%=pbean.getCitta() %></p>
-    </div>
-<% } %>
-
+		
 <div class="tabella">
     <table class="tab">
     
-    	 <div class="ciclo">
-             		<p>Dati ordine</p>
-          </div>
+    	<tr>
+            <th colspan="4" class="ciclo">Dati ordine</th>
+        </tr>
         <tr>
             <th>ID ordine</th>
             <th>Data ordine</th>
@@ -257,104 +216,111 @@
     </table>
 </div>
 
+
+
+
+
 			
 	
 		<br><br>
 		<jsp:include page="footer.jsp" /> 
 		
 		
-		<!--  <script> //SCRIPT SUI CONTROLLI
- 			
-			$("#pay").click(function(e){
-				e.preventDefault();
-				var flag = true; 
-				//controllo sul codice carta
-					if ($.isNumeric($("#cod_carta").val())){
-						$(".error_message_carta").css("display","none");
-					}else{
-						$(".error_message_carta").html("Il formato del codice carta da te inserito non è valido");
-						$(".error_message_carta").css("display","flex");
-						$(".error_message_carta").css("color", "red");
-					 	flag = false; 
-					}	
-				//controllo sul cvv
-					if ($.isNumeric($("#cod_cvv").val())){
-						$(".error_message_cvv").css("display","none");
-					}else{
-						$(".error_message_cvv").html("Il formato del codice CVV da te inserito non è valido");
-						$(".error_message_cvv").css("display","flex");
-						$(".error_message_cvv").css("color", "red");
-					 	flag = false; 
-					}
-					//controllo sull'intestatario
-					if ($("#intestatario").val() != ""){
-						$(".error_message_via").css("display","none");
-					}else{
-						$(".error_message_via").html("Il formato dell'intestatario da te inserito non è valido");
-						$(".error_message_via").css("display","flex");
-						$(".error_message_via").css("color", "red");
-					 	flag = false; 
-					}
-					//controllo sul mese
-					if ($("#month").val() != ""){
-						$(".error_message_prov").css("display","none");
-					}else{
-						$(".error_message_prov").html("Il formato della data da te inserito non è valido");
-						$(".error_message_prov").css("display","flex");
-						$(".error_message_prov").css("color", "red");
-					 	flag = false; 
-					}	
- 				if (flag == true){
-					$("#met_pag").submit();
-				} 
-			}) 
-		
-		
+		    <script>
+    // Funzione per la validazione del campo CVV
+    function validateCVV() {
+        var cvvField = document.getElementById("cod_cvv");
+        var cvvValue = cvvField.value;
 
- 			$("#address").click(function(e){
-				e.preventDefault();
-				var flag = true;
-				//controllo sul numero civico
-					if ($.isNumeric($("#number").val())){
-						$(".error_message_cvv").css("display","none");
-					}else{
-						$(".error_message_cvv").html("Il formato del numero civico da te inserito non è valido");
-						$(".error_message_cvv").css("display","flex");
-						$(".error_message_cvv").css("color", "red");
-						flag = false;
-					}		
-				//controllo sul CAP
-					if ($.isNumeric($("#cap").val())){
-						$(".error_message_carta").css("display","none");
-					}else{
-						$(".error_message_carta").html("Il formato del codice CAP da te inserito non è valido");
-						$(".error_message_carta").css("display","flex");
-						$(".error_message_carta").css("color", "red");
-						flag = false;
-					}
-					//controllo sulla VIA
-					if ($("#via").val() != ""){
-						$(".error_message_via").css("display","none");
-					}else{
-						$(".error_message_via").html("Il formato della via da te inserito non è valido");
-						$(".error_message_via").css("display","flex");
-						$(".error_message_via").css("color", "red");
-					 	flag = false; 
-					}
-					//controllo sulla PROVINCIA
-					if ($("#provincia").val() != ""){
-						$(".error_message_prov").css("display","none");
-					}else{
-						$(".error_message_prov").html("Il formato della provincia da te inserito non è valido");
-						$(".error_message_prov").css("display","flex");
-						$(".error_message_prov").css("color", "red");
-					 	flag = false; 
-					}
-				if (flag == true){
-					$("#met_send").submit();
-				}
-			}) 
-		</script> -->
+        // Espressione regolare per il CVV a 3 cifre
+        var cvvRegex = /^[0-9]{3}$/;
+
+        if (!cvvRegex.test(cvvValue)) {
+            document.querySelector(".error_message_cvv").textContent = "Il CVV deve essere un numero di 3 cifre.";
+            document.querySelector(".error_message_cvv").style.display = "block";
+            cvvField.classList.add("error");
+            return false;
+        }
+
+        document.querySelector(".error_message_cvv").style.display = "none";
+        cvvField.classList.remove("error");
+        return true;
+    }
+
+    // Funzione per la validazione del campo Codice carta
+    function validateCodiceCarta() {
+        var codiceCartaField = document.getElementById("cod_carta");
+        var codiceCartaValue = codiceCartaField.value;
+
+        // Espressione regolare per il codice carta di 12 cifre
+        var codiceCartaRegex = /^[0-9]{12}$/;
+
+        if (!codiceCartaRegex.test(codiceCartaValue)) {
+            document.querySelector(".error_message_carta").textContent = "Il codice carta deve essere un numero di 12 cifre.";
+            document.querySelector(".error_message_carta").style.display = "block";
+            codiceCartaField.classList.add("error");
+            return false;
+        }
+
+        document.querySelector(".error_message_carta").style.display = "none";
+        codiceCartaField.classList.remove("error");
+        return true;
+    }
+
+    // Funzione per la validazione del campo Via
+    function validateVia() {
+        var viaField = document.getElementById("via");
+        var viaValue = viaField.value;
+
+        // Espressione regolare per la via (almeno 2 caratteri)
+        var viaRegex = /^.{2,}$/;
+
+        if (!viaRegex.test(viaValue)) {
+            document.querySelector(".error_message_via").textContent = "Inserisci una via valida.";
+            document.querySelector(".error_message_via").style.display = "block";
+            viaField.classList.add("error");
+            return false;
+        }
+
+        document.querySelector(".error_message_via").style.display = "none";
+        viaField.classList.remove("error");
+        return true;
+    }
+
+    // Funzione per la validazione del campo Città
+    function validateCitta() {
+        var cittaField = document.getElementById("provincia");
+        var cittaValue = cittaField.value;
+
+        // Espressione regolare per la città (almeno 2 caratteri)
+        var cittaRegex = /^.{2,}$/;
+
+        if (!cittaRegex.test(cittaValue)) {
+            document.querySelector(".error_message_prov").textContent = "Inserisci una città valida.";
+            document.querySelector(".error_message_prov").style.display = "block";
+            cittaField.classList.add("error");
+            return false;
+        }
+
+        document.querySelector(".error_message_prov").style.display = "none";
+        cittaField.classList.remove("error");
+        return true;
+    }
+
+    // Event listener per la validazione dei campi nel form dei metodi di pagamento
+    document.getElementById("met_pag").addEventListener("submit", function(event) {
+        if (!validateCVV() || !validateCodiceCarta()) {
+            event.preventDefault(); // Blocca l'invio del form se i campi non sono validi
+        }
+    });
+
+    // Event listener per la validazione dei campi nel form degli indirizzi di spedizione
+    document.getElementById("met_send").addEventListener("submit", function(event) {
+        if (!validateVia() || !validateCitta()) {
+            event.preventDefault(); // Blocca l'invio del form se i campi non sono validi
+        }
+    });
+</script> 
 		
 	</body>
 </html>

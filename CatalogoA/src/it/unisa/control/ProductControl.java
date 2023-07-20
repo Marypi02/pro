@@ -82,131 +82,119 @@ public class ProductControl extends HttpServlet {
 					dispatcher.forward(request, response);
 					
 				}else if (action.equalsIgnoreCase("all_products")) {
-					try {
-					    Collection<ProductBean> products = model.get_prodotti();
-					    request.setAttribute("products", products);
-					    RequestDispatcher dispatcher = request.getRequestDispatcher("ProductView.jsp");
-					    dispatcher.forward(request, response);
-					} catch (SQLException e) {
-					    System.out.println("Error: " + e.getMessage());}
+					
+					Collection<ProductBean> products = model.get_prodotti();
+					request.setAttribute("products", products);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("ProductView.jsp");
+					dispatcher.forward(request, response);
+					
 					
 				}else if (action.equalsIgnoreCase("accessori_cane")) {
-				try {
+				
 				    Collection<ProductBean> products = model.getAccessori_cane();
 				    request.setAttribute("products", products);
 				    RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
 				    dispatcher.forward(request, response);
-				} catch (SQLException e) {
-				    System.out.println("Error: " + e.getMessage());}
+				
 				
 				} else if (action.equalsIgnoreCase("accessori_gatto")) {
-				    try {
-				        Collection<ProductBean> products = model.getAccessori_gatto();
-				        request.setAttribute("products", products);
-				        RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
-				        dispatcher.forward(request, response);
-				    } catch (SQLException e) {
-				        System.out.println("Error: " + e.getMessage());}
+				    
+				     Collection<ProductBean> products = model.getAccessori_gatto();
+				     request.setAttribute("products", products);
+				     RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
+				     dispatcher.forward(request, response);
+				    
 				} else if (action.equalsIgnoreCase("accessori_uccelli")) {
-				    try {
+				    
 				        Collection<ProductBean> products = model.getAccessori_uccelli();
 				        request.setAttribute("products", products);
 				        RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
 				        dispatcher.forward(request, response);
-				    } catch (SQLException e) {
-				        System.out.println("Error: " + e.getMessage());}
+				    
 				} else if (action.equalsIgnoreCase("accessori_pesci")) {
-				    try {
+				  
 				        Collection<ProductBean> products = model.getAccessori_pesci();
 				        request.setAttribute("products", products);
 				        RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
 				        dispatcher.forward(request, response);
-				    } catch (SQLException e) {
-				        System.out.println("Error: " + e.getMessage());}
+				   
 				} else if (action.equalsIgnoreCase("cibo_gatto")) {
-				    try {
+				    
 				        Collection<ProductBean> products = model.getCibo_gatto();
 				        request.setAttribute("products", products);
 				        RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
 				        dispatcher.forward(request, response);
-				    } catch (SQLException e) {
-				        System.out.println("Error: " + e.getMessage());}
+				    
 				} else if (action.equalsIgnoreCase("cibo_cane")) {
-				    try {
+				    
 				        Collection<ProductBean> products = model.getCibo_cane();
 				        request.setAttribute("products", products);
 				        RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
 				        dispatcher.forward(request, response);
-				    } catch (SQLException e) {
-				        System.out.println("Error: " + e.getMessage());}
+				   
 				} else if (action.equalsIgnoreCase("cibo_uccelli")) {
-				    try {
+				    
 				        Collection<ProductBean> products = model.getCibo_uccelli();
 				        request.setAttribute("products", products);
 				        RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
 				        dispatcher.forward(request, response);
-				    } catch (SQLException e) {
-				        System.out.println("Error: " + e.getMessage());}
+				    
 				} else if (action.equalsIgnoreCase("cibo_pesci")) {
-				    try {
+				    
 				        Collection<ProductBean> products = model.getCibo_pesci();
 				        request.setAttribute("products", products);
 				        RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
 				        dispatcher.forward(request, response);
-				    } catch (SQLException e) {
-				        System.out.println("Error: " + e.getMessage());}
+				    
 				} else if (action.equalsIgnoreCase("giocattoli_cane")) {
-				    try {
+				    
 				        Collection<ProductBean> products = model.getGiocattoli_cane();
 				        request.setAttribute("products", products);
 				        RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
 				        dispatcher.forward(request, response);
-				    } catch (SQLException e) {
-				        System.out.println("Error: " + e.getMessage());}
+				    
+				       
 				} else if (action.equalsIgnoreCase("giocattoli_gatto")) {
-				    try {
+				    
 				        Collection<ProductBean> products = model.getGiocattoli_gatto();
 				        request.setAttribute("products", products);
 				        RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
 				        dispatcher.forward(request, response);
-				    } catch (SQLException e) {
-				        System.out.println("Error: " + e.getMessage());}
+				    
 				} else if (action.equalsIgnoreCase("gabbie_uccelli")) {
-				    try {
+				   
 				        Collection<ProductBean> products = model.getGabbie_uccelli();
 				        request.setAttribute("products", products);
 				        RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
 				        dispatcher.forward(request, response);
-				    } catch (SQLException e) {
-				        System.out.println("Error: " + e.getMessage());}
+				    
 				} else if (action.equalsIgnoreCase("igiene_gatto")) {
-				    try {
+				   
 				        Collection<ProductBean> products = model.getIgiene_gatto();
 				        request.setAttribute("products", products);
 				        RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
 				        dispatcher.forward(request, response);
-				    } catch (SQLException e) {
-				        System.out.println("Error: " + e.getMessage());}
+				    
 				} else if (action.equalsIgnoreCase("igiene_cane")) {
-				    try {
+				    
 				        Collection<ProductBean> products = model.getIgiene_cane();
 				        request.setAttribute("products", products);
 				        RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
 				        dispatcher.forward(request, response);
-				    } catch (SQLException e) {
-				        System.out.println("Error: " + e.getMessage());}
+				    
 				} else if (action.equalsIgnoreCase("igiene_uccelli")) {
-				    try {
+				   
 				        Collection<ProductBean> products = model.getIgiene_uccelli();
 				        request.setAttribute("products", products);
 				        RequestDispatcher dispatcher = request.getRequestDispatcher("accessori.jsp");
 				        dispatcher.forward(request, response);
-				    } catch (SQLException e) {
-				        System.out.println("Error: " + e.getMessage());}
+				    
 				    
 				    
 				}else if(action.equalsIgnoreCase("updateProduct")) {
 					int id = Integer.parseInt(request.getParameter("id"));
+					String categoria = request.getParameter("categoria");
+			        String specie = request.getParameter("specie");
 					String name = request.getParameter("name");
 					String description = request.getParameter("description");
 					double price = Double.parseDouble(request.getParameter("price"));
@@ -215,6 +203,8 @@ public class ProductControl extends HttpServlet {
 					
 					ProductBean bean = new ProductBean();
 					bean.setCode(id);
+					bean.setCategoria(categoria);
+			        bean.setSpecie(specie);
 					bean.setName(name);
 					bean.setDescription(description);
 					bean.setPrice(price);
@@ -229,22 +219,32 @@ public class ProductControl extends HttpServlet {
 				    request.setAttribute("products", products);
 					
 				}else if (action.equalsIgnoreCase("insert")) {
+					String categoria = request.getParameter("categoria");
+			        String specie = request.getParameter("specie");
 					String name = request.getParameter("name");
-					String description = request.getParameter("description");
-					double price = Double.parseDouble(request.getParameter("price"));
-					int quantity = Integer.parseInt(request.getParameter("quantity"));
-					String nameImg = request.getParameter("nameImg");
-
-					ProductBean bean = new ProductBean();
-					bean.setName(name);
-					bean.setDescription(description);
-					bean.setPrice(price);
-					bean.setQuantity(quantity);
-					bean.setNomeImg(nameImg);
-					model.doSave(bean);
+		            String description = request.getParameter("description");
+		            double price = Double.parseDouble(request.getParameter("price"));
+		            int quantity = Integer.parseInt(request.getParameter("quantity"));
+		            String nameImg = request.getParameter("nome_immagine");
+		           
+		            
+		            // Assuming you have a ProductBean class to represent a product entity
+		            ProductBean bean = new ProductBean();
+		            bean.setCategoria(categoria);
+		            bean.setSpecie(specie);
+		            bean.setName(name);
+		            bean.setDescription(description);
+		            bean.setPrice(price);
+		            bean.setQuantity(quantity);
+		            bean.setNomeImg(nameImg);
+		            
+		            
+		            model.doSave(bean);
 				}
-			}			
-		} catch (SQLException e) {
+			}
+		}
+						
+		 catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
 

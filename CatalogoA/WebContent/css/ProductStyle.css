@@ -48,7 +48,7 @@ Infine, la caption della tabella ha un font più grande (font-size: 24px), in gr
 
 
 table {
-  width: 80%;
+  /*width: 80%;*/
   margin: 50px auto;
   border-collapse: collapse;
   background-color: #FFFFFF;

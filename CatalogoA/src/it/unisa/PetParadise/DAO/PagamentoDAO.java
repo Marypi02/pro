@@ -56,26 +56,27 @@ public class PagamentoDAO {
 	  
 	 }
 	
-	public synchronized PagamentoBean doRetrieveByKey(int idpagamento) throws SQLException 
+	public synchronized PagamentoBean doRetrieveByKey(int idUser) throws SQLException 
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		PagamentoBean bean = new PagamentoBean();
 
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE id_pagamento = ?";
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE e_utente = ?";
 
 		try 
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setInt(1, idpagamento);
+			preparedStatement.setInt(1, idUser);
 
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) 
 			{
 				
+				//bean.setIdpagamento(rs.getInt("id_pagamento"));
 				bean.setNominativo(rs.getString("nominativo"));
 				bean.setCVV(rs.getInt("CVV"));
 				bean.setMeseScadenza(rs.getInt("meseScadenza"));
@@ -83,7 +84,7 @@ public class PagamentoDAO {
 				bean.setAnnoScadenza(rs.getInt("annoScadenza"));
 			
 				MySQLUtenteDM udao = new MySQLUtenteDM();
-				bean.setUtente(udao.getUtente(rs.getInt("e_utente")));
+				bean.setUtente(udao.getUtente(rs.getString("e_utente")));
 				
 			}
 
@@ -204,7 +205,7 @@ public synchronized ArrayList<PagamentoBean> doRetrieveByUtente(int code) throws
 		connection = DriverManagerConnectionPool.getConnection();
 		preparedStatement = connection.prepareStatement(selectSQL);
 		preparedStatement.execute();
-		//preparedStatement.setInt(1, code);
+		preparedStatement.setInt(1, code);
 
 		ResultSet rs = preparedStatement.executeQuery();
 
@@ -220,7 +221,7 @@ public synchronized ArrayList<PagamentoBean> doRetrieveByUtente(int code) throws
 			bean.setAnnoScadenza(rs.getInt("annoScadenza"));
 			
 			MySQLUtenteDM udao = new MySQLUtenteDM();
-			Utente ubean = udao.getUtente(rs.getInt("e_utente"));
+			Utente ubean = udao.getUtente(rs.getString("e_utente"));
 			bean.setUtente(ubean);
 			
 			arr.add(bean);

@@ -5,7 +5,9 @@
   aspect-ratio: 1/1;
   object-fit: cover; /* Rendi l'immagine adatta al riquadro senza distorsioni */
   max-width: 100%; /* Assicurati che l'immagine non superi la larghezza del suo contenitore */
+
 }
+
 
 .cat-body {
   display: grid;
@@ -14,7 +16,9 @@
    margin-top:20px;
 	margin-bottom:30px;
 	 padding: 10px;
+
 }
+
 
 .cat-prodotto {
    text-align: center;
@@ -27,7 +31,9 @@
 .cat-prodotto a{
 	color: #2d3b55;
 	text-decoration: none;
+
 }
+
 
 .cat-prodotto:hover {
     background-color: #f6f3f3;
@@ -37,10 +43,13 @@
     -webkit-box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
 	-moz-box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
 	box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
+
 }
+
 
 .cat-prodotto a:hover {
     color: #000000;
+
 }
 
 .cat-pulsante {
@@ -58,7 +67,9 @@
     justify-content:space-around;
     text-transform: uppercase;
    
+
 }
+
 
 .cat-pulsante:hover {
 	background-color: #ff8080;
@@ -72,16 +83,9 @@
     -webkit-box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
 	-moz-box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
 	box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
+
 }
 
-
-/* .imgProdotto {
-	 width:35%; 
-	 display:flex;
-	 flex-direction:column-reverse;
-	 align-items:center;
-	 margin-top:5%;
-} */
 
 @media (max-width:1000px){
 	.cat-prodotto {
@@ -106,6 +110,8 @@
 	p{
 		font-size:10px;
 	}}
+
+
 
 @media (max-width:700px){
 	.cat-prodotto {
@@ -157,3 +163,4 @@
 	margin-bottom:30px;
 	 padding: 10px;
 }}
+

@@ -6,10 +6,11 @@
 <jsp:include page="header.jsp"/>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/details.css">
+    <title>Details Page</title>
 </head>
 <body>
 <div class= "details-body"> 
@@ -25,9 +26,10 @@
  
   <table class="details-table">
     <tr>
+    <th scope="col">Product Image</th> <!-- Intestazione per la colonna delle immagini del prodotto -->
       <td>
         <div class="product-images">
-          <img src="images/<%=product.getNomeImg()%>">
+          <img src="images/<%=product.getNomeImg()%>" alt="Not available!">
         </div>
       </td>
       <td>
@@ -45,6 +47,7 @@
           <button type="submit" class="btn return-btn" type="button"  value="Come Back to Catalog">Come Back to Catalog</button>
         </form>
       </td>
+
       <td>
       <form action="./cart" method="post">
             <input type="hidden" name="action" value="addC">

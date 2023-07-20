@@ -1,22 +1,29 @@
+
 /* Questa regola CSS imposta lo stile per il body */
 .cart-body {
   font-family: Arial, sans-serif; /* Usa il font Arial*/
   padding: 20px; /* Aggiunge un padding di 20px al contenuto all'interno del body */
+
 }
+
 
 /* Questa regola CSS imposta lo stile per l'h1 */
 .cart-h1 {
   margin-top: 20px; /* Aggiunge uno spazio vuoto sopra l'h1 di 20px */
   margin-bottom: 20px; /* Aggiunge uno spazio vuoto sotto l'h1 di 20px */
   text-align: center; /* Allinea il testo dell'h1 al centro */
+
 }
 
+
 /* Questa regola CSS imposta lo stile per la tabella */
+
 .cart-table {
   width: 100%; /* Imposta la larghezza della tabella al 100% della larghezza disponibile */
   border-collapse: collapse; /* Unisce i bordi delle celle della tabella */
   border: 1px solid; /* Aggiunge un bordo con spessore di 1px intorno alla tabella */
 }
+
 
 /* Questa regola CSS imposta lo stile per le celle delle tabelle th e td */
 .cart-th, .cart-td {
@@ -116,6 +123,7 @@
   .cart-button{
     padding: 2px;
   }
+
 }
 
 
@@ -131,13 +139,14 @@
   .cart-img {
     max-width: 100px;
   }
+
 }
 
 @media screen and (max-width: 480px) {
    .cart-body {
   padding: 10px;
 }
-  
+
   .cart-table {
     font-size: 10px;
   }
@@ -166,11 +175,14 @@
   .cart-button{
     padding: 1px;
   }
+
 }
+
 
 @media screen and (max-width: 320px) {
   .cart-body {
   padding: 10px;
+
 }
   .cart-table {
     font-size: 8px;
@@ -195,8 +207,8 @@
     max-width: 60px;
   }
 .cart-total{
-  font-size: 10px;
-}
+  font-size: 10px;}
+
   .cart-button{
     padding: 1px;
   }
