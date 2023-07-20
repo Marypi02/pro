@@ -103,7 +103,7 @@
 	function stateChanged() {
 		if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete") {
 			var showdata = xmlHttp.responseText;
-			document.getElementById("mydiv").innerHTML = showdata;
+			document.getElementById("emailErr").innerHTML = showdata;
 		}
 	}
 	function GetXmlHttpObject() {
