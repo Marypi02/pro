@@ -44,7 +44,9 @@
         <td class="cart-td"><img class="cart-img" src=images/<%=beancart.getKey().getNomeImg()%> class="imgProdotto"></td>
 	    <td class="cart-td"><%=beancart.getKey().getName()%></td>
 		<td class="cart-td"><%=beancart.getKey().getDescription()%></td>
+
 		<td class="cart-td"><%=beancart.getValue().getUnitCost()%>&euro;</td>
+
         <td class="cart-td"><form action="./cart" method="post"> 
         <input type="hidden" name="action" value="setNumOrder">
 			    <input class="cart-input" type="number" name="quantity" value=<%=beancart.getValue().getNumItems() %>>
@@ -53,7 +55,9 @@
                  </div>
                 </form>
         </td>
+
         <td class="cart-td"><%=beancart.getValue().getTotalCost()%>&euro;</td>
+
         
         <td class="cart-td"> <form action="./cart" method="post">
                 <input type="hidden" name="action" value="deleteC">
@@ -64,6 +68,7 @@
     </tbody>
     <%} %>
   </table>
+
    <span class="cart-total">Total: <%= cart.getTotalCost() %>&euro;</span>
   <div class="actions">
      <form action="./cart" method="post">
@@ -73,9 +78,11 @@
                 </form>
                 
 <form action="./mostra_ordini_utente" method="post">
+
                 <input type="hidden" name="action" value="procediOrdine"> 
     <button type="submit" class="cart-button" type="button"  value="Procedi all'ordine">Aquista</button>
 </form>
+
                 </div>
 	<% }else { %>	
 		

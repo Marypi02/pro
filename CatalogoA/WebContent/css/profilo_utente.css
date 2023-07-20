@@ -16,8 +16,6 @@ text-decoration: none;
 	padding: 5px;
     margin: 2px;
     justify-content:space-around;
-   
-
 }
 
 .button:hover {
@@ -58,7 +56,6 @@ a:hover {
   border: lightblue;
 }
 
-
 .save{
 	text-decoration: none;
 	border: 1px solid #E05D5D;
@@ -72,7 +69,6 @@ a:hover {
 	padding: 11px;
     margin: 10px;
     justify-content:space-around;
-
 }
 
 .save:hover {
@@ -245,7 +241,6 @@ tr:nth-child(odd) {
   }
 }
 
-
 @media (max-width: 800px){
 	.areaUtente {
   		margin: 1% 1%;
@@ -257,4 +252,6 @@ tr:nth-child(odd) {
 	}
 	th, p, strong, .save{
 		font-size:15px;
+
 	}
+

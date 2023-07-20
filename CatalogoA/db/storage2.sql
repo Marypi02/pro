@@ -2,9 +2,8 @@ DROP DATABASE IF EXISTS storage2;
 CREATE DATABASE storage2;
 USE storage2;
 
-DROP TABLE IF EXISTS storage2;
 
-CREATE TABLE product (
+CREATE TABLE product (	
   categoria char(20) not null,
   specie char(20) not null,
   code int primary key AUTO_INCREMENT,

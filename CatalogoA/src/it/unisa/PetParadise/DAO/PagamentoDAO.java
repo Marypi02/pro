@@ -205,7 +205,7 @@ public synchronized ArrayList<PagamentoBean> doRetrieveByUtente(int code) throws
 		connection = DriverManagerConnectionPool.getConnection();
 		preparedStatement = connection.prepareStatement(selectSQL);
 		preparedStatement.execute();
-		//preparedStatement.setInt(1, code);
+		preparedStatement.setInt(1, code);
 
 		ResultSet rs = preparedStatement.executeQuery();
 

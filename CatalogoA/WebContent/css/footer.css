@@ -28,7 +28,6 @@ ul {
   background-color: #3ba99c;
 
     padding: 20px 0;
-
 }
 
 .footer-col {
@@ -109,7 +108,9 @@ ul {
   }
 }
 
+
   li, ul, p, h4{
     font-size: 13px;
   }
 }
+

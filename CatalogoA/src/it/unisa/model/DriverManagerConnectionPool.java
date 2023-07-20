@@ -25,7 +25,7 @@ public class DriverManagerConnectionPool  {
 		String port = "3306";
 		String db = "storage2";
 		String username = "root";
-		String password = "Sorre2811@";
+		String password = "Paolinoerra01!";
 
 		newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", username, password);
 
@@ -54,6 +54,9 @@ public class DriverManagerConnectionPool  {
 
 		return connection;
 	}
+	
+	
+
 
 	public static synchronized void releaseConnection(Connection connection) throws SQLException {
 		if(connection != null) freeDbConnections.add(connection);

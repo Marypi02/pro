@@ -29,7 +29,7 @@
     
     
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 	<head>
 	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -175,9 +175,9 @@
 <div class="tabella">
     <table class="tab">
     
-    	 <div class="ciclo">
-             		<p>Dati ordine</p>
-          </div>
+    	<tr>
+            <th colspan="4" class="ciclo">Dati ordine</th>
+        </tr>
         <tr>
             <th>ID ordine</th>
             <th>Data ordine</th>

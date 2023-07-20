@@ -44,6 +44,7 @@
 <title>Insert title here</title>
 </head>
 
+
 <body class"header-body">
 
 <nav class="header-navbar">
@@ -60,7 +61,6 @@
         <div id="mylocation"></div>
     </form>
 </div>
-
         <a href="utente.jsp"><i class="fa-solid fa-circle-user fa-xl"></i></a>
         <a href="Cart.jsp"><i class="fa fa-shopping-cart "></i></a>
     </div>

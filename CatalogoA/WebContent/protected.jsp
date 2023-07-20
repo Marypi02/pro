@@ -28,7 +28,7 @@
 <body>
 <div class ="page">
 <h1 >Welcome to the Protected Page</h1>
-<p align="center">Congratulations. You have accessed a protected document.</p>
+<p>Congratulations. You have accessed a protected document.</p>
 <br>
 
 

@@ -26,7 +26,6 @@
  
   <table class="details-table">
     <tr>
-    
       <td>
         <div class="product-images">
           <img src="images/<%=product.getNomeImg()%>" alt="Not available!">
@@ -47,7 +46,6 @@
           <button type="submit" class="btn return-btn" type="button"  value="Come Back to Catalog">Come Back to Catalog</button>
         </form>
       </td>
-
       <td>
       <form action="./cart" method="post">
             <input type="hidden" name="action" value="addC">

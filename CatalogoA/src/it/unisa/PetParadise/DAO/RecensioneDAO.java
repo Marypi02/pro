@@ -14,11 +14,7 @@ import it.unisa.model.RecensioneBean;
 
 public class RecensioneDAO {
     private static final String TABLE_NAME = "recensione";
-    private static final String ID_COLUMN = "idRecensione";
-    private static final String PRODOTTO_COLUMN = "prodotto";
-    private static final String UTENTE_COLUMN = "utente";
-    private static final String VOTO_COLUMN = "voto";
-    private static final String TESTO_COLUMN = "testo";
+   
 
     private static final String INSERT_QUERY = "INSERT INTO " + TABLE_NAME + " ( prodotto, utente, voto, testo) VALUES (?, ?, ?, ?)";
 
@@ -30,8 +26,7 @@ public class RecensioneDAO {
     private static final String SELECT_BY_PRODOTTO_QUERY = "SELECT * FROM " + TABLE_NAME +
             " WHERE prodotto = ?";
 
-    private static final String SELECT_BY_UTENTE_QUERY = "SELECT * FROM " + TABLE_NAME +
-            " WHERE utente = ?";
+   
 
     private static final String DELETE_QUERY = "DELETE FROM " + TABLE_NAME +
             " WHERE idRecensione = ?";

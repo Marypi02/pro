@@ -136,7 +136,9 @@
 		<form name="regForm" action="utente" onsubmit="return validateForm()"
 			method="post">
 			<input type="text" name="email" id="email" class="testo" placeholder="Email"
+
 				autofocus onkeyup="check(this.value);" autofocus onblur="checkEmailExists();"><br>
+
 			<div class="error" id="emailErr"></div>
 
 			<input type="password" name="password" class="testo" maxlength="8"

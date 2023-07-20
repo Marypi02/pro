@@ -40,7 +40,7 @@ public class OrderList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		OrdineDAO odao = new OrdineDAO();
-		List<ProductOrder> var = null;  
+		List<ProductOrder> ordini = null;  
 		String action = request.getParameter("action");
 		
 		if(action != null) {
@@ -48,12 +48,13 @@ public class OrderList extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("ElencoOrdini.jsp");
 		        dispatcher.forward(request, response);
 			}*/
-		}/*else*/ if(action.equalsIgnoreCase("allOrders")) {  //mostra
+		}/*else*/ 
+		if(action.equalsIgnoreCase("allOrders")) {  //mostra
 			//Recupero tutti gli ordini
 			try {
-				var = (List<ProductOrder>) odao.doRetrieveAll();
-				if(var != null) {
-					request.setAttribute("OrderList", var);
+				ordini = (List<ProductOrder>) odao.doRetrieveAll();
+				if(ordini != null) {
+					request.setAttribute("OrderList", ordini);
 				}else {
 					request.setAttribute("OrderList", null);
 				}
@@ -63,9 +64,9 @@ public class OrderList extends HttpServlet {
 		}else if(action.equalsIgnoreCase("customerOrders")) { //mostra per cliente
 			try {
 				String email = request.getParameter("customerEmail");
-				var = (List<ProductOrder>) odao.doRetrieveAllByUtente(email);
-				if(var != null) {
-					request.setAttribute("OrderList", var);
+				ordini = (List<ProductOrder>) odao.doRetrieveAllByUtente(email);
+				if(ordini != null) {
+					request.setAttribute("OrderList", ordini);
 				}else {
 					request.setAttribute("OrderList", null);
 				}
@@ -81,20 +82,18 @@ public class OrderList extends HttpServlet {
                 Date fromDate = null;
                 Date toDate = null;
 
-                try {
-                    fromDate = dateFormat.parse(fromDateStr);
-                    toDate = dateFormat.parse(toDateStr);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                
+                fromDate = dateFormat.parse(fromDateStr);
+                toDate = dateFormat.parse(toDateStr);
+                
 
-                var = (List<ProductOrder>) odao.getOrdersByDateRange(fromDate, toDate);
-                if (var != null) {
-                    request.setAttribute("OrderList", var);
+                ordini = (List<ProductOrder>) odao.getOrdersByDateRange(fromDate, toDate);
+                if (ordini != null) {
+                    request.setAttribute("OrderList", ordini);
                 } else {
                     request.setAttribute("OrderList", null);
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ParseException e) {
                 e.printStackTrace();
             }
 		}else if (action.equalsIgnoreCase("comeBack")) {

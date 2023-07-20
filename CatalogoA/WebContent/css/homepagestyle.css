@@ -9,6 +9,7 @@
 }
 
 
+
 .cat-body {
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* Imposta tre colonne con larghezza uguale */
@@ -16,9 +17,7 @@
    margin-top:20px;
 	margin-bottom:30px;
 	 padding: 10px;
-
 }
-
 
 .cat-prodotto {
    text-align: center;
@@ -31,9 +30,7 @@
 .cat-prodotto a{
 	color: #2d3b55;
 	text-decoration: none;
-
 }
-
 
 .cat-prodotto:hover {
     background-color: #f6f3f3;
@@ -70,7 +67,6 @@
 
 }
 
-
 .cat-pulsante:hover {
 	background-color: #ff8080;
 	transition:0.3s;
@@ -85,7 +81,6 @@
 	box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
 
 }
-
 
 @media (max-width:1000px){
 	.cat-prodotto {
@@ -109,9 +104,8 @@
 	}
 	p{
 		font-size:10px;
-	}}
-
-
+	}
+}
 
 @media (max-width:700px){
 	.cat-prodotto {
@@ -162,5 +156,7 @@
    margin-top:20px;
 	margin-bottom:30px;
 	 padding: 10px;
+
 }}
+
 
