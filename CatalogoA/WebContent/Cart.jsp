@@ -16,72 +16,66 @@
 <title>Cart</title>
 </head>
 <body>
-<div class=cart-page>
+<div class="cart-body">
 <% if(cart != null) { %>
-<div class=cart-table>
-		<table border="1">
-		<div class=titoloCarrello> <h4>CART</h4> </div>
-		<tr> 
-		    <th>Product</th>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Unit Cost</th>
-			<th>Number</th>
-			<th>Total Cost</th>
-			<th>Action</th>
-		</tr>
-		<%      // Itera sui prodotti nel carrello
+  <h1 class="cart-h1">Carrello</h1>
+ 
+  <table class="cart-table">
+    <thead>
+      <tr class="cart-tr">
+        <th class="cart-th">Immagine</th>
+        <th class="cart-th">Nome</th>
+        <th class="cart-th">Descrizione</th>
+        <th class="cart-th">Costo unico</th>
+        <th class="cart-th">Numero</th>
+        <th class="cart-th">Costo totale</th>
+        <th class="cart-th">Azione</th>
+      </tr>
+    </thead>
+    <tbody class="cart.tbody">
+     <%      // Itera sui prodotti nel carrello
 			   Map<ProductBean, ProductOrder> prodcart = cart.getProducts();
 			   for(Map.Entry<ProductBean, ProductOrder> beancart : prodcart.entrySet()){
 		%>
-		<tr>
-			<td><img src=images/<%=beancart.getKey().getNomeImg()%> class="imgProdotto"></td>
-			<td><%=beancart.getKey().getName()%></td>
-			<td><%=beancart.getKey().getDescription()%></td>
-			<td><%=beancart.getValue().getUnitCost()%></td>
-			<td>
-			
-			<form action="./cart" method="post">
-			<div class=update-button>
-                <input type="hidden" name="action" value="setNumOrder">
-			    <input type="number" name="quantity" value=<%=beancart.getValue().getNumItems() %>>
-                <input type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
-             <button type="submit" class="pulsanteUPDATE" type="button" value="Update Order">Update Order</button>
+      <tr class="cart-tr">
+        <td class="cart-td"><img class="cart-img" src=images/<%=beancart.getKey().getNomeImg()%> class="imgProdotto"></td>
+	    <td class="cart-td"><%=beancart.getKey().getName()%></td>
+		<td class="cart-td"><%=beancart.getKey().getDescription()%></td>
+		<td class="cart-td"><%=beancart.getValue().getUnitCost()%> &euro;</td>
+        <td class="cart-td"><form action="./cart" method="post"> 
+        <input type="hidden" name="action" value="setNumOrder">
+			    <input class="cart-input" type="number" name="quantity" value=<%=beancart.getValue().getNumItems() %>>
+                <input class="cart-input" type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
+             <button type="submit" class="cart-button" type="button" value="Update Order">Update Order</button>
                  </div>
                 </form>
-			</td>
-			<td><%=beancart.getValue().getTotalCost()%> </td>
-			<td>
-			    <form action="./cart" method="post">
+        </td>
+        <td class="cart-td"><%=beancart.getValue().getTotalCost()%> &euro; </td>
+        
+        <td class="cart-td"> <form action="./cart" method="post">
                 <input type="hidden" name="action" value="deleteC">
                 <input type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
-                <button type="submit" class="pulsanteDELETE" type="button" value="Delete from cart">Delete from cart</button>
-                </form></td> 
-		</tr>
-		<%} %>
-		
-	</table>	
-	
-	
-  <span class="cart-total">Total: <%= cart.getTotalPrice() %> </span>
-
-
-	</div>
-	</div>
-	<div class=bottoni>
-	            <form action="./cart" method="post">
+                <button type="submit" class="cart-button" type="button" value="Delete from cart">Delete from cart</button>
+                </form></td>
+      </tr>
+    </tbody>
+    <%} %>
+  </table>
+   <span class="cart-total">Total: <%= cart.getTotalPrice() %> &euro;</span>
+  <div class="actions">
+     <form action="./cart" method="post">
                 <input type="hidden" name="action" value="comeBack">        
-                <button type="submit" class="pulsanteRETURN" type="button"  value="Come Back to Catalog">Come Back to Catalog</button>
+                <button type="submit" class="cart-button" type="button"  value="Come Back to Catalog">Come Back to Catalog</button>
                 </form>
                 
-                       
-                <button type="submit" class="checkout-button" type="button"  value="Aquista">Aquista</button>
+    <button type="submit" class="cart-button" type="button"  value="Aquista">Aquista</button>
                 </div>
 	<% }else { %>	
-		<caption>Cart</caption>
+		
 		<h1>Carrello vuoto</h1>
 		
 		<%} %>
+		</div>
 <div class="footer"><jsp:include page="footer.jsp"/></div>
 </body>
 </html>

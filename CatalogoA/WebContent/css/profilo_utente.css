@@ -13,7 +13,7 @@ text-decoration: none;
 	font-weight: normal;
 	text-align:center;
 	width: 30%;
-	padding: 10px;
+	padding: 5px;
     margin: 2px;
     justify-content:space-around;
    
@@ -66,7 +66,7 @@ a:hover{
 	font-weight: normal;
 	text-align:center;
 	width: 50%;
-	padding: 10px;
+	padding: 11px;
     margin: 10px;
     justify-content:space-around;
 }
@@ -272,4 +272,7 @@ tr:nth-child(even) {
 	
 	.metodi{
 		flex-direction:column;
+	}
+	th, p, strong, .save{
+		font-size:15px;
 	}

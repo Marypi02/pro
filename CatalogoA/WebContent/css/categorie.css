@@ -1,114 +1,158 @@
 @charset "ISO-8859-1";
 
-.imgProdotto{
-	width:100%;
-	height:250px;
-}
-.div_esterno{
-	display:flex;
-	flex-wrap: wrap;
-	width:100%;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 80px;
-    padding: 2% 2%;
+/* Stili per l'immagine del prodotto */
+.cat-imgProdotto {
+  width: 100%; /* Imposta la larghezza dell'immagine al 100% */
+  aspect-ratio: 1/1; /* Imposta il rapporto di aspetto dell'immagine a 1:1 (quadrata) */
+  object-fit: cover; /* Rende l'immagine adatta al riquadro senza distorsioni */
+  max-width: 100%; /* l'immagine non supera la larghezza del suo contenitore */
 }
 
-.prodotto {
-    display: inline-block;
-    text-align: center;
-    vertical-align: top;
-    padding: 2% 2%;
-    margin: 0 5px;
-    width: 20%;
-    font-family: 'Rubik', sans-serif;
-    font-weight: bold;
-    vertical-align: top;
-    color:#000000;
-    autoflow:auto;
-    border-bottom: 1px solid #000000;
-    
+/* Stili per il contenitore del corpo */
+.cat-body {
+  display: grid; /* Imposta il contenitore come grid */
+  grid-template-columns: repeat(5, 1fr); /* Imposta cinque colonne con larghezza uguale */
+  grid-gap: 20px; /* Aggiunge uno spazio di 20px tra i prodotti */
+  margin-top: 20px; /* Aggiunge uno spazio vuoto sopra il corpo di 20px */
+  margin-bottom: 30px; /* Aggiunge uno spazio vuoto sotto il corpo di 30px */
+  padding: 10px; /* Aggiunge un padding di 10px al contenuto del corpo */
 }
 
-.prodotto a{
-	color: #2d3b55;
-	text-decoration: none;
+/* Stili per il singolo prodotto  */
+.cat-prodotto {
+  text-align: center; /* Allinea il testo del prodotto al centro */
+  padding: 10px; /* Aggiunge un padding di 10px al contenuto del prodotto */
+  background-color: #f1f1f1; /* Imposta il colore di sfondo del prodotto */
+  position: relative; /* Imposta la posizione relativa per il prodotto */
 }
 
-.prodotto:hover {
-    background-color: #f6f3f3;
-    transition: 0.2s;
-    text-decoration:none;
-    transform: scale(1.01);
-    -webkit-box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
-	-moz-box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
-	box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
+/* Stili per il link all'interno del prodotto */
+.cat-prodotto a {
+  color: #2d3b55; /* Imposta il colore del testo del link */
+  text-decoration: none; /* Rimuove la sottolineatura dai link */
 }
 
-.prodotto a:hover {
-    color: #000000;
+/* Stili quando si passa sopra il prodotto */
+.cat-prodotto:hover {
+  background-color: #f6f3f3; /* Cambia il colore di sfondo del prodotto al passaggio del mouse */
+  transition: 0.2s; /* Aggiunge una transizione di 0.2 secondi */
+  text-decoration: none; /* Rimuove la sottolineatura al passaggio del mouse */
+  transform: scale(1.01); /* Applica una leggera scala del 1% al prodotto al passaggio del mouse */
+  -webkit-box-shadow: 3px 6px 14px -2px rgba(45, 59, 85, 0.82); /* Aggiunge una leggera ombra */
+  -moz-box-shadow: 3px 6px 14px -2px rgba(45, 59, 85, 0.82); /* Aggiunge una leggera ombra */
+  box-shadow: 3px 6px 14px -2px rgba(45, 59, 85, 0.82); /* Aggiunge una leggera ombra */
 }
 
-.pulsante {
-	text-decoration: none;
-	border: 1px solid #E05D5D;
-	border-radius: 2em;
-	font-size: 0.7em;
-	background-color: #E05D5D;
-	font-weight: bold;
-	text-align:center;
-	color:black;
-	width: 100%;
-	padding: 10px;
-    bottom: 50px;
-    justify-content:space-around;
-    text-transform: uppercase;
-   
+/* Stili quando si passa sopra il link all'interno del prodotto */
+.cat-prodotto a:hover {
+  color: #000000; /* Cambia il colore del testo del link al passaggio del mouse */
 }
 
-.pulsante:hover {
-	background-color: #ff8080;
-	transition:0.3s;
-	cursor: pointer;
-	border: lightblue;
-	color:white;
-	 transition: 0.2s;
-    text-decoration:none;
-    transform: scale(1.01);
-    -webkit-box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
-	-moz-box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
-	box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
+/* Stili per il pulsante all'interno del prodotto */
+.cat-pulsante {
+  text-decoration: none; /* Rimuove la sottolineatura dal pulsante */
+  border: 1px solid #E05D5D; /* Aggiunge un bordo con spessore di 1px al pulsante */
+  border-radius: 2em; /* Aggiunge un bordo arrotondato al pulsante */
+  font-size: 0.7em; /* Imposta la dimensione del testo del pulsante a 0.7em */
+  background-color: #E05D5D; /* Imposta il colore di sfondo del pulsante */
+  font-weight: bold; /* Imposta lo spessore del testo in grassetto */
+  text-align: center; /* Allinea il testo del pulsante al centro */
+  color: black; /* Imposta il colore del testo a nero */
+  width: 100%; /* Imposta la larghezza del pulsante al 100% */
+  padding: 10px; /* Aggiunge un padding di 10px al contenuto del pulsante */
+  bottom: 50px; /* Posiziona il pulsante a 50px dal fondo del prodotto */
+  justify-content: space-around; /* Aggiunge uno spazio uniforme attorno al contenuto del pulsante */
+  text-transform: uppercase; /* Trasforma il testo del pulsante in maiuscolo */
+}
+
+/* Stili quando si passa sopra il pulsante */
+.cat-pulsante:hover {
+  background-color: #ff8080; /* Cambia il colore di sfondo del pulsante al passaggio del mouse */
+  transition: 0.3s; /* Aggiunge una transizione di 0.3 secondi */
+  cursor: pointer; /* Imposta il cursore del mouse a "pointer" al passaggio del mouse */
+  border: lightblue; /* Cambia il colore del bordo del pulsante al passaggio del mouse */
+  color: white; /* Cambia il colore del testo del pulsante al passaggio del mouse */
+  text-decoration: none; /* Rimuove la sottolineatura al passaggio del mouse */
+  transform: scale(1.01); /* Applica una leggera scala del 1% al pulsante al passaggio del mouse */
+  -webkit-box-shadow: 3px 6px 14px -2px rgba(45, 59, 85, 0.82); /* Aggiunge una leggera ombra */
+  -moz-box-shadow: 3px 6px 14px -2px rgba(45, 59, 85, 0.82); /* Aggiunge una leggera ombra */
+  box-shadow: 3px 6px 14px -2px rgba(45, 59, 85, 0.82); /* Aggiunge una leggera ombra */
 }
 
 
-/* .imgProdotto {
-	 width:35%; 
-	 display:flex;
-	 flex-direction:column-reverse;
-	 align-items:center;
-	 margin-top:5%;
-} */
+
 
 @media (max-width:1000px){
-	.prodotto{
-		width:29%;
-		grid-gap: 20px;
+	.cat-prodotto {
+  text-align: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+	p{
+		font-size:13px;
 	}
 	
+@media (max-width:840px){
+	.cat-prodotto {
+  text-align: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
 	
-@media (max-width:750px){
-	.prodotto{
-		width:46%;
-		margin: 10px 5px;
-		grid-gap: 40px;
-	}
-	
-	.imgProdotto{
+	.cat-imgProdotto{
 		width: 100%;
 	}
+	p{
+		font-size:10px;
+	}}
 
-@media (max-width:353px){
-	.prodotto{
-		width:85%;
-		margin: 10px 5px;
-		grid-gap: 20px;
-	}
+@media (max-width:700px){
+	.cat-prodotto {
+  text-align: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+	.cat-body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Imposta tre colonne con larghezza uguale */
+  grid-gap: 20px; /* Aggiunge uno spazio di 20px tra i prodotti */
+   margin-top:20px;
+	margin-bottom:30px;
+	 padding: 10px;
+}
+
+}
+
+	@media (max-width:578px){
+		
+	.cat-prodotto {
+  text-align: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+	.cat-body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Imposta tre colonne con larghezza uguale */
+  grid-gap: 20px; /* Aggiunge uno spazio di 20px tra i prodotti */
+   margin-top:20px;
+	margin-bottom:30px;
+	 padding: 10px;
+		
+}
+		
+
+	
+	}@media (max-width:325px){
+	.cat-prodotto {
+  text-align: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+	.cat-body {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Imposta tre colonne con larghezza uguale */
+  grid-gap: 20px; /* Aggiunge uno spazio di 20px tra i prodotti */
+   margin-top:20px;
+	margin-bottom:30px;
+	 padding: 10px;
+}}

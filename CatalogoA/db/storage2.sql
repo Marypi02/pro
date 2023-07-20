@@ -2,8 +2,6 @@ DROP DATABASE IF EXISTS storage2;
 CREATE DATABASE storage2;
 USE storage2;
 
-DROP TABLE IF EXISTS storage2;
-
 CREATE TABLE product (	
   categoria char(20) not null,
   specie char(20) not null,
@@ -113,7 +111,6 @@ INSERT INTO product values ("igiene","Gatti",14,"Shampoo per Gatti alla Camomill
 INSERT INTO product values ("accessori","Uccelli",15,"Accessori per Uccelli ","Set di accessori per una gabbia",8.99,15,"15.jpg");
 INSERT INTO product values ("cibo","Cani",16,"Croccantini Grain-Free","Alimento secco per cani senza cereali, con proteine di alta qualità",29.99,50,"16.jpg");
 INSERT INTO product values ("accessori","Cani",17,"Collare e Guinzaglio in Pelle","Elegante collare e guinzaglio in pelle per cani di taglia media-grande",45.99,10,"17.jpg");
-INSERT INTO product values ("cibo","Pesci",18,"Cibo per Pesci Tropicali","Alimento in granuli per pesci tropicali, arricchito con vitamine e minerali",7.99,150,"18.jpg");
 INSERT INTO product values ("accessori","Gatti",19,"Scratcher per Gatti a Forma di Gatto","Scratcher in cartone a forma di gatto, perfetto per la cura delle unghie dei felini",18.99,25,"19.jpg");
 INSERT INTO product values ("accessori","Cani",20,"Pettorina per Cani","Comoda e resistente pettorina per cani di taglia media",22.99,30,"20.jpg");
 INSERT INTO product values ("igiene","Gatti",21,"Shampoo per gatti al profumo di fiori","Shampoo delicato per il manto dei gatti, arricchito con estratti di fiori per un profumo fresco e duraturo",12.99,30,"21.jpg");
