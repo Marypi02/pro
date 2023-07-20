@@ -6,8 +6,8 @@ Collection<?> orderList = (Collection<?>) request.getAttribute("OrderList");
 %>
     
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head >
 <meta charset="ISO-8859-1" http-equiv="Content-Type" content="text/html">
 <link rel="stylesheet" href="css/protected.css" type="text/css">
 <title>Order List</title>
