@@ -25,7 +25,7 @@
     <tr>
       <td>
         <div class="product-images">
-          <img src="images/<%=product.getNomeImg()%>">
+          <img src="images/<%=product.getNomeImg()%>" alt="Not available!">
         </div>
       </td>
     </tr>

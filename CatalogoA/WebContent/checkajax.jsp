@@ -8,12 +8,12 @@
 		String port = "3306";
 		String db = "storage2";
 		String username = "root";
-		String password = "Paolinoerra01!";
+		String password = "Sorre2811@";
 		
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection con = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", username, password);
 		Statement st = con.createStatement();
-		ResultSet rs = st.executeQuery("select * from utente where email='" + email + "'");
+		ResultSet rs = st.executeQuery("select * from utente where email='" + name + "'");
 		int count = 0;
 		while (rs.next()) {
 
