@@ -3,7 +3,7 @@ package it.unisa.control;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -94,11 +94,11 @@ public class Login extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private void checkLogin(String username, String password) throws Exception{
+	private void checkLogin(String username, String password) throws IllegalArgumentException{
 		if("root@root.root".equals(username) && "admin".equals(password)) {
 			//
 		}else
-			throw new Exception("Invalid login and password");
+			throw new IllegalArgumentException("Invalid login and password");
 	}
 
 }

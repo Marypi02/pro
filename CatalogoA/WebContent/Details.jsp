@@ -24,7 +24,7 @@
  <div class="product-wrapper">
   <table class="image-table">
     <tr>
-    <th>Product Image</th> <!-- Intestazione per la colonna delle immagini del prodotto -->
+    <th scope="col">Product Image</th> <!-- Intestazione per la colonna delle immagini del prodotto -->
       <td>
         <div class="product-images">
           <img src="images/<%=product.getNomeImg()%>" alt="Not available!">
@@ -43,7 +43,7 @@
 
   <table class="description-table">
     <tr>
-     <th>Product Details</th> <!-- Intestazione per la colonna dei dettagli del prodotto -->
+     <th scope="col">Product Details</th> <!-- Intestazione per la colonna dei dettagli del prodotto -->
       <td>
         <div class="details">
           <h2 class="product-brand"><%=product.getName()%></h2>

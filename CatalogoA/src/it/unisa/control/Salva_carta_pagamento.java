@@ -2,9 +2,6 @@ package it.unisa.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import it.unisa.model.PagamentoBean;
 import it.unisa.model.Utente;
 import it.unisa.PetParadise.DAO.PagamentoDAO;
-import it.unisa.PetParadise.DAO.UtenteDAO;
-import it.unisa.PetParadise.DAO.MySQLUtenteDM;
 
 @WebServlet("/Salva_carta_pagamento")
 public class Salva_carta_pagamento extends HttpServlet {

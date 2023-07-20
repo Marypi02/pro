@@ -73,7 +73,7 @@ public class ConsegnaDAO {
 
 			while (rs.next()) 
 			{
-				//bean.setIdconsegna(rs.getInt("id_consegna"));
+				
 				bean.setVia(rs.getString("via"));
 				bean.setCap(rs.getInt("cap"));
 				bean.setNumero(rs.getInt("numero"));

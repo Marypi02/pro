@@ -39,7 +39,8 @@ public class productDAO {
         PreparedStatement preparedStatement = null;
         
         String selectSQL = "SELECT * FROM product WHERE categoria=?";
-
+        
+        connection = ds.getConnection();
         preparedStatement = connection.prepareStatement(selectSQL);
             ResultSet rs = preparedStatement.executeQuery();
 

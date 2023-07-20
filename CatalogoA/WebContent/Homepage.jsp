@@ -6,9 +6,9 @@
 
 <jsp:include page="header.jsp"/>
 
-<html>
+<html lang="en">
 
-<head lang="en">
+<head>
  	 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="stylesheet" href="css/homepagestyle.css">

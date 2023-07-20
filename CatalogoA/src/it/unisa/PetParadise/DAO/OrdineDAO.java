@@ -16,7 +16,7 @@ public class OrdineDAO implements OrderModel { //OrdineDM
 	
 	        private static final String CREATE_ORDINE_QUERY = "INSERT INTO ordine (data_ordine, stato_ordine, cod_consegna, cod_pagamento, cod_utente, prezzo_totale) VALUES (?, ?, ?, ?, ?, ?)";
 	        private static final String CREATE_COMPOSIZIONE_QUERY = "INSERT INTO composizione (cod_prodotto, num_ordine, quantita, iva, prezzo) VALUES (?, ?, ?, ?, ?)";
-	        private static final String SELECT_ORDINI_BY_UTENTE_QUERY = "SELECT * FROM ordine WHERE cod_utente = ?";
+	       
 	        // Aggiungi altre query necessarie
 
 	        @SuppressWarnings("resource")
@@ -249,7 +249,7 @@ public class OrdineDAO implements OrderModel { //OrdineDM
 		return (result != 0);
 	}
 	
-	public synchronized void doUpdate (ProductOrder var) throws SQLException {
+	public synchronized void doUpdate (ProductOrder order) throws SQLException {
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -262,12 +262,12 @@ public class OrdineDAO implements OrderModel { //OrdineDM
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(upsql);
 			
-			preparedStatement.setDate(1, var.getData_ordine());
-			preparedStatement.setString(2, var.getStato_ordine());
-			preparedStatement.setInt(3, var.getCodConsegna().getIdconsegna());
-			preparedStatement.setInt(4, var.getCodPagamento().getIdpagamento());
-			preparedStatement.setString(5, var.getCodUtente().getEmail());
-			preparedStatement.setDouble(6, var.getTotalCost());
+			preparedStatement.setDate(1, order.getData_ordine());
+			preparedStatement.setString(2, order.getStato_ordine());
+			preparedStatement.setInt(3, order.getCodConsegna().getIdconsegna());
+			preparedStatement.setInt(4, order.getCodPagamento().getIdpagamento());
+			preparedStatement.setString(5, order.getCodUtente().getEmail());
+			preparedStatement.setDouble(6, order.getTotalCost());
 			
 			preparedStatement.executeUpdate();
 			//connection.commit();

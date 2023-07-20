@@ -68,8 +68,9 @@ public class MySQLUtenteDS implements UtenteDAO {
             connection.commit();
         } finally {
             try {
-            	if (preparedStatement != null)
-					preparedStatement.close();
+            	if (preparedStatement != null) {
+						preparedStatement.close();
+            		}
 			} finally {
 				
 				if (connection != null)

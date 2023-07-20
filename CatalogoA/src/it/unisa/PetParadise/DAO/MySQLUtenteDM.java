@@ -19,13 +19,12 @@ public class MySQLUtenteDM implements UtenteDAO {
     /** La query per la lettura di un singolo cliente. */
     private static final String READ_QUERY = "SELECT * FROM utente WHERE email = ?";
     
-    private static final String READ_QUERY2 = "SELECT * FROM utente WHERE code = ?";
+    
     
     /** La query per la lettura di tutti i clienti. */
     private static final String READ_ALL_QUERY = "SELECT * FROM utente";
     
-    /** La query per l'aggiornamento di un singolo cliente. */
-    private static final String UPDATE_QUERY = "UPDATE utente SET email=?, password=?, nome=?, cognome=?, indirizzo=?, citta=?, admin=? WHERE code = ?";
+    
     
     
    
@@ -55,8 +54,9 @@ public class MySQLUtenteDM implements UtenteDAO {
             connection.commit();
         } finally {
             try {
-            	if (preparedStatement != null)
-						preparedStatement.close();
+            	if (preparedStatement != null) {
+            			preparedStatement.close();
+            	}
 			} finally {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}

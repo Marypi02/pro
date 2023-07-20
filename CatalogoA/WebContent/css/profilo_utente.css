@@ -203,7 +203,7 @@ th {
   font-size: 1.3em;
 }
 
-tr:nth-child(even) {
+tr:nth-child(odd) {
   background-color: lightblue;
 }
 

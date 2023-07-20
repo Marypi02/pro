@@ -62,12 +62,10 @@ public class UserList extends HttpServlet {
                     } else {
                         request.setAttribute("UserList", null);
                     }
-                    try {
+                    
                         Utente user = utenteDAO.getUtente(email);
                         request.setAttribute("searchResult", user);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                   
                 }
             }
         } catch (SQLException e) {

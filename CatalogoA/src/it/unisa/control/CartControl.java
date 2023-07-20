@@ -66,7 +66,7 @@ public class CartControl extends HttpServlet {
  				} else if (action.equalsIgnoreCase("deleteC")) {
  					int id = Integer.parseInt(request.getParameter("productCode"));
  					// Rimuove il prodotto dal carrello
- 					cart.deleteProduct(model.doRetrieveByKey(id), response);
+ 					cart.deleteProduct(model.doRetrieveByKey(id));
  					session.setAttribute("cart", cart);
  		            request.setAttribute("cart", cart);
  		            // Se il carrello è vuoto, reindirizza alla pagina ProductView.jsp

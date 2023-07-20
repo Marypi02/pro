@@ -2,13 +2,11 @@ package it.unisa.model;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
+
 
 public class cart {
 
@@ -74,7 +72,7 @@ public class cart {
 				}
 			}
 		}*/
-	public void deleteProduct(ProductBean product, HttpServletResponse response) throws IOException {
+	public void deleteProduct(ProductBean product) throws IOException {
 	    Iterator<Map.Entry<ProductBean, ProductOrder>> iterator = products.entrySet().iterator();
 	    while (iterator.hasNext()) {
 	        Map.Entry<ProductBean, ProductOrder> entry = iterator.next();
