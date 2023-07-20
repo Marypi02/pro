@@ -21,9 +21,9 @@
 		}
 
 		if (count > 0) {
-			data = "Email già eistente!";
+			data = "Email giÃ  eistente!";
 		} else {
-			data = "You can register now!!!!";
+			//data = "You can register now!!!!";
 		}
 		out.println(data);
 		System.out.println(data);
