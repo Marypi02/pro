@@ -29,12 +29,10 @@ DROP TABLE IF EXISTS `recensione`;
 CREATE TABLE `recensione` (
   `idRecensione` int AUTO_INCREMENT,
   `prodotto` int NOT NULL,
-  `utente` int NOT NULL,
   `voto` int NOT NULL,
   `testo` varchar(50) ,
   PRIMARY KEY (`idRecensione`),
-  FOREIGN KEY (`prodotto`) REFERENCES `product` (`code`),
-  FOREIGN KEY (`utente`) REFERENCES `utente` (`code`)
+  FOREIGN KEY (`prodotto`) REFERENCES `product` (`code`)
 ) ;
 
 

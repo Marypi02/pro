@@ -27,6 +27,18 @@ ProductBean product = (ProductBean) request.getAttribute("product");
     <link rel="stylesheet" href="css/categorie.css">
     
     <title>Products</title>
+    <script>
+        $(document).ready(function() {
+            $('.imgProdotto').hover(
+                function() {
+                    $(this).animate({ 'margin-top': '-30px' }, 200);
+                },
+                function() {
+                    $(this).animate({ 'margin-top': '0' }, 200);
+                }
+            );
+        });
+    </script>
 </head>
 
 <body >

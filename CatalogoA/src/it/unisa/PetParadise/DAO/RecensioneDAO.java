@@ -16,7 +16,7 @@ public class RecensioneDAO {
     private static final String TABLE_NAME = "recensione";
    
 
-    private static final String INSERT_QUERY = "INSERT INTO " + TABLE_NAME + " ( prodotto, utente, voto, testo) VALUES (?, ?, ?, ?)";
+    private static final String INSERT_QUERY = "INSERT INTO " + TABLE_NAME + " ( prodotto, voto, testo) VALUES (?, ?, ?)";
 
     private static final String SELECT_BY_ID_QUERY = "SELECT * FROM " + TABLE_NAME +
             " WHERE idRecensione = ?";
@@ -37,10 +37,10 @@ public class RecensioneDAO {
         try (Connection conn = DriverManagerConnectionPool.getConnection();
              PreparedStatement statement = conn.prepareStatement(INSERT_QUERY)) {
 
-            statement.setInt(1, recensione.getProdotto().getCode());
-            statement.setInt(2, recensione.getUtente().getIdutente());
-            statement.setInt(3, recensione.getVoto());
-            statement.setString(4, recensione.getTesto());
+            statement.setInt(1, recensione.getProdotto());
+            
+            statement.setInt(2, recensione.getVoto());
+            statement.setString(3, recensione.getTesto());
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -65,6 +65,7 @@ public class RecensioneDAO {
         return null;
     }*/
 
+    /*
     public List<RecensioneBean> getAllRecensioni() {
         List<RecensioneBean> recensioni = new ArrayList<>();
 
@@ -149,6 +150,7 @@ public class RecensioneDAO {
         return recensioni;
     }*/
 
+    /*
     public void deleteRecensione(int idRecensione) {
         try (Connection conn = DriverManagerConnectionPool.getConnection();
              PreparedStatement statement = conn.prepareStatement(DELETE_QUERY)) {
@@ -176,6 +178,6 @@ public class RecensioneDAO {
             e.printStackTrace();
         }
     }
-
+*/
    
 }

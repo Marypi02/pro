@@ -16,7 +16,7 @@
     	
     	
  		
-    	Collection<PagamentoBean> pagamenti = (ArrayList<PagamentoBean>) request.getAttribute("pagamenti");
+    	
     	
 	
     	ArrayList<ProductOrder> ordini = (ArrayList<ProductOrder>) request.getAttribute("ordini");	
@@ -139,9 +139,7 @@
 				</form>
 				
 		
-				<form method="get" action="./salva">
-        			<input type="hidden" name="action" value="viewPagamento">
-    		</form><br>   
+				<br>   
     		
     
 			</div>

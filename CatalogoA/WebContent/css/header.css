@@ -1,4 +1,32 @@
 /* Stili per l'header */
+#ricercabar{
+ position: relative;
+ background-color: white;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    padding: 10px;
+    max-width: 100%;
+}
+#mylocation{
+ position: absolute;
+ z-index: 1;
+ margin: 0px;
+ max-width: 100%;
+}
+ #mylocation a{
+  background-color: white;
+  text-decoration: none;
+  display: block;
+  padding: 3px;
+  width: 140%;
+ }
+ #mylocation a:hover{
+ transform: scale(1.01);
+    -webkit-box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
+ -moz-box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
+ box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
+ }
 
 .header-body {
   margin: 0;

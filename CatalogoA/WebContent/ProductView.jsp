@@ -33,7 +33,7 @@ ProductBean product = (ProductBean) request.getAttribute("product");
         $(document).ready(function() {
             $('.imgProdotto').hover(
                 function() {
-                    $(this).animate({ 'margin-top': '-20px' }, 200);
+                    $(this).animate({ 'margin-top': '-30px' }, 200);
                 },
                 function() {
                     $(this).animate({ 'margin-top': '0' }, 200);

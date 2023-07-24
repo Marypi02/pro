@@ -65,7 +65,7 @@ public class Login extends HttpServlet {
 			//controllo prima se Ã¨ registrato
 			try {
 				//verifico che sia presente nel db e che la password corrisponda a quella usata in fase di registrazione
-				if (utenteDAO.isEmailPresent(username) /*&& password.equals(utenteDAO.getUtente(username).getPassword())*/) {
+				if (utenteDAO.isEmailPresent(username) && password.equals(utenteDAO.getUtente(username).getPassword())) {
 				    // Utente registrato; setto la variabile adminRoles a false e definisco a chi passare il controllo
 					
 					// Dopo aver verificato che l'utente sia registrato nel database

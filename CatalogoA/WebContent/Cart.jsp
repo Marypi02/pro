@@ -63,8 +63,23 @@
                 <input type="hidden" name="action" value="deleteC">
                 <input type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
                 <button type="submit" class="cart-button" type="button" value="Delete from cart">Delete from cart</button>
+                
+                
                 </form></td>
-      </tr>
+        <td class="cart-td"> <form action="./cart" method="post">
+      			<input type="hidden" name="action" value="addReview">
+    			<input type="hidden" name="productCode" value="<%= beancart.getKey().getCode() %>">
+    
+    			<label for="reviewText">Recensione:</label>
+    			<textarea id="reviewText" name="reviewText" rows="4" cols="50"></textarea><br>
+    
+    			<label for="rating">Voto:</label>
+                <input type="number" id="rating" name="rating" min="1" max="5" required><br>
+    
+                  <button name = "submit" type="submit">Invia Recensione</button>
+        
+			</form></td>
+			</tr>
     </tbody>
     <%} %>
   </table>
@@ -82,6 +97,7 @@
                 <input type="hidden" name="action" value="procediOrdine"> 
     <button type="submit" class="cart-button" type="button"  value="Procedi all'ordine">Aquista</button>
 </form>
+
 
                 </div>
 	<% }else { %>	

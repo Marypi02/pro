@@ -4,7 +4,7 @@ public class RecensioneBean {
 	
 	private int idRecensione,voto;
 	private Utente utente;
-	private ProductBean prodotto;
+	private int IDprodotto;
 	private String testo;
 	
 	public RecensioneBean() { //è il costruttore
@@ -34,12 +34,12 @@ public class RecensioneBean {
 		this.utente = utente;
 	}
 
-	public ProductBean getProdotto() {
-		return prodotto;
+	public int getProdotto() {
+		return IDprodotto;
 	}
 
-	public void setProdotto(ProductBean prodotto) {
-		this.prodotto = prodotto;
+	public void setProdotto(int prodotto) {
+		this.IDprodotto = prodotto;
 	}
 
 	public String getTesto() {

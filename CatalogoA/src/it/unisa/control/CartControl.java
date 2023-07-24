@@ -1,5 +1,6 @@
 package it.unisa.control;
 
+import it.unisa.PetParadise.DAO.RecensioneDAO;
 import it.unisa.model.*;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -76,7 +77,26 @@ public class CartControl extends HttpServlet {
  	                    RequestDispatcher dispatcher = request.getRequestDispatcher("Cart.jsp");
  	                    dispatcher.forward(request, response);
  	                }
- 				} else if (action.equalsIgnoreCase("setNumOrder")) {
+ 				} else if (action.equalsIgnoreCase("addReview")) {
+ 					System.out.println("a1");
+ 					int id = Integer.parseInt(request.getParameter("productCode"));
+ 					System.out.println("a2");
+ 					String recensione = request.getParameter("reviewText");
+ 					int voto = Integer.parseInt(request.getParameter("rating"));	
+ 					System.out.println("a1");
+ 					System.out.println("recensione" +recensione);
+ 					RecensioneBean rece = new RecensioneBean();
+ 					RecensioneDAO recedao = new RecensioneDAO();
+ 					rece.setProdotto(id);
+ 					rece.setTesto(recensione);
+ 					rece.setVoto(voto);
+ 					
+ 					recedao.insertRecensione(rece);
+ 					
+ 					RequestDispatcher dispatcher = request.getRequestDispatcher("Cart.jsp");
+ 			        dispatcher.forward(request, response);
+ 				}
+ 					else if (action.equalsIgnoreCase("setNumOrder")) {
  			    	int id = Integer.parseInt(request.getParameter("productCode"));
  					String quantityString = request.getParameter("quantity");
  					int quantity = 0;
